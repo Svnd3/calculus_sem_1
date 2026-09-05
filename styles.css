@@ -1237,6 +1237,146 @@ input:focus-visible,
   white-space: normal;
 }
 
+.photo-formula-note {
+  margin: 18px 0;
+  padding: 18px;
+  border: 1.5px solid #9bb9ef;
+  border-radius: 18px 15px 20px 14px;
+  background: linear-gradient(135deg, #f6f9ff, #edf3ff);
+  box-shadow: 4px 5px 0 rgba(39, 74, 145, 0.07);
+}
+
+.photo-formula-note > p {
+  margin: 10px 0 13px;
+}
+
+.photo-formula-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.photo-formula-heading > strong {
+  font-family: "PaperNotes", sans-serif;
+  font-size: 1.22rem;
+}
+
+.cover-trick {
+  display: grid;
+  gap: 8px;
+}
+
+.cover-trick-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px dashed #88a6df;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.cover-trick-row span {
+  padding: 10px 7px;
+  border-radius: 10px;
+  color: #16398d;
+  background: var(--blue-soft);
+  font-family: "PaperNotes", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cover-trick-row small {
+  min-width: 82px;
+  color: var(--forest);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cover-trick-row.negative {
+  border-color: #e4a2a6;
+}
+
+.cover-trick-row.negative span {
+  color: #8d2932;
+  background: #fff0f1;
+}
+
+.cover-trick-row.negative small {
+  color: #a32f39;
+}
+
+.cover-examples .micro-example {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.inverse-shape-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.inverse-shape-grid article {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  border: 1px dashed #91a9e7;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.inverse-shape-grid article > div {
+  min-width: 0;
+}
+
+.inverse-shape-grid article strong {
+  font-size: 0.83rem;
+}
+
+.inverse-shape-grid article p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.shape-mark {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--blue);
+  font-family: "PaperNotes", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+}
+
+.box-mark {
+  background: var(--forest);
+}
+
+.triangle-mark {
+  color: var(--ink);
+  background: var(--yellow);
+}
+
+.photo-formula-note .photo-correction {
+  margin: 14px 0 0;
+  padding: 11px 13px;
+  border-left: 4px solid #e4b83f;
+  border-radius: 4px 10px 10px 4px;
+  background: var(--yellow-soft);
+  font-size: 0.82rem;
+}
+
 .micro-example {
   margin-top: 16px;
   padding: 17px 18px;
@@ -2949,7 +3089,11 @@ body.tired-mode .page-wrap {
   .rule-choice-grid,
   .worked-example-grid,
   .derivative-card-grid,
-  .memory-patterns { grid-template-columns: 1fr; }
+  .memory-patterns,
+  .inverse-shape-grid { grid-template-columns: 1fr; }
+  .photo-formula-heading { align-items: flex-start; flex-direction: column; }
+  .cover-trick-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cover-trick-row small { grid-column: 1 / -1; }
   .derivative-deck-intro { grid-template-columns: 1fr; }
   .derivative-tion { width: 72px; height: 72px; }
   .reflex-routine { grid-template-columns: 1fr 1fr; }

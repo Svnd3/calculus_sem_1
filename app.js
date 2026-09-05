@@ -573,9 +573,9 @@
         </div>
         ${state.derivativeFilter === "Inverse hyperbolic" ? `<p class="derivative-extension-note"><strong>Extension only:</strong> these inverse-hyperbolic rules were not developed in your photographed notes. Read them only if your lecturer includes them. Write <em>arsinh</em> rather than sinh⁻¹ when you need to avoid confusing an inverse with a reciprocal.</p>` : ""}
         <div class="memory-patterns">
-          <article><strong>Ordinary trig</strong><p><b>C-C-C are negative:</b> cosine, cotangent and cosecant. Tan/cot give a reciprocal square; sec/cosec copy themselves.</p></article>
+          <article><strong>Ordinary trig · photo trick</strong><p><b>sec–sec–tan</b> is positive. <b>cosec–cosec–cot</b> is negative. Cover the function you want, then multiply the two that remain.</p></article>
           <article><strong>Hyperbolic</strong><p>sinh and cosh simply swap. Cosh has <b>no minus</b>. The reciprocal-side coth, sech and csch rules are negative.</p></article>
-          <article><strong>Inverse trig</strong><p>Learn three denominator pairs: √(1−u²), 1+u², and |u|√(u²−1). The cos/cot/cosec partner is negative.</p></article>
+          <article><strong>Inverse trig · photo shapes</strong><p><b>ROOT</b> √(1−u²), <b>BOX</b> 1+u², <b>TRIANGLE</b> |u|√(u²−1). The cos/cot/cosec partner is negative.</p></article>
         </div>
         <div class="derivative-lesson-link"><span><strong>Need the reason, not just the answer?</strong><small>Open the worked notes for explanations and examples.</small></span><button class="primary-button" data-action="select-lesson" data-lesson="trig-derivatives">Open derivative lesson →</button></div>
       </section>
@@ -593,7 +593,8 @@
     { title: "Limits: the decision path", items: ["Substitute first.", "If 0/0: factor, rationalise or use a trig standard limit.", "For piecewise questions: calculate L₋ and L₊ separately.", "At infinity: compare highest powers."] },
     { title: "Continuity: say all three", items: ["f(a) is defined.", "limₓ→ₐf(x) exists.", "The limit equals f(a).", "For an unknown constant, equate the two branch limits."] },
     { title: "Derivatives: choose the structure", items: ["Single powers → power rule.", "Two multiplied functions → product rule.", "One function divided by another → quotient rule.", "A function inside a function → chain rule."] },
-    { title: "Signs worth a mark", items: ["(cos x)′=−sin x", "(cos⁻¹x)′=−1/√(1−x²)", "(cot x)′=−cosec²x", "But (cosh x)′=+sinh x"] }
+    { title: "Signs worth a mark", items: ["(cos x)′=−sin x", "(cos⁻¹x)′=−1/√(1−x²)", "(cot x)′=−cosec²x", "sec–sec–tan is +; cosec–cosec–cot is −.", "But (cosh x)′=+sinh x"] },
+    { title: "Inverse trig: photo code", items: ["ROOT √(1−u²): arcsin +, arccos −.", "BOX 1+u²: arctan +, arccot −.", "TRIANGLE |u|√(u²−1): arcsec +, arccosec −.", "Put u′ on top of every answer."] }
   ];
 
   const examChecklist = [
@@ -604,14 +605,15 @@
     "I can write the first-principles definition without looking.",
     "I can spot product, quotient and chain rule structures.",
     "I know the six trigonometric derivatives.",
-    "My calculator is in radians for trig calculus."
+    "My calculator is in radians for trig calculus.",
+    "I know the inverse-trig root, box and triangle pairs."
   ];
 
   function renderExam() {
     const checked = state.progress.examChecklist.length;
     return `
       <section class="exam-callout">
-        <div><span class="eyebrow" style="color:var(--lime)">Read this before the exam</span><h1>Your final calm sweep.</h1><p>This page is deliberately short. Read the four cards, check the danger list, then stop revising and breathe.</p></div>
+        <div><span class="eyebrow" style="color:var(--lime)">Read this before the exam</span><h1>Your final calm sweep.</h1><p>This page is deliberately short. Read the five cards, check the danger list, then stop revising and breathe.</p></div>
         <div class="exam-countdown"><strong>${checked}/${examChecklist.length}</strong><span>readiness checks done</span></div>
       </section>
       <section class="exam-summary-grid">

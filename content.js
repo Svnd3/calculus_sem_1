@@ -330,6 +330,18 @@ window.STUDY_DATA = (() => {
           title: "Must memorise: see it → write it",
           html: `<p>Let u mean any inside expression such as 4x, x² or ln x. If the input is only x, then u′=1.</p>
           <div class="formula-display">(sin u)′=cos u·u′ &nbsp; | &nbsp; (cos u)′=−sin u·u′<br>(tan u)′=sec²u·u′ &nbsp; | &nbsp; (cot u)′=−cosec²u·u′<br>(sec u)′=sec u tan u·u′ &nbsp; | &nbsp; (cosec u)′=−cosec u cot u·u′</div>
+          <div class="photo-formula-note">
+            <div class="photo-formula-heading"><span class="priority-badge must">From your formula photo</span><strong>The cover-one trick</strong></div>
+            <p>Cover the function you are differentiating, then multiply the other two entries in its row. The lower row always carries a minus. Your photo writes <strong>csc</strong>; that is the same function as <strong>cosec</strong>.</p>
+            <div class="cover-trick" aria-label="Secant tangent and cosecant cotangent derivative memory trick">
+              <div class="cover-trick-row"><span>sec u</span><span>sec u</span><span>tan u</span><small>positive row</small></div>
+              <div class="cover-trick-row negative"><span>cosec u</span><span>cosec u</span><span>cot u</span><small>minus row</small></div>
+            </div>
+            <div class="worked-example-grid cover-examples">
+              <div class="micro-example"><strong>Want (tan u)′?</strong><p>Cover tan. The two secants remain: sec u × sec u=sec²u.</p><div class="answer-line">(tan u)′=sec²u·u′</div></div>
+              <div class="micro-example"><strong>Want (cosec u)′?</strong><p>Cover one cosec. Cosec u × cot u remains, and the lower row is negative.</p><div class="answer-line">(cosec u)′=−cosec u cot u·u′</div></div>
+            </div>
+          </div>
           <p><strong>Memory pattern:</strong> ordinary trig derivatives beginning with <strong>C</strong> — cosine, cotangent and cosecant — carry a minus. Tan and cot produce the matching reciprocal squared. Sec and cosec copy themselves and attach tan or cot.</p>
           <p><strong>Vocabulary:</strong> cosec=csc, sec u=1/cos u, cosec u=1/sin u, and cot u=cos u/sin u.</p>
           <div class="micro-example"><strong>Fast chain example</strong><p>sin(3x²) becomes cos(3x²), then multiply by (3x²)′.</p><div class="answer-line">d/dx[sin(3x²)]=6x cos(3x²).</div></div>`
@@ -380,11 +392,32 @@ window.STUDY_DATA = (() => {
           title: "Must memorise: all six with an inside u",
           html: `<p>Use the names <strong>arcsin, arccos, arctan</strong> when possible. They make it clear that these are inverse functions, not reciprocals. Every numerator contains u′ because chain rule still applies.</p>
           <div class="formula-display">(arcsin u)′=u′/√(1−u²) &nbsp; | &nbsp; (arccos u)′=−u′/√(1−u²)<br>(arctan u)′=u′/(1+u²) &nbsp; | &nbsp; (arccot u)′=−u′/(1+u²)<br>(arcsec u)′=u′/[|u|√(u²−1)] &nbsp; | &nbsp; (arccosec u)′=−u′/[|u|√(u²−1)]</div>
+          <div class="photo-formula-note inverse-shape-note">
+            <div class="photo-formula-heading"><span class="priority-badge must">From your formula photo</span><strong>Root → box → triangle</strong></div>
+            <p>The photo gives each inverse pair one denominator shape. Here <strong>u is whatever is inside the brackets</strong>. Put <strong>u′</strong> on top, use the shape below, then choose the sign.</p>
+            <div class="inverse-shape-grid" aria-label="Inverse trigonometric derivative denominator memory pattern">
+              <article><span class="shape-mark root-mark">√</span><div><strong>ROOT = √(1−u²)</strong><p><b>+</b> arcsin &nbsp; <b>−</b> arccos</p></div></article>
+              <article><span class="shape-mark box-mark">□</span><div><strong>BOX = 1+u²</strong><p><b>+</b> arctan &nbsp; <b>−</b> arccot</p></div></article>
+              <article><span class="shape-mark triangle-mark">△</span><div><strong>TRIANGLE = |u|√(u²−1)</strong><p><b>+</b> arcsec &nbsp; <b>−</b> arccosec</p></div></article>
+            </div>
+            <p class="photo-correction"><strong>Tion’s correction:</strong> the triangle in the photo looks like u√(u²−1). Write <strong>|u|√(u²−1)</strong> in an exam unless the question guarantees u&gt;1. The absolute value also makes the rule correct when u&lt;−1.</p>
+          </div>
           <p><strong>Pair memory:</strong> arcsin/arccos share √(1−u²); arctan/arccot share 1+u²; arcsec/arccosec share |u|√(u²−1). Within each pair, the cos/cot/cosec partner is negative.</p>`
         },
         {
           title: "Why arcsine has that root",
           html: `<p>Let y=sin⁻¹x, so sin y=x. Differentiate implicitly: cos y·dy/dx=1. Therefore dy/dx=1/cos y. Since cos²y=1−sin²y and sin y=x, cos y=√(1−x²) on the principal range.</p>`
+        },
+        {
+          title: "Where root, box and triangle come from",
+          html: `<p>The three shapes are not random. They come from the three Pythagorean identities below. This is the backup method to use if the memory picture disappears during an exam.</p>
+          <div class="formula-display">sin²θ+cos²θ=1 &nbsp; | &nbsp; 1+tan²θ=sec²θ &nbsp; | &nbsp; 1+cot²θ=cosec²θ</div>
+          <div class="worked-example-grid">
+            <div class="micro-example"><strong>ROOT: y=arcsin u</strong><p>sin y=u. Imagine a right triangle with opposite=u and hypotenuse=1. Pythagoras gives adjacent=√(1−u²), so cos y=√(1−u²).</p><div class="answer-line">That is the root below u′.</div></div>
+            <div class="micro-example"><strong>BOX: y=arctan u</strong><p>tan y=u/1. Then 1+tan²y=sec²y gives sec²y=1+u².</p><div class="answer-line">That is the box below u′.</div></div>
+            <div class="micro-example"><strong>TRIANGLE: y=arcsec u</strong><p>sec y=u, so tan²y=u²−1. This produces √(u²−1); the full derivative needs |u| as well.</p><div class="answer-line">That is |u|√(u²−1) below u′.</div></div>
+          </div>`,
+          optional: true
         },
         {
           title: "The other two — and a notebook trap",
@@ -761,7 +794,9 @@ window.STUDY_DATA = (() => {
         ["(tan u)′=sec²u·u′", "Tangent + chain rule"],
         ["(cot u)′=−cosec²u·u′", "Cotangent — note the minus"],
         ["(sec u)′=sec u tan u·u′", "Secant + chain rule"],
-        ["(cosec u)′=−cosec u cot u·u′", "Cosecant (csc) — note the minus"]
+        ["(cosec u)′=−cosec u cot u·u′", "Cosecant (csc) — note the minus"],
+        ["sec · sec · tan", "Photo trick: cover tan → sec²; cover sec → sec tan"],
+        ["−(cosec · cosec · cot)", "Photo trick: cover cot → −cosec²; cover cosec → −cosec cot"]
       ]
     },
     {
@@ -771,7 +806,10 @@ window.STUDY_DATA = (() => {
         ["(arctan u)′=u′/(1+u²)", "Inverse tangent"],
         ["(arccot u)′=−u′/(1+u²)", "Using the convention in your notes"],
         ["(arcsec u)′=u′/(|u|√(u²−1))", "Inverse secant; |u|>1"],
-        ["(arccosec u)′=−u′/(|u|√(u²−1))", "Inverse cosecant; |u|>1"]
+        ["(arccosec u)′=−u′/(|u|√(u²−1))", "Inverse cosecant; |u|>1"],
+        ["√ = √(1−u²)", "ROOT denominator: arcsin +, arccos −; put u′ above"],
+        ["□ = 1+u²", "BOX denominator: arctan +, arccot −; put u′ above"],
+        ["△ = |u|√(u²−1)", "TRIANGLE denominator: arcsec +, arccosec −; put u′ above"]
       ]
     },
     {
@@ -816,15 +854,15 @@ window.STUDY_DATA = (() => {
     { id: "d-cos", family: "Core trig", prompt: "(cos u)′", answer: "−sin u · u′", cue: "Cosine carries a minus.", example: "cos(x²) → −2x sin(x²)", must: true },
     { id: "d-tan", family: "Core trig", prompt: "(tan u)′", answer: "sec²u · u′", cue: "Tangent produces secant squared.", example: "tan(3x−1) → 3sec²(3x−1)", must: true },
     { id: "d-cot", family: "Core trig", prompt: "(cot u)′", answer: "−cosec²u · u′", cue: "Cotangent is the negative partner.", example: "cot(4x) → −4cosec²(4x)", must: true },
-    { id: "d-sec", family: "Core trig", prompt: "(sec u)′", answer: "sec u tan u · u′", cue: "Secant copies itself, then attaches tan.", example: "sec(3x) → 3sec(3x)tan(3x)", must: true },
-    { id: "d-cosec", family: "Core trig", prompt: "(cosec u)′", answer: "−cosec u cot u · u′", cue: "Cosec (csc) copies itself and brings a minus.", example: "cosec(2x) → −2cosec(2x)cot(2x)", must: true },
+    { id: "d-sec", family: "Core trig", prompt: "(sec u)′", answer: "sec u tan u · u′", cue: "Photo trick: cover one sec in sec–sec–tan; multiply what remains.", example: "sec(3x) → 3sec(3x)tan(3x)", must: true },
+    { id: "d-cosec", family: "Core trig", prompt: "(cosec u)′", answer: "−cosec u cot u · u′", cue: "Photo trick: cover one cosec in the negative cosec–cosec–cot row.", example: "cosec(2x) → −2cosec(2x)cot(2x)", must: true },
 
-    { id: "d-arcsin", family: "Inverse trig", prompt: "(arcsin u)′", answer: "u′/√(1−u²)", cue: "The sine pair uses the 1−u² root.", example: "arcsin(2x) → 2/√(1−4x²)", must: true },
-    { id: "d-arccos", family: "Inverse trig", prompt: "(arccos u)′", answer: "−u′/√(1−u²)", cue: "Same root as arcsin, but negative.", example: "arccos(3x) → −3/√(1−9x²)", must: true },
-    { id: "d-arctan", family: "Inverse trig", prompt: "(arctan u)′", answer: "u′/(1+u²)", cue: "Tangent pair uses 1+u².", example: "arctan(x³) → 3x²/(1+x⁶)", must: true },
-    { id: "d-arccot", family: "Inverse trig", prompt: "(arccot u)′", answer: "−u′/(1+u²)", cue: "Same denominator as arctan, but negative.", example: "arccot(2x²) → −4x/(1+4x⁴)", must: true },
-    { id: "d-arcsec", family: "Inverse trig", prompt: "(arcsec u)′", answer: "u′/[|u|√(u²−1)]", cue: "Keep the absolute value around u.", example: "arcsec(2x) → 2/[|2x|√(4x²−1)]", must: true },
-    { id: "d-arccosec", family: "Inverse trig", prompt: "(arccosec u)′", answer: "−u′/[|u|√(u²−1)]", cue: "Arcsec's negative partner; cosec is also csc.", example: "arccosec(3x) → −3/[|3x|√(9x²−1)]", must: true },
+    { id: "d-arcsin", family: "Inverse trig", prompt: "(arcsin u)′", answer: "u′/√(1−u²)", cue: "ROOT pair, positive: put u′ over √(1−u²).", example: "arcsin(2x) → 2/√(1−4x²)", must: true },
+    { id: "d-arccos", family: "Inverse trig", prompt: "(arccos u)′", answer: "−u′/√(1−u²)", cue: "ROOT pair, negative: same root as arcsin.", example: "arccos(3x) → −3/√(1−9x²)", must: true },
+    { id: "d-arctan", family: "Inverse trig", prompt: "(arctan u)′", answer: "u′/(1+u²)", cue: "BOX pair, positive: the box means 1+u².", example: "arctan(x³) → 3x²/(1+x⁶)", must: true },
+    { id: "d-arccot", family: "Inverse trig", prompt: "(arccot u)′", answer: "−u′/(1+u²)", cue: "BOX pair, negative: same denominator as arctan.", example: "arccot(2x²) → −4x/(1+4x⁴)", must: true },
+    { id: "d-arcsec", family: "Inverse trig", prompt: "(arcsec u)′", answer: "u′/[|u|√(u²−1)]", cue: "TRIANGLE pair, positive: keep the absolute value around u.", example: "arcsec(2x) → 2/[|2x|√(4x²−1)]", must: true },
+    { id: "d-arccosec", family: "Inverse trig", prompt: "(arccosec u)′", answer: "−u′/[|u|√(u²−1)]", cue: "TRIANGLE pair, negative; cosec is also written csc.", example: "arccosec(3x) → −3/[|3x|√(9x²−1)]", must: true },
 
     { id: "d-exp", family: "Exp & log", prompt: "(eᵘ)′", answer: "eᵘ · u′", cue: "e copies itself, then chain rule.", example: "e^(sin x) → e^(sin x)cos x", must: true },
     { id: "d-base-exp", family: "Exp & log", prompt: "(aᵘ)′", answer: "aᵘ ln(a) · u′", cue: "A base other than e adds ln(a).", example: "2^(x²) → 2x·2^(x²)ln2", must: true },
