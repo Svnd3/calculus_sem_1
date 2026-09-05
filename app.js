@@ -2,6 +2,7 @@
   "use strict";
 
   const { lessons, practice, formulaGroups, checkpoints, sources } = window.STUDY_DATA;
+  const examPapers = window.EXAM_PAPERS || [];
   const app = document.querySelector("#app");
   const toastRegion = document.querySelector("#toast-region");
   const STORAGE_KEY = "tion-calculus-progress-v1";
@@ -13,6 +14,7 @@
     { id: "home", label: "Home", icon: "⌂" },
     { id: "learn", label: "Learn", icon: "✎" },
     { id: "practice", label: "Practice", icon: "∑" },
+    { id: "papers", label: "Exam centre", icon: "▤" },
     { id: "checkpoints", label: "Checkpoints", icon: "✓" },
     { id: "formulas", label: "Formula sheet", icon: "ƒ" },
     { id: "exam", label: "Before exam", icon: "★" },
@@ -37,6 +39,11 @@
       "Try for two minutes before opening the solution. Then mark your own working honestly.",
       "In the exam, the method earns marks even when arithmetic slips.",
       "Write the rule first. It makes your next line much easier to trust."
+    ],
+    papers: [
+      "Sit the paper first, then reveal the working one answer at a time.",
+      "These mocks predict useful patterns, not the exact questions you will meet.",
+      "Method marks matter: write the rule, substitution and conclusion clearly."
     ],
     checkpoints: [
       "No pressure: a checkpoint tells us what to revisit, not how smart you are.",
@@ -78,7 +85,8 @@
     tionOpen: true,
     tionMessageIndex: 0,
     homeGreetingIndex: nextGreetingIndex(),
-    mobileMore: false
+    mobileMore: false,
+    selectedPaper: examPapers[0]?.id || ""
   };
 
   function nextGreetingIndex() {
@@ -151,7 +159,7 @@
             <h1 id="login-title">Calculus that feels <span class="accent-scribble">human.</span></h1>
             <p>Clear explanations when you have energy. Only the points that matter when you do not. Then proper exam-room working until it sticks.</p>
             <div class="login-mini-cards" aria-label="Site features">
-              <span>☾ Tired mode</span><span>✓ Checkpoints</span><span>▦ fx-82EX checks</span><span>✎ 34 worked questions</span>
+              <span>☾ Tired mode</span><span>✓ Checkpoints</span><span>▦ fx-82EX checks</span><span>✎ 34 questions + 3 papers</span>
             </div>
           </section>
           <section class="login-card" aria-label="Sign in">
@@ -184,7 +192,7 @@
       </button>`).join("");
 
     if (mobile) {
-      return `${buttons}<button class="nav-button ${["checkpoints", "exam", "calculator"].includes(state.page) ? "active" : ""}" data-action="mobile-more"><span class="nav-icon">•••</span><span>More</span></button>`;
+      return `${buttons}<button class="nav-button ${["papers", "checkpoints", "exam", "calculator"].includes(state.page) ? "active" : ""}" data-action="mobile-more"><span class="nav-icon">•••</span><span>More</span></button>`;
     }
     return buttons;
   }
@@ -196,6 +204,7 @@
 
   function currentExpression() {
     if (state.page === "checkpoints") return "thinking";
+    if (state.page === "papers") return "thinking";
     if (state.page === "exam") return "concerned";
     if (state.progress.completedLessons.length >= 5) return "proud";
     return "happy";
@@ -249,7 +258,7 @@
       <div class="mobile-more-sheet" role="dialog" aria-label="More pages" data-action="mobile-sheet">
         <div class="mobile-more-handle"></div>
         <h3>More from your room</h3>
-        ${navItems.filter(item => ["checkpoints", "exam", "calculator"].includes(item.id)).map(item => `
+        ${navItems.filter(item => ["papers", "checkpoints", "exam", "calculator"].includes(item.id)).map(item => `
           <button class="nav-button ${state.page === item.id ? "active" : ""}" data-action="nav" data-page="${item.id}"><span class="nav-icon">${item.icon}</span><span>${item.label}</span></button>
         `).join("")}
         <button class="logout-button mobile-logout" data-action="logout">↪ Lock room</button>
@@ -262,6 +271,7 @@
       home: renderHome,
       learn: renderLearn,
       practice: renderPractice,
+      papers: renderPapers,
       checkpoints: renderCheckpoints,
       formulas: renderFormulas,
       exam: renderExam,
@@ -320,7 +330,7 @@
 
       <section class="home-lower-grid">
         <div class="quote-card paper-card"><blockquote>“A limit is about the journey near the point. A derivative is about how fast that journey changes.”</blockquote><cite>— Tion’s plain-language rule</cite></div>
-        <div class="quick-card paper-card"><span class="eyebrow">Quick desk</span><h3>Need one thing fast?</h3><div class="quick-links"><button class="ghost-button" data-action="nav" data-page="formulas">Formula glance</button><button class="ghost-button" data-action="nav" data-page="calculator">Check on fx-82EX</button><button class="ghost-button" data-action="nav" data-page="checkpoints">Test me</button></div></div>
+        <div class="quick-card paper-card"><span class="eyebrow">Quick desk</span><h3>Need one thing fast?</h3><div class="quick-links"><button class="ghost-button" data-action="nav" data-page="formulas">Formula glance</button><button class="ghost-button" data-action="nav" data-page="papers">Past & mock papers</button><button class="ghost-button" data-action="nav" data-page="calculator">Check on fx-82EX</button><button class="ghost-button" data-action="nav" data-page="checkpoints">Test me</button></div></div>
       </section>`;
   }
 
@@ -412,6 +422,120 @@
         <button class="${solved ? "ghost-button" : "secondary-button"}" style="margin-top:8px" data-action="mark-solved" data-problem="${problem.id}">${solved ? "✓ Added to your tally" : "I worked through this ✓"}</button>
       </div>
     </article>`;
+  }
+
+  function catOneGraph() {
+    return `<figure class="paper-graph">
+      <svg viewBox="0 0 720 380" role="img" aria-labelledby="cat1-graph-title cat1-graph-desc">
+        <title id="cat1-graph-title">Sketch of the CAT 1 piecewise function</title>
+        <desc id="cat1-graph-desc">A line ending at x negative two, a reciprocal branch approaching a vertical asymptote at x one, a horizontal segment from x one to three, and a parabola continuing from x three.</desc>
+        <defs><marker id="axis-arrow" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="currentColor"/></marker></defs>
+        <g class="graph-grid">
+          ${[70,140,210,280,350,420,490,560,630].map(x => `<line x1="${x}" y1="25" x2="${x}" y2="345"/>`).join("")}
+          ${[50,80,110,140,170,200,230,260,290,320].map(y => `<line x1="35" y1="${y}" x2="685" y2="${y}"/>`).join("")}
+        </g>
+        <g class="graph-axes">
+          <line x1="35" y1="260" x2="690" y2="260" marker-end="url(#axis-arrow)"/>
+          <line x1="350" y1="350" x2="350" y2="20" marker-end="url(#axis-arrow)"/>
+          <text x="695" y="255">x</text><text x="360" y="25">y</text>
+          <text x="202" y="280">−2</text><text x="414" y="280">1</text><text x="554" y="280">3</text><text x="360" y="145">4</text>
+        </g>
+        <line class="graph-asymptote" x1="420" y1="30" x2="420" y2="345"/>
+        <path class="graph-piece graph-line" d="M35 275 L210 200"/>
+        <path class="graph-piece graph-curve" d="M210 210 C270 215 320 221 350 230 C380 245 398 292 410 345"/>
+        <path class="graph-piece graph-flat" d="M420 140 L560 140"/>
+        <path class="graph-piece graph-parabola" d="M560 140 C575 115 591 72 604 30"/>
+        <circle class="graph-closed" cx="210" cy="200" r="6"/><circle class="graph-open" cx="210" cy="210" r="6"/>
+        <circle class="graph-closed" cx="420" cy="140" r="6"/><circle class="graph-closed" cx="560" cy="140" r="6"/>
+        <text class="graph-label" x="60" y="250">y=x+4</text><text class="graph-label" x="225" y="196">y=1/(x−1)+2</text>
+        <text class="graph-label" x="465" y="128">y=4</text><text class="graph-label" x="590" y="63">y=x²−5</text>
+      </svg>
+      <figcaption>Closed dots are included. Open dots are excluded. The dashed line is the vertical asymptote x=1.</figcaption>
+    </figure>`;
+  }
+
+  function renderPaperQuestion(question, index) {
+    const questionId = question.id || `paper-q-${index + 1}`;
+    const steps = question.steps || question.solution || [];
+    const traps = question.commonTraps || (question.trap ? [question.trap] : []);
+    const marker = question.markerNote || question.marker;
+    const provenance = question.provenance || question.source;
+    const finalAnswer = question.finalAnswer || question.answer;
+    const calculatorCheck = Array.isArray(question.calculatorCheck)
+      ? `<ul>${question.calculatorCheck.map(item => `<li>${item}</li>`).join("")}</ul>`
+      : `<p>${question.calculatorCheck || ""}</p>`;
+    const priority = (question.priority || "Must read").toLowerCase().includes("must") ? "must" : "optional";
+    return `<article class="paper-question paper-card" id="${questionId}">
+      <header class="paper-question-head">
+        <div class="problem-topline">
+          <div class="lesson-kicker"><span class="priority-badge ${priority}">${priority === "must" ? "● Must read" : "○ Extra practice"}</span><span class="source-badge">${question.topic || question.title || "Calculus"}</span></div>
+          <span class="marks">[${question.marks} marks]</span>
+        </div>
+        <h3><span class="paper-question-number">${question.number || index + 1}</span>${question.title || "Question"}</h3>
+        <div class="paper-prompt">${question.prompt}</div>
+        ${question.visual === "cat1-piecewise" ? catOneGraph() : ""}
+        <button class="primary-button paper-answer-button" data-action="toggle-paper-solution" data-paper-question="${questionId}" aria-expanded="false">Show exam-room solution</button>
+      </header>
+      <div class="solution-panel paper-solution" data-paper-solution="${questionId}">
+        <div class="exam-ribbon">✎ What I would write in the exam</div>
+        ${steps.map((step, stepIndex) => {
+          const work = typeof step === "string" ? step : step.work;
+          const mark = typeof step === "object" && step.marks ? `<span class="step-mark">${step.marks} mark${step.marks === 1 ? "" : "s"}</span>` : "";
+          return `<div class="solution-step"><span class="step-number">${stepIndex + 1}</span><p>${work}${mark}</p></div>`;
+        }).join("")}
+        ${finalAnswer ? `<div class="final-answer">Final answer: ${finalAnswer}</div>` : ""}
+        ${marker ? `<p class="marker-note"><strong>Marker’s eye:</strong> ${marker}</p>` : ""}
+        ${traps.length ? `<aside class="paper-traps optional-content"><strong>Common traps</strong><ul>${traps.map(trap => `<li>${trap}</li>`).join("")}</ul></aside>` : ""}
+        ${question.calculatorCheck ? `<aside class="paper-calc-check"><strong>fx-82EX check</strong>${calculatorCheck}</aside>` : ""}
+        ${provenance ? `<p class="paper-provenance optional-content">Question trail: ${provenance}</p>` : ""}
+      </div>
+    </article>`;
+  }
+
+  function renderPapers() {
+    if (!examPapers.length) {
+      return `<section class="paper-card empty-state"><span>▤</span><h1>Exam papers are being prepared.</h1><p>Come back in a moment.</p></section>`;
+    }
+    const paper = examPapers.find(item => item.id === state.selectedPaper) || examPapers[0];
+    const marks = paper.marks || paper.totalMarks;
+    const timePlan = paper.timePlan || [];
+    return `
+      <section class="paper-centre-hero">
+        <div><span class="eyebrow" style="color:var(--lime)">Past paper + realistic mocks</span><h1>Practise the paper.<br><span class="accent-scribble">Then see the marks.</span></h1><p>Sit each question before revealing Tion’s full exam-room working. The future-paper mocks are practice predictions, never leaked papers.</p></div>
+        <div class="paper-centre-stamp"><strong>${examPapers.length}</strong><span>complete papers</span></div>
+      </section>
+      ${state.tired ? `<div class="tired-banner" style="display:flex">${avatar("thinking", 48)}<div><strong>Tired route:</strong><div class="muted">Read the Must read question, then its final green answer. Extra source notes and trap lists are hidden.</div></div></div>` : ""}
+      <nav class="paper-tabs" aria-label="Choose an exam paper" role="tablist">
+        ${examPapers.map(item => `<button role="tab" aria-selected="${item.id === paper.id}" class="paper-tab ${item.id === paper.id ? "active" : ""}" data-action="paper-tab" data-paper="${item.id}"><span>${item.tab || item.title}</span><small>${item.duration} · ${item.marks || item.totalMarks} marks</small></button>`).join("")}
+      </nav>
+      <section class="paper-cover paper-card">
+        <div class="paper-cover-copy">
+          <div class="lesson-kicker"><span class="priority-badge ${paper.badge?.toLowerCase().includes("past") ? "must" : "optional"}">${paper.badge || "Practice paper"}</span><span class="source-badge">ICS 1103</span></div>
+          <h2>${paper.title}</h2>
+          <p>${paper.subtitle || "Differential Calculus"}</p>
+          <div class="paper-meta"><span><strong>${paper.duration}</strong> time</span><span><strong>${marks}</strong> marks</span><span><strong>${paper.questionCount || paper.questions.length}</strong> questions</span></div>
+        </div>
+        <aside class="paper-disclaimer"><strong>Be clear about this</strong><p>${paper.disclaimer}</p></aside>
+      </section>
+      <section class="paper-prep-grid">
+        <article class="paper-card paper-instructions"><span class="eyebrow">Instructions</span><ol>${(paper.instructions || []).map(item => `<li>${item}</li>`).join("")}</ol></article>
+        <article class="paper-card paper-time-plan"><span class="eyebrow">Time plan</span><ul>${timePlan.map(item => {
+          const task = Array.isArray(item) ? item[0] : (item.task || item.label);
+          const minutes = Array.isArray(item) ? item[1] : `${item.minutes} min`;
+          return `<li><span>${task}</span><strong>${minutes}</strong></li>`;
+        }).join("")}</ul></article>
+      </section>
+      <div class="paper-toolbar">
+        <p><strong>Attempt first.</strong> Open solutions only after you have written something.</p>
+        <div><button class="ghost-button" data-action="toggle-all-paper">Reveal all solutions</button><button class="ghost-button" data-action="print">Print this view</button></div>
+      </div>
+      <section class="paper-question-list">${paper.questions.map(renderPaperQuestion).join("")}</section>
+      ${(paper.finalCheck || []).length ? `<section class="paper-final-check paper-card"><span class="eyebrow">Before you stop</span><h2>Final answer check</h2><div class="paper-check-grid">${paper.finalCheck.map(item => `<span>✓ ${item}</span>`).join("")}</div></section>` : ""}
+      ${(paper.sources || []).length ? `<section class="paper-sources paper-card optional-content"><span class="eyebrow">Source trail</span><h2>Where the question styles came from</h2><p>Questions marked original were written for this site. Internet material supplied topic patterns only; future-paper questions are not predictions of exact wording.</p><ul>${paper.sources.map(source => {
+        const url = source.href || source.url;
+        const label = url ? `<a href="${url}" target="_blank" rel="noreferrer">${source.label}</a>` : `<strong>${source.label}</strong>`;
+        return `<li>${label}${source.usedFor || source.note ? ` — ${source.usedFor || source.note}` : ""}</li>`;
+      }).join("")}</ul></section>` : ""}`;
   }
 
   function renderFormulas() {
@@ -653,6 +777,34 @@
     if (action === "practice-filter") {
       state.practiceFilter = trigger.dataset.filter;
       renderShell();
+      return;
+    }
+
+    if (action === "paper-tab") {
+      state.selectedPaper = trigger.dataset.paper;
+      renderShell();
+      document.querySelector(".paper-cover")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (action === "toggle-paper-solution") {
+      const panel = document.querySelector(`[data-paper-solution="${trigger.dataset.paperQuestion}"]`);
+      if (!panel) return;
+      const open = panel.classList.toggle("open");
+      trigger.textContent = open ? "Hide solution" : "Show exam-room solution";
+      trigger.setAttribute("aria-expanded", String(open));
+      return;
+    }
+
+    if (action === "toggle-all-paper") {
+      const panels = [...document.querySelectorAll("[data-paper-solution]")];
+      const shouldOpen = panels.some(panel => !panel.classList.contains("open"));
+      panels.forEach(panel => panel.classList.toggle("open", shouldOpen));
+      document.querySelectorAll(".paper-answer-button").forEach(button => {
+        button.textContent = shouldOpen ? "Hide solution" : "Show exam-room solution";
+        button.setAttribute("aria-expanded", String(shouldOpen));
+      });
+      trigger.textContent = shouldOpen ? "Hide all solutions" : "Reveal all solutions";
       return;
     }
 

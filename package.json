@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "start": "python3 -m http.server 4173",
-    "test": "node --check content.js && node --check app.js"
+    "test": "node --check content.js && node --check papers.js && node --check app.js"
   }
 }

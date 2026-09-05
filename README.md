@@ -1,6 +1,8 @@
 # Tion's Calculus Room
 
-A responsive study website built from the photographed notes in `notes/` and the PaperNotes fonts in `papernotes/`.
+A responsive study website built from the photographed notes in `notes/`, the uploaded CAT 1 paper, and the PaperNotes fonts in `papernotes/`.
+
+It includes clear lessons, tired mode, 34 worked practice questions, checkpoints, a formula sheet, fx-82EX checks, a complete CAT 1 solution, a possible CAT 2, and a 60-mark main-exam mock. The mock papers are original revision predictions—not official or leaked papers—and carry source trails to the public references that informed their exercise styles.
 
 ## Run it
 
