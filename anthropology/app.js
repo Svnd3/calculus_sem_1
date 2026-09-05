@@ -33,6 +33,9 @@
     search: "",
     practiceTopic: "all",
     practiceType: "all",
+    practiceMode: "all",
+    practiceQuestionId: null,
+    revealedPracticeAnswers: new Set(),
     memoryTopic: "all",
     memoryIndex: 0,
     memoryFlipped: false,
@@ -365,31 +368,83 @@
     return [...new Set(items.map(item => item[key]).filter(Boolean))].sort((a,b) => String(a).localeCompare(String(b)));
   }
 
+  function practiceQuestionId(question) {
+    return String(question.id || `question-${questions.indexOf(question)}`);
+  }
+
+  function matchingPracticeQuestions() {
+    return questions.filter(question =>
+      (state.practiceTopic === "all" || question.topic === state.practiceTopic) &&
+      (state.practiceType === "all" || question.type === state.practiceType)
+    );
+  }
+
+  function chooseSurpriseQuestion(pool) {
+    if (!pool.length) {
+      state.practiceQuestionId = null;
+      return null;
+    }
+    const alternatives = pool.filter(question => practiceQuestionId(question) !== state.practiceQuestionId);
+    const choices = alternatives.length ? alternatives : pool;
+    const selected = choices[Math.floor(Math.random() * choices.length)];
+    state.practiceQuestionId = practiceQuestionId(selected);
+    return selected;
+  }
+
+  function practiceTotals() {
+    return {
+      modelQuestions: questions.length,
+      quizChecks: lessons.reduce((total, lesson) => total + listify(lesson.quiz).length, 0),
+      cases: lessons.reduce((total, lesson) => total + listify(lesson.cases).length, 0),
+      recallPrompts: lessons.reduce((total, lesson) => total + listify(lesson.recall).length, 0)
+    };
+  }
+
   function renderPractice() {
     const topics = uniqueValues(questions, "topic");
     const types = uniqueValues(questions, "type");
-    const filtered = questions.filter(question => (state.practiceTopic === "all" || question.topic === state.practiceTopic) && (state.practiceType === "all" || question.type === state.practiceType));
+    const filtered = matchingPracticeQuestions();
+    const totals = practiceTotals();
+    let visibleQuestions = filtered;
+    if (state.practiceMode === "surprise") {
+      const selected = filtered.find(question => practiceQuestionId(question) === state.practiceQuestionId) || chooseSurpriseQuestion(filtered);
+      visibleQuestions = selected ? [selected] : [];
+    }
+    const resultLabel = state.practiceMode === "surprise" && visibleQuestions.length
+      ? `Surprise pick · 1 of ${filtered.length} matching questions`
+      : `${filtered.length} matching question${filtered.length === 1 ? "" : "s"}`;
     main.innerHTML = `
       ${pageIntro("Exam training", "Question bank", "Write or speak your answer before revealing the model. In philosophy, marks come from a clear claim, an explained reason, a fitting example and a link back to the question.")}
+      <section class="practice-totals" aria-label="Practice material totals">
+        <article class="practice-total"><strong>${totals.modelQuestions}</strong><span>Model questions</span></article>
+        <article class="practice-total"><strong>${totals.quizChecks}</strong><span>Lesson MCQ checkpoints</span></article>
+        <article class="practice-total"><strong>${totals.cases}</strong><span>Lesson cases</span></article>
+        <article class="practice-total"><strong>${totals.recallPrompts}</strong><span>Recall prompts</span></article>
+      </section>
       <div class="filter-row">
         <label>Topic<select id="practice-topic"><option value="all">All topics</option>${topics.map(topic => `<option ${state.practiceTopic === topic ? "selected" : ""}>${esc(topic)}</option>`).join("")}</select></label>
         <label>Question style<select id="practice-type"><option value="all">All styles</option>${types.map(type => `<option ${state.practiceType === type ? "selected" : ""}>${esc(type)}</option>`).join("")}</select></label>
-        <span class="filter-count">${filtered.length} question${filtered.length === 1 ? "" : "s"}</span>
+        <div class="practice-filter-actions" role="group" aria-label="Question display mode">
+          <button class="button small ${state.practiceMode === "surprise" ? "primary" : ""}" type="button" data-action="practice-surprise" aria-pressed="${state.practiceMode === "surprise"}" aria-controls="practice-questions" ${filtered.length ? "" : "disabled"}>✦ Surprise me</button>
+          <button class="button small ${state.practiceMode === "all" ? "done" : ""}" type="button" data-action="practice-show-all" aria-pressed="${state.practiceMode === "all"}" aria-controls="practice-questions">Show all</button>
+        </div>
+        <span class="filter-count" role="status" aria-live="polite">${esc(resultLabel)}</span>
       </div>
-      ${filtered.length ? `<section class="question-list">${filtered.map(renderPracticeQuestion).join("")}</section>` : `<section class="empty-state"><strong>No question matches both filters.</strong><p>Try a different topic or question style.</p></section>`}`;
+      ${visibleQuestions.length ? `<section class="question-list" id="practice-questions" aria-label="Model exam questions">${visibleQuestions.map(renderPracticeQuestion).join("")}</section>` : `<section class="empty-state" id="practice-questions"><strong>No question matches both filters.</strong><p>Try a different topic or question style.</p></section>`}`;
   }
 
   function renderPracticeQuestion(question, index) {
-    const id = String(question.id || `question-${questions.indexOf(question)}`);
+    const id = practiceQuestionId(question);
     const rating = state.progress.ratings[id];
+    const revealed = state.revealedPracticeAnswers.has(id);
     return `<article class="question-card" data-question-id="${esc(id)}">
       <div class="question-meta"><span>${esc(question.topic || "Mixed")}</span><span>${esc(question.type || "Practice")}</span><span class="marks">${esc(question.marks || "—")} marks</span></div>
       <h2>${index + 1}. ${esc(question.prompt)}</h2>
       <div class="question-actions">
-        <button class="button small" type="button" data-action="toggle-answer" data-question-id="${esc(id)}">Reveal model answer</button>
+        <button class="button small" type="button" data-action="toggle-answer" data-question-id="${esc(id)}" aria-expanded="${revealed}" aria-controls="answer-${esc(id)}">${revealed ? "Hide model answer" : "Reveal model answer"}</button>
         <span class="rating-buttons" aria-label="Rate this question"><button class="${rating === "review" ? "active" : ""}" type="button" data-action="rate-question" data-question-id="${esc(id)}" data-rating="review">Needs review</button><button class="${rating === "got" ? "active" : ""}" type="button" data-action="rate-question" data-question-id="${esc(id)}" data-rating="got">Got it</button></span>
       </div>
-      <div class="answer-panel" id="answer-${esc(id)}" hidden>
+      <div class="answer-panel" id="answer-${esc(id)}" ${revealed ? "" : "hidden"}>
         ${listify(question.plan).length ? `<h3>Plan before prose</h3><ol>${listify(question.plan).map(step => `<li>${esc(step)}</li>`).join("")}</ol>` : ""}
         <h3>Model answer</h3>${listify(question.answer).length ? `<ol>${listify(question.answer).map(step => `<li>${esc(step)}</li>`).join("")}</ol>` : `<p>Use the course distinction, explain it in your own words, apply an example, then answer the exact wording.</p>`}
         ${question.source ? `<p class="source-line">Question/source position: ${esc(typeof question.source === "string" ? question.source : question.source.title || JSON.stringify(question.source))}</p>` : ""}
@@ -480,6 +535,58 @@
     return source.title || source.name || source.file || source.source || `Course source ${index + 1}`;
   }
 
+  function topicTokens(value) {
+    const ignored = new Set(["and", "human", "of", "the"]);
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(token => token && !ignored.has(token));
+  }
+
+  function questionBelongsToLesson(question, lesson) {
+    const questionTokens = topicTokens(question.topic);
+    if (!questionTokens.length) return false;
+    const lessonTokens = new Set(topicTokens(`${lesson.id || ""} ${lesson.navTitle || ""}`));
+    return questionTokens.every(token => lessonTokens.has(token));
+  }
+
+  function lessonCoverage() {
+    return lessons.map((lesson, index) => ({
+      lesson,
+      index,
+      sections: listify(lesson.sections).length,
+      quizChecks: listify(lesson.quiz).length,
+      recallPrompts: listify(lesson.recall).length,
+      cases: listify(lesson.cases).length,
+      modelQuestions: questions.filter(question => questionBelongsToLesson(question, lesson)).length
+    }));
+  }
+
+  function renderCoverageSummary() {
+    const rows = lessonCoverage();
+    const totals = rows.reduce((sum, row) => ({
+      sections: sum.sections + row.sections,
+      quizChecks: sum.quizChecks + row.quizChecks,
+      recallPrompts: sum.recallPrompts + row.recallPrompts,
+      cases: sum.cases + row.cases,
+      modelQuestions: sum.modelQuestions + row.modelQuestions
+    }), { sections: 0, quizChecks: 0, recallPrompts: 0, cases: 0, modelQuestions: 0 });
+
+    return `<section class="coverage-summary" aria-labelledby="coverage-heading">
+      <div class="section-heading"><div><h2 id="coverage-heading">Topic coverage at a glance</h2><p>Generated from the live notebook, so these counts update whenever study material is added.</p></div></div>
+      <div class="coverage-table-wrap" role="region" aria-label="Scrollable topic coverage table" tabindex="0">
+        <table class="coverage-table">
+          <caption>Explanation and practice items available for every course topic</caption>
+          <thead><tr><th scope="col">Topic</th><th scope="col">Explanation sections</th><th scope="col">Lesson MCQs</th><th scope="col">Recall prompts</th><th scope="col">Cases</th><th scope="col">Model questions</th></tr></thead>
+          <tbody>${rows.map(row => `<tr><th scope="row"><span class="coverage-topic-number">${esc(lessonNumber(row.lesson, row.index))}</span>${esc(row.lesson.navTitle || row.lesson.title)}</th><td>${row.sections}</td><td>${row.quizChecks}</td><td>${row.recallPrompts}</td><td>${row.cases}</td><td>${row.modelQuestions}</td></tr>`).join("")}</tbody>
+          <tfoot><tr><th scope="row">All ${rows.length} topics</th><td>${totals.sections}</td><td>${totals.quizChecks}</td><td>${totals.recallPrompts}</td><td>${totals.cases}</td><td>${totals.modelQuestions}</td></tr></tfoot>
+        </table>
+      </div>
+    </section>`;
+  }
+
   function renderSources() {
     const ledger = listify(DATA.sourceLedger);
     const webSources = listify(DATA.learningSources);
@@ -487,6 +594,8 @@
     main.innerHTML = `
       ${pageIntro("Know where the notes came from", "Sources, course position & corrections", "This page separates your lecturer-provided material from helpful outside reading. It also records clarifications so a typo or oversimplification does not become something you memorise.")}
       <section class="transparency-note"><h2>These are transformed study notes</h2><p>The explanations, mnemonics, cases and answer plans here were written as an original study aid from the supplied course files and referenced learning sources. Raw uploaded books and course PDFs are <strong>not republished</strong> on this site. Your lecturer's course position remains the guide for assessment; outside sources are labelled as enrichment, not replacements.</p></section>
+
+      ${renderCoverageSummary()}
 
       <div class="section-heading"><div><h2>Course-file ledger</h2><p>${reviewedFileCount || ledger.length} supplied file${(reviewedFileCount || ledger.length) === 1 ? "" : "s"} audited and mapped into the notebook.</p></div></div>
       ${ledger.length ? `<section class="source-grid">${ledger.map((source,index) => {
@@ -602,8 +711,22 @@
       const panel = document.querySelector(`#answer-${CSS.escape(actionElement.dataset.questionId)}`);
       if (panel) {
         panel.hidden = !panel.hidden;
+        if (panel.hidden) state.revealedPracticeAnswers.delete(actionElement.dataset.questionId);
+        else state.revealedPracticeAnswers.add(actionElement.dataset.questionId);
         actionElement.textContent = panel.hidden ? "Reveal model answer" : "Hide model answer";
+        actionElement.setAttribute("aria-expanded", String(!panel.hidden));
       }
+    }
+    if (action === "practice-surprise") {
+      state.practiceMode = "surprise";
+      chooseSurpriseQuestion(matchingPracticeQuestions());
+      renderPractice();
+      document.querySelector('[data-action="practice-surprise"]')?.focus();
+    }
+    if (action === "practice-show-all") {
+      state.practiceMode = "all";
+      renderPractice();
+      document.querySelector('[data-action="practice-show-all"]')?.focus();
     }
     if (action === "rate-question") {
       state.progress.ratings[actionElement.dataset.questionId] = actionElement.dataset.rating;
@@ -637,10 +760,12 @@
   main.addEventListener("change", event => {
     if (event.target.id === "practice-topic") {
       state.practiceTopic = event.target.value;
+      state.practiceQuestionId = null;
       renderPractice();
     }
     if (event.target.id === "practice-type") {
       state.practiceType = event.target.value;
+      state.practiceQuestionId = null;
       renderPractice();
     }
     if (event.target.id === "memory-topic") {

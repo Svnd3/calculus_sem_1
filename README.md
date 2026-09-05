@@ -3,7 +3,7 @@
 A responsive, password-gated coursework dashboard with three complete study rooms:
 
 - **Calculus with Tion:** deep lessons, worked examples, tired mode, 34 practice questions, checkpoints, formula and derivative reflex sheets, Casio fx-82EX checking methods, a solved CAT 1, CAT 2 practice and a main-exam mock.
-- **Philosophical Anthropology with Bianca:** 12 connected topics synthesised from all 46 supplied files, 75 explanation blocks, 24 applied cases, 60 lesson checks, 36 model exam answers, 36 memory cards, study coaching and a source/correction ledger.
+- **Philosophical Anthropology with Bianca:** 12 connected topics synthesised from all 46 supplied files, 97 explanation blocks, 24 applied cases, 84 lesson checks, 72 model exam answers, 60 memory cards, study coaching, random-question practice and a live source/coverage ledger.
 - **Discrete Mathematics with Peter:** 16 tutorials, interactive logic/set labs, 69 exam questions and 47 memory cards, including functions and inverses, counting strategy, relations/equivalence and recurrences.
 
 All rooms use the supplied PaperNotes font. The three animated guides react when tapped, make occasional appearances on headings, check for zoning out and share a persistent focus timer. Timer completion cycles through three colours and chooses from 100 break messages. Progress and tired mode are saved locally in the browser.

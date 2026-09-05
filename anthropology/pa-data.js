@@ -89,15 +89,15 @@
       navTitle: "Life & its levels",
       title: "Life: what living things do from within",
       minutes: 42,
-      summary: "Distinguish life from mere motion, learn the four signs of life and compare vegetative, sensitive and rational operations.",
+      summary: "Distinguish life from mere motion, reconcile the course's four- and five-sign lists, and compare vegetative, sensitive and rational operations.",
       question: "Why is a growing plant alive while a moving flame or car is not alive in the same sense?",
       catch: [
         "Soul means the first intrinsic principle of life — not a ghost placed inside a machine.",
-        "URIS: Unity, Rhythm, Immanence and Self-movement are the course signs of life.",
+        "The older chapter uses URIS: Unity, Rhythm, Immanence and Self-movement; the later Life deck adds self-development as a fifth sign.",
         "VSR: vegetative powers support organic life; sensitive powers add sensation and appetite; rational life adds intellect and will.",
         "Higher life includes lower operations: a human nourishes, senses and reasons through one living unity."
       ],
-      mnemonic: { letters: "URIS + VSR", line: "Unity, Rhythm, Immanence, Self-movement — Vegetative, Sensitive, Rational.", meaning: "URIS recalls signs of living activity; VSR recalls the ascending levels." },
+      mnemonic: { letters: "URIS + D · VSR", line: "Unity, Rhythm, Immanence, Self-movement — plus Development; Vegetative, Sensitive, Rational.", meaning: "URIS recalls the older four-sign list, +D reconciles the later five-sign deck, and VSR recalls the ascending levels." },
       sections: [
         {
           title: "1. Soul as a principle of life",
@@ -107,7 +107,7 @@
           examTip: "Define soul in the course’s technical sense before discussing immortality; the two claims are related but not identical."
         },
         {
-          title: "2. URIS: four signs of life",
+          title: "2. URIS: the older four-sign list",
           priority: "must",
           html: `<p><strong>Unity:</strong> the living being acts as a whole; injury to one part affects the organism. <strong>Rhythm:</strong> living activity has ordered cycles such as sleep, growth and metabolism. <strong>Immanence:</strong> an action begins in the living agent and perfects or changes that agent — learning remains in the learner. <strong>Self-movement:</strong> the source of activity is internal, even though the environment supplies conditions and stimuli.</p>
           <p>Self-movement does not mean “moves location without any outside influence”. Plants do not walk, yet growth is internally organised. A pushed stone changes place, but the push is wholly external.</p>
@@ -153,7 +153,7 @@
         { q: "An immanent action…", options: ["Never changes the agent", "Begins and remains perfecting the agent", "Must be visible", "Is always involuntary"], answer: 1, explain: "Understanding is a clear example: its result is in the knower." },
         { q: "The best account of self-movement is…", options: ["No environmental input", "Only walking", "An internal principle coordinates activity", "Random motion"], answer: 2, explain: "External conditions may matter; the living source of coordinated activity is intrinsic." },
         { q: "Which level includes the others?", options: ["Vegetative", "Sensitive only", "Rational", "None"], answer: 2, explain: "Human rational life retains vegetative and sensitive operations." },
-        { q: "URIS stands for…", options: ["Unity, Rhythm, Immanence, Self-movement", "Use, Reason, Intellect, Soul", "Unity, Reproduction, Identity, Sense", "Universal, Rational, Internal, Social"], answer: 0, explain: "These are the four signs emphasised in the course notes." }
+        { q: "URIS stands for…", options: ["Unity, Rhythm, Immanence, Self-movement", "Use, Reason, Intellect, Soul", "Unity, Reproduction, Identity, Sense", "Universal, Rational, Internal, Social"], answer: 0, explain: "These are the older chapter's four signs; the later Life deck adds self-development as a fifth." }
       ]
     },
     {
@@ -879,6 +879,278 @@
     },
   ];
 
+  /* Extra source-audit blocks. These teach the specialised terms that appear in
+     the supplied handouts before asking the learner to retrieve or apply them. */
+  const sourceCoverageExpansions = {
+    "introduction-being": [
+      {
+        title: "7. Four approaches and eight critical-thinking checks",
+        priority: "useful",
+        html: `<p>The course can approach the human person through several connected lenses. A <strong>metaphysical</strong> approach asks what kind of being a person is. A <strong>cultural</strong> approach studies human meaning as expressed in language, customs and institutions. A <strong>transcendental</strong> approach starts from basic human acts such as knowing and choosing and asks what must be true for them to be possible. A <strong>religious</strong> approach considers the person in relation to God and revelation. PA must state which lens and premises it is using instead of quietly mixing them.</p>
+        <p>Its method moves in both directions. <strong>Analytical–inductive</strong> reasoning begins with lived experience and searches for its principles; <strong>synthetical–deductive</strong> reasoning begins with established principles and uses them to interpret human phenomena. PA rests on metaphysics, grounds much of ethics, learns from psychology and social science, and remains open to theology without borrowing revealed premises for a purely philosophical proof.</p>
+        <p>For a difficult claim, run eight checks: <strong>question, purpose, concepts, assumptions, evidence, arguments, perspectives and implications</strong>. Ask what is being answered, why, what the key words mean, what is being taken for granted, what supports it, whether the conclusion follows, what another view would notice and what accepting the claim would imply.</p>
+        <aside class="sticky-insight"><strong>Fast exam use</strong><p>When you meet a bold statement, do not begin with “I agree”. First clarify it, uncover its assumption and test its reason.</p></aside>`,
+        example: "Claim: ‘A person is only a brain.’ Clarify ‘only’, ask whether neural dependence proves identity, consider lived embodiment and meaning, then state what would follow for dignity and responsibility."
+      },
+      {
+        title: "8. The course's historical anthropology map",
+        priority: "deep",
+        html: `<p>One supplied history text organises periods by a dominant “anthropological key”: <strong>Ancient—having</strong>; <strong>Christianity—person</strong>; <strong>Middle Ages—being</strong>; <strong>late medieval/Humanist/Renaissance—practical acting</strong>; <strong>Modern—rational acting</strong>; <strong>Contemporary—voluntary acting</strong>; and recent currents—<strong>productive acting</strong>. This is a study map, not a claim that every thinker in a century said one thing.</p>
+        <p>The same source contrasts <strong>myth</strong> as inherited practical interpretation, <strong>magic</strong> as attempted control of an uncertain future, <strong>technique</strong> as practical transformation of the present, and <strong>philosophy</strong> as theoretical inquiry pursued for understanding. Its Greek “having” theme rises from possessions and language to ideas, virtues and intellectual habits.</p>
+        <aside class="accuracy-note"><strong>Use critically</strong><p>The map is Sellés' course interpretation. In an essay, explain its organising idea and one limitation instead of treating period labels as complete historical facts.</p></aside>`
+      }
+    ],
+    "life-levels": [
+      {
+        title: "7. First act, powers and living operations",
+        priority: "useful",
+        html: `<p>The notes distinguish three levels that are easy to collapse. <strong>First act</strong> is the organism's being alive through its life-principle. A <strong>power</strong> is a stable capacity belonging to that living subject. A <strong>second act</strong> or operation is the power being exercised. Thus a sleeping person remains alive and retains sight even while not actually seeing.</p>
+        <p>Life is therefore not a loose collection of processes. Respiration, circulation and excretion serve the organism; the classical primary vegetative powers are <strong>nutrition, growth and reproduction</strong>. The whole organism coordinates its parts, assimilates what is outside and acts from within while still depending on an environment.</p>
+        <div class="contrast"><div><strong>Power</strong><p>A capacity that remains when not in use: sight.</p></div><div><strong>Operation</strong><p>The capacity in act: actually seeing this page.</p></div></div>`,
+        examTip: "If asked to define life, do not merely list respiration or movement. Explain the intrinsic living principle and then use operations as signs."
+      },
+      {
+        title: "8. Four signs, five signs — and a fuller map of life",
+        priority: "must",
+        html: `<p>The supplied files use two versions. The older chapter lists four signs remembered here as <strong>URIS</strong>: unity, rhythm, immanence and self-movement. The later <em>PA 2. Life</em> deck explicitly lists <strong>five</strong>: self-motion, immanence, unity, <strong>self-development/self-realisation</strong> and cyclic rhythm. Write <strong>URIS + D</strong> when the question follows that deck. Self-development means actualising capacities toward a living fulfilment or <em>telos</em>; in humans this can include intellectual, moral, social and spiritual growth.</p>
+        <p>Lombo and Russo offer a second map: <strong>structural</strong> features are unity and organicity; <strong>dynamic</strong> features are self-movement and adaptation; fundamental directions are <strong>immanence and transcendence</strong>. An immanent act perfects the acting subject, as understanding perfects the knower. A transient action primarily changes an external patient, as cutting changes wood. Living activity can include both.</p>
+        <p>Movement also has kinds: generation/corruption concerns coming-to-be or ceasing to be; growth and nutrition change the organism from within; locomotion changes place; voluntary movement proceeds through knowledge and appetite. A plant adjusts growth toward light, an animal learns routes, and a person can transform themselves through reasons and chosen ends.</p>`,
+        examTip: "If the paper asks for ‘five characteristics’, include self-development. If it uses the older chapter's four, name URIS and briefly note the expanded deck."
+      }
+    ],
+    "human-person": [
+      {
+        title: "7. Suppositum, self-conscious unity and emergence",
+        priority: "deep",
+        html: `<p>A <strong>suppositum</strong> is the concrete individual that exists and acts: not “humanity in general”, but this person. The same subject can truthfully say “I am hungry”, “I see” and “I understand”. This unity of self-consciousness supports the claim that vegetative, sensitive and rational acts belong to one agent rather than three occupants.</p>
+        <p><strong>Somaticity</strong> names the person's bodily condition; <strong>spirituality</strong> names capacities such as universal understanding and free self-direction that the course argues cannot be reduced to matter alone. <strong>Emergence</strong> can describe higher operations appearing on a bodily basis, but the word by itself does not explain whether those operations are fully reducible to that basis. An argument is still required.</p>
+        <p>The body's face, speech and hands are especially expressive: they reveal a subject who can address another, communicate meanings and transform the world. Bodily dependence and rational transcendence are therefore features of the same person.</p>`
+      },
+      {
+        title: "8. Two course maps: SRSTE and the three levels of the person",
+        priority: "must",
+        html: `<p><strong>SRSTE</strong> gathers five characteristics from the Human Life file: <strong>Spirituality</strong> (an immaterial form/power in the course account), <strong>Rationality</strong> (knowing and choosing through reasons), <strong>Somaticity</strong> (body and soul affect one lived subject), <strong>Transcendence</strong> (acts such as knowing, loving and worship reaching beyond immediate material need), and <strong>Emergence</strong> (interior rational life becoming outwardly expressed, especially through language and action).</p>
+        <p>A different handout speaks of <strong>natural, essential and personal levels</strong>. “Natural” names received organic and sensitive endowments; “essential” names intellect, will, free acts and acquired virtues through which a shared human nature is developed; “personal” names the irreducible, unique source who knows, loves and gives. Corresponding goods can be bodily, intellectual/moral, relational and personal.</p>
+        <aside class="course-position"><strong>Terminology warning</strong><p>These are technical uses from that handout. “Essential” here does not mean that only high achievers possess a human essence, and “personal” does not remove the body.</p></aside>`
+      },
+      {
+        title: "9. Why the unity is substantial, not a team of parts",
+        priority: "deep",
+        html: `<p><strong>Propriosensation</strong> or bodily self-awareness presents my body as mine from within. Common-sense awareness also unifies seeing, hearing and feeling: the same “I” recognises that I see the person whose voice I hear. Reflex awareness and pursuit of a concrete good-for-me again reveal one acting subject across changing states.</p>
+        <p>An <strong>accidental unity</strong>, like a football team, is made of already complete members joined for an activity. A living organism is a <strong>substantial or per-se unity</strong>: parts such as tissues act primarily as parts of this whole and cease to function fully when separated. They are <strong>virtually present</strong>—retaining their lower properties inside a higher organised unity—rather than existing as independent substances glued together.</p>
+        <p>From this the supplied Unity files describe the living being as one <strong>suppositum</strong>. Personhood adds that this subject is inalienable, unrepeatable, not a mere part, autonomous in action and intentionally open to relation. Completeness-in-self does not mean lonely self-sufficiency.</p>`
+      }
+    ],
+    "senses-memory": [
+      {
+        title: "7. Instinct, learning and embodied intelligence",
+        priority: "deep",
+        html: `<p>Animal behaviour can combine inherited patterns with genuine learning. Human action also includes instinctive and learned tendencies, but rational persons can formulate an end, compare means, make the end their own and revise a plan for reasons. Flexible behaviour by itself is not enough to prove conceptual thought; ask what kind of object the agent knows and whether it understands a universal meaning.</p>
+        <p>Human intelligence remains embodied. Upright posture frees the hands for varied tools; the face and voice express interior states; language gives public signs to meanings. These bodily conditions enable intellectual life without making a concept identical to its sound, written mark or neural condition.</p>
+        <aside class="accuracy-note"><strong>Avoid the old trap</strong><p>“Animals use only instinct” and “humans use only reason” are both too crude. Compare powers and objects of knowledge, not stereotypes.</p></aside>`
+      },
+      {
+        title: "8. The formal architecture of sensitive knowing",
+        priority: "must",
+        html: `<p>The classical account describes knowing as the <strong>intentional or immaterial possession of a form</strong>: the apple's colour becomes present to sight without the eye becoming a red apple. Natural being is the form as it exists in the thing; intentional being is that form as known.</p>
+        <p>A <strong>proper sensible</strong> belongs especially to one sense, such as colour to sight. A <strong>common sensible</strong>, such as motion, number, size or shape, is available through several senses. A <strong>per-accidens sensible</strong> is recognised through more than the immediate sense quality: sight receives white and shape, while experience and inner senses recognise “my lecturer” or “this is Kamau's car”.</p>
+        <p>The inner senses can be grouped as <strong>formal/presentational</strong>—common sense unifies current sense data and imagination retains or composes images—and <strong>intentional/evaluative</strong>—estimative or cogitative power grasps concrete usefulness/harm and memory retains experienced intentions. Sensitive memory holds past concrete experiences; intellectual memory concerns meanings, judgements and chosen commitments.</p>
+        <p>Imagination serves <strong>oniric</strong> activity in dreams, <strong>aesthetic/artistic</strong> creation, <strong>practical</strong> rehearsal of action and <strong>speculative</strong> modelling. Sensation belongs to the living composite, not to a detached soul or a corpse's organ.</p>`
+      }
+    ],
+    "affectivity-character": [
+      {
+        title: "7. Emotional intelligence and moral formation",
+        priority: "useful",
+        html: `<p><strong>Emotional intelligence</strong> is not simply being pleasant or strongly emotional. It includes identifying what is felt, reflecting on its object and cause, monitoring its intensity and pattern, and managing expression so that emotion can cooperate with truth and worthwhile action. The site's <strong>IED</strong> routine—Identify, Evaluate, Direct—is the short version.</p>
+        <p>Emotion supplies energy and information, but it can misread a situation. Reason should neither obey every feeling nor crush it. Repeated truthful choices educate the appetites into virtues; repeated surrender to a distorted response can form a vice. Responsibility concerns what a person notices, consents to, cultivates and does—not the mere arrival of an unchosen first feeling.</p>`
+      },
+      {
+        title: "8. From appetite to expression — and three common errors",
+        priority: "must",
+        html: `<p><strong>Natural appetite</strong> is an inclination not produced by knowing, such as a physical tendency toward a natural state. <strong>Elicited appetite</strong> follows a known object: sensitive appetite responds to a perceived particular good or harm, while rational appetite or will follows good as understood.</p>
+        <p>A useful affective sequence is <strong>object/stimulus → mental agitation or appraisal → organic alteration → behaviour/expression</strong>. Imagine noticing a hand near your bag, interpreting danger, feeling pulse and muscle tension, then turning, calling out or stepping away. In humans, intellect can reassess the object and will can redirect the final response. Affectivity evaluates quickly, reinforces convictions and breaks indifference, but can also mislead.</p>
+        <p>The handouts distinguish overlapping words: a <strong>sentiment</strong> is an enduring sensitive–mental way of feeling; an <strong>emotion</strong> is a more intense episode with bodily change; an <strong>affection</strong> is an affective relation especially toward persons; a <strong>passion</strong> is a strong movement of sensitive appetite; pleasure, pain and sorrow name different felt responses to perceived good or evil.</p>
+        <p>Three reductions fail: <strong>behaviourism</strong> treats outward response as the whole person; a rigid <strong>Kantian opposition</strong> treats emotion as necessarily hostile to morality; <strong>sentimentalism</strong> treats feeling as the final test of truth or goodness. The integrated view asks feelings, reason and will to cooperate.</p>`
+      },
+      {
+        title: "9. The eight-type character grid in the supplied slide",
+        priority: "deep",
+        html: `<p>The historical course typology crosses three axes: <strong>emotiveness/non-emotiveness</strong>, <strong>activity/non-activity</strong>, and <strong>primary/secondary resonance</strong>. Primary resonance reacts quickly and lets go sooner; secondary resonance reacts more slowly and retains an impression longer.</p>
+        <p>Its eight combinations are: emotive–non-active–primary <strong>nervous</strong>; emotive–non-active–secondary <strong>sentimental</strong>; emotive–active–primary <strong>choleric</strong>; emotive–active–secondary <strong>passionate</strong>; non-emotive–active–primary <strong>sanguine</strong>; non-emotive–active–secondary <strong>phlegmatic</strong>; non-emotive–non-active–primary <strong>amorphous</strong>; non-emotive–non-active–secondary <strong>apathetic</strong>.</p>
+        <aside class="accuracy-note"><strong>Study, do not diagnose</strong><p>This is the model used in the supplied slide, not a scientifically decisive personality test. Use it to answer a source-specific classification question, never to box a real person, predict an occupation or excuse conduct.</p></aside>`
+      }
+    ],
+    "human-soul": [
+      {
+        title: "7. Created, spiritual and immortal: label each step",
+        priority: "deep",
+        html: `<p>The supplied soul handouts gather three connected conclusions: the rational soul is <strong>spiritual</strong> because intellectual knowing is argued to have an immaterial mode; it is <strong>subsistent</strong> because such operation is attributed to a principle not exhausted by an organ; and it is <strong>incorruptible</strong> if it has no material parts whose separation would destroy it. This is the course's philosophical chain, not a claim that every mental act ignores the brain.</p>
+        <p>The further claim that each soul is <strong>created</strong> requires an account of causality: matter cannot be the complete productive cause of an immaterial principle, so the course points to a transcendent cause. A moral argument—unfulfilled justice appears to call for a life beyond death—can support hope, but desire for justice alone is not a strict proof.</p>
+        <aside class="course-position"><strong>Precision</strong><p>Distinguish a conclusion, the premises offered for it, and an objection. “Invisible” never means “therefore immortal”.</p></aside>`
+      }
+    ],
+    "intellect-truth": [
+      {
+        title: "7. Intellectual habits, error and competing truth claims",
+        priority: "useful",
+        html: `<p>An <strong>intellectual habit</strong> is a stable perfection of knowing formed through repeated acts: understanding principles, scientific knowledge, wisdom and practical judgement are not isolated flashes. Study should therefore train accurate acts of definition, judgement and reasoning until they become dependable.</p>
+        <p>The course files name several routes into error. <strong>Individual subjectivism</strong> makes the private subject the measure of truth; <strong>social constructivism</strong>, in its strongest form, makes social agreement the whole maker of truth; <strong>structuralism</strong>, when totalised, lets impersonal systems exhaust meaning; and <strong>immanentism</strong> traps knowledge inside consciousness. These labels describe the lecturer's critical map; actual thinkers hold more nuanced versions.</p>
+        <p>Objectivity does not require a view from nowhere or an infallible knower. It requires that judgement answer to reality, evidence and valid inference—and remain open to correction when they show an error.</p>`
+      }
+    ],
+    "will-human-acts": [
+      {
+        title: "7. Two modes of willing and the full act sequence",
+        priority: "must",
+        html: `<p><strong>Voluntas ut natura</strong> is the will's natural orientation toward good and fulfilment in general; we do not deliberate about whether good as such is desirable. <strong>Voluntas ut ratio</strong> is elective willing: faced with limited goods and possible means, the person judges and chooses this option rather than another. The first gives the horizon; the second explains particular free choices.</p>
+        <p>A detailed deliberate act can be mapped as: <strong>simple volition</strong> of an end → <strong>intention</strong> of pursuing it → <strong>counsel/consilium</strong> about means → <strong>practical judgement</strong> → <strong>consent and election</strong> of a means → <strong>command</strong> → bodily or mental <strong>execution</strong> → <strong>fruition/repose</strong> in the attained good. Real decisions can move back and forth, but the map reveals where knowledge, consent or action failed.</p>
+        <p>A <strong>human act</strong> proceeds with relevant knowledge and voluntariness and can carry moral responsibility. An <strong>act of a human</strong>, such as a knee reflex or an act done without awareness, occurs in a human but is not chosen in the same way.</p>`,
+        examTip: "For a case, do not merely recite the sequence. Point to the exact stage affected by ignorance, fear, habit or coercion."
+      }
+    ],
+    "human-freedom": [
+      {
+        title: "8. What freedom is not — and three kinds of necessity",
+        priority: "must",
+        html: `<p><strong>Physical indetermination</strong> is mere lack of a fixed physical outcome; <strong>chance</strong> is an unintended intersection of causes; <strong>vital spontaneity</strong> is acting from an inner impulse. None is yet rational freedom. Freedom requires an understood object and self-owned willing: it is rooted in intellect's presentation of goods and is exercised subjectively through will.</p>
+        <p>Not every necessity destroys freedom. <strong>Necessity of nature</strong> describes what follows from what a thing is; <strong>necessity of an end or means</strong> appears when a chosen end requires some condition; <strong>external coercive necessity</strong> forces an act against the agent's will. It is coercion, not every necessity, that directly opposes voluntariness.</p>
+        <p>Freedom <em>from</em> obstacles creates room; freedom <em>for</em> truth, service and self-gift gives that room a worthy direction. The course's growth line is <strong>availability → service → self-gift</strong>.</p>`
+      },
+      {
+        title: "9. Intentionality, self-determination and conscience duties",
+        priority: "useful",
+        html: `<p>Every deliberate act has two directions. <strong>Intentionality</strong> reaches the chosen object and hoped-for result. <strong>Self-determination</strong> returns to the agent: by choosing, I also shape the kind of chooser I am becoming. This is why a successful outward result can still form a dishonest character.</p>
+        <p>Conscience does not create truth; it applies a moral judgement to this act. Duties <strong>of</strong> conscience include seeking relevant truth, resolving reasonable doubt and forming judgement well. Duties <strong>toward</strong> conscience include following a certain judgement rather than knowingly choosing what one believes evil. <strong>Synderesis</strong> names the basic practical grasp that good is to be done and evil avoided.</p>
+        <p>Family, culture, law, habits and repeated choices can form or deform conscience. A poll cannot take over personal responsibility; sincerity matters, but avoidable ignorance can still be culpable.</p>`
+      }
+    ],
+    "human-sexuality": [
+      {
+        title: "7. Attraction, integrated love and the course's conjugal ideal",
+        priority: "deep",
+        html: `<p>The course distinguishes <strong>sensual attraction</strong> toward bodily qualities, <strong>affective attraction</strong> toward emotional closeness, and <strong>rational or personal love</strong> that recognises and wills the whole person's good. These levels need not compete, but attraction becomes mature love only when intellect, will and virtue integrate it truthfully.</p>
+        <p>Within its Catholic-personalist account, conjugal love is described as <strong>total, faithful/exclusive, fruitful and enduring/perpetual</strong>. Giving oneself differs from temporarily lending access: a total gift includes the future and assumes reciprocal responsibility. Chastity or self-mastery, humility and charity organise desire toward love; prudence, justice, fortitude and modesty support that work.</p>
+        <aside class="course-position"><strong>How to write this</strong><p>Label these as the course's normative claims, explain their reasons, and avoid turning them into empirical stereotypes about every man or woman.</p></aside>`
+      }
+    ],
+    "work-relations": [
+      {
+        title: "8. Society in full: relation, authority, law and common good",
+        priority: "useful",
+        html: `<p>In the course, a <strong>society</strong> is a stable union of persons cooperating through shared action and some authority toward a common end. The definition implies plurality, a real bond, coordination or rule, and a good that members can share rather than merely consume separately.</p>
+        <p>Use <strong>FIP</strong> as a comparison, not only a list. <strong>Family:</strong> grounded in natural kinship and care, governed by moral duties, ordered to spousal unity, generation and education. <strong>Intermediate associations:</strong> voluntarily organised under statutes or agreements for chosen ends. <strong>Political community:</strong> a natural requirement of complete common life, governed through constitutional, natural and positive law, ordered to the common good. “Natural” never makes every law or arrangement just.</p>
+        <p>Communication may be intrapersonal, interpersonal, group or public, and may use speech, writing or other signs. <strong>Veracity</strong> directs every mode toward truthful communion rather than manipulation.</p>`
+      },
+      {
+        title: "9. Work, labour, technology and rest — two source lenses",
+        priority: "must",
+        html: `<p>Everyday speech uses <strong>work</strong> for an activity, its product, or an assigned task. <strong>Labour/toil</strong> stresses effort, burden and fatigue. Work is a purposeful process involving effort and service; because a person is its subject, labour can never be priced as if the worker were a commodity. Just remuneration, safe conditions, association, rest and meaningful participation protect that priority.</p>
+        <p>The course chapter uses <strong>objective, subjective, social and transcendent</strong> meanings. Lombo and Russo offer a different fourfold lens: <strong>subjective, objective, relational and ecological</strong>. They overlap, but should not be falsely presented as one author's exact list. Use either with its source label.</p>
+        <p><strong>Technocentrism</strong> makes technology itself the centre or end; <strong>technocracy</strong> lets technical experts, efficiency and control dominate judgement. <strong>Rest</strong> renews the person, often through a change of activity. Play, feast and contemplative leisure overlap but are not identical: play has its own freely enjoyed activity, feast celebrates a shared good, and leisure opens receptive space for meaning.</p>`
+      }
+    ],
+    "human-destiny": [
+      {
+        title: "8. Three temporalities, history and mature hope",
+        priority: "deep",
+        html: `<p><strong>Biological/chronological time</strong> marks bodily cycles and measurable succession. <strong>Biographical time</strong> gathers events into the story shaped by memory, decisions and relationships. <strong>Spiritual time</strong> names the person's ability to hold past and future in a meaningful present through understanding, promise and hope.</p>
+        <p>History is more than repetition because freedom introduces projects and responsibility. A purely cyclical view can miss novelty; a naïvely linear view can mistake change for automatic progress. <strong>Historicism</strong> dissolves truth or nature into historical change, while <strong>static substantialism</strong> can describe human nature without taking biography and development seriously.</p>
+        <p>Hope combines desire with expectation or confidence concerning a difficult future good considered possible. It draws on remembered goods and can sustain present action. It differs from shallow optimism, raw vitality and proof: hope can be reasonable without guaranteeing the outcome.</p>`
+      },
+      {
+        title: "9. Religion and the six course arguments toward a creator",
+        priority: "useful",
+        html: `<p><strong>Religion</strong> can be studied philosophically as personal and communal relation to what is held ultimate or divine, expressed through belief, moral commitment and acts such as prayer, worship and sacrifice. Theology adds premises received as revelation; PA must keep the methods visible.</p>
+        <p>The Chapter 10 material gathers six lines: <strong>necessity–contingency</strong>, <strong>gradation</strong>, <strong>teleology</strong>, <strong>order</strong>, <strong>morality</strong> and an <strong>ontological</strong> argument. Teleology reasons from goal-directedness; order reasons from intelligible coordination, though they overlap. The ontological argument reasons from the concept of a maximally perfect being and faces the classic objection that existence cannot simply be defined into reality.</p>
+        <p>Do not present this list as Aquinas's historical Five Ways. For any one argument, give premises, the bridge to its conclusion, at least one objection and a reply limited to what the premises can support.</p>`
+      }
+    ]
+  };
+
+  lessons.forEach(lesson => {
+    const additions = sourceCoverageExpansions[lesson.id];
+    if (additions) lesson.sections.push(...additions);
+  });
+
+  const lessonExpansions = {
+    "introduction-being": {
+      recall: "State the principle of non-contradiction with its time-and-respect qualifiers.",
+      quiz: { q: "The principle of non-contradiction rules out which claim?", options: ["Hezron is seated now and standing later", "Water is warm relative to one hand and cool relative to another", "The same act is wholly voluntary and wholly involuntary at the same time and in the same respect", "A student changes an opinion after new evidence"], answer: 2, explain: "A contradiction affirms and denies the same thing at the same time and in the same respect; the qualifiers prevent fake contradictions." }
+    },
+    "life-levels": {
+      recall: "Distinguish the first act of being alive from the living operations that reveal it.",
+      quiz: { q: "Which is a classical primary vegetative power?", options: ["Respiration", "Excretion", "Nutrition", "Local movement"], answer: 2, explain: "The traditional primary powers are nutrition, growth and reproduction; respiration and excretion serve organic life." }
+    },
+    "human-person": {
+      recall: "Map eye, sight and seeing as organ, power and act.",
+      quiz: { q: "Which organ–power–act mapping is correct?", options: ["Eye = act; sight = organ; seeing = power", "Eye = organ; sight = power; seeing = act", "All three are separate souls", "Sight = organ; eye = power; seeing = substance"], answer: 1, explain: "The eye is the bodily organ, sight is the stable capacity or power, and seeing is the exercised act." }
+    },
+    "senses-memory": {
+      recall: "Give one proper sensible and one common sensible, explaining the difference.",
+      quiz: { q: "Shape is traditionally classified as…", options: ["A proper object only of sight", "A common sensible available through more than one sense", "A concept with no sensory basis", "An act of will"], answer: 1, explain: "Shape can be perceived through sight and touch, unlike a proper sensible such as colour for sight." }
+    },
+    "affectivity-character": {
+      recall: "Use Person, Proportion, Point, Purpose and Presentation to test one angry response.",
+      quiz: { q: "Anger is best classified as…", options: ["Joy at a present good", "A response to a present perceived injury or difficult evil", "Fear of a future overpowering evil", "Desire for an easy absent good"], answer: 1, explain: "Anger is the irascible response to a present difficult harm, often understood as an injury requiring an answer." }
+    },
+    "human-soul": {
+      recall: "Explain why subsistence is not the same as being a complete person without a body.",
+      quiz: { q: "Why would bodily decomposition not directly destroy an immaterial subsistent principle, on the course argument?", options: ["It is a hidden organ", "It lacks material parts that can separate", "Scans cannot see it", "Every memory must survive"], answer: 1, explain: "The inference is based on absence of material composition, not invisibility or an unsupported claim that every memory survives." }
+    },
+    "intellect-truth": {
+      recall: "Distinguish sensitive, conceptual and reflexive knowledge using one experience.",
+      quiz: { q: "‘I know that my judgement may be mistaken’ chiefly exercises…", options: ["Sensitive knowledge", "Conceptual knowledge only", "Reflexive knowledge", "Sensitive appetite"], answer: 2, explain: "The intellect is attending to and evaluating its own act of judging." }
+    },
+    "will-human-acts": {
+      recall: "Contrast voluntas ut natura with voluntas ut ratio.",
+      quiz: { q: "Which best illustrates voluntas ut ratio?", options: ["The will's general orientation toward good and happiness", "Choosing one limited means after deliberation", "A knee reflex", "Seeing a colour"], answer: 1, explain: "Ut natura names the will's general natural orientation to good; ut ratio names elective willing of a particular good or means." }
+    },
+    "human-freedom": {
+      recall: "Distinguish an act's intentionality from the self-determination it produces in the chooser.",
+      quiz: { q: "Plagiarism changes both the paper and the chooser. These effects are respectively…", options: ["Immanence and threshold", "Intentionality and self-determination", "Constitutive and effective freedom", "Faith and reason"], answer: 1, explain: "Intentionality reaches the chosen object; self-determination names how choosing also forms the acting person." }
+    },
+    "human-sexuality": {
+      recall: "Give two reasons why consent is necessary but not the only ethical test in the course framework.",
+      quiz: { q: "Which account is reductionist in the course framework?", options: ["Sexuality integrates body, affectivity, relation and ethics", "Sexuality is nothing but anatomy", "Bodily facts matter but do not exhaust personal meaning", "Freedom requires consent and responsibility"], answer: 1, explain: "Reducing sexuality to one biological feature leaves out its personal, relational, social and ethical dimensions." }
+    },
+    "work-relations": {
+      recall: "Give an example of a natural society and an artificial or voluntary association.",
+      quiz: { q: "Which is an artificial or voluntary society in the course classification?", options: ["Family", "Political community", "A coding club", "Humanity as a whole"], answer: 2, explain: "A club is organised for a chosen limited aim; the course classifies family and political community as natural societies." }
+    },
+    "human-destiny": {
+      recall: "State Frankl's three meaning routes and give one concrete example of each.",
+      quiz: { q: "Which is not one of Frankl's three meaning routes named in the notes?", options: ["Creating or serving", "Loving or encountering", "Choosing a stance toward unavoidable suffering", "Eliminating every difficulty"], answer: 3, explain: "Meaning does not require the removal of every difficulty; Frankl includes the stance taken toward unavoidable suffering." }
+    }
+  };
+
+  lessons.forEach(lesson => {
+    const expansion = lessonExpansions[lesson.id];
+    if (!expansion) return;
+    lesson.recall.push(expansion.recall);
+    lesson.quiz.push(expansion.quiz);
+  });
+
+  const sourceAuditChecks = {
+    "introduction-being": { q: "Which direction of PA reasoning begins from lived experience and searches for deeper principles?", options: ["Synthetical–deductive", "Analytical–inductive", "Purely experimental", "Argument from popularity"], answer: 1, explain: "Analytical–inductive reasoning moves from experienced human acts toward their explanatory principles; deduction moves back from principles to phenomena." },
+    "life-levels": { q: "What does the later PA 2 Life deck add to the older URIS list?", options: ["Speech", "Self-development or self-realisation", "External force", "Tool use"], answer: 1, explain: "The later deck explicitly gives five signs by adding development toward fulfilment to the older four." },
+    "human-person": { q: "In the course-specific three-level map, acquired virtues and free acts belong primarily to which level?", options: ["Natural", "Essential", "Personal", "Accidental only"], answer: 1, explain: "The handout places intellect, will, free acts and virtues at the essential level; its terms must be used in that technical sense." },
+    "senses-memory": { q: "Seeing white and recognising ‘my lecturer’ is an example of which sensible when the person is recognised beyond the immediate colour?", options: ["Proper sensible", "Common sensible", "Per-accidens sensible", "Pure concept with no sensation"], answer: 2, explain: "White is directly visible; recognising this meaningful individual draws on experience and inner sensing, so the person is sensible per accidens." },
+    "affectivity-character": { q: "Which statement best distinguishes natural from elicited appetite?", options: ["Natural appetite follows a known object; elicited appetite never involves knowledge", "Natural appetite is an inclination without cognition; elicited appetite responds to a known good or harm", "They are identical", "Only rational beings have natural inclinations"], answer: 1, explain: "Elicited appetite follows cognition; natural inclination does not first require that the object be known." },
+    "human-soul": { q: "Why does ‘invisible’ fail as a proof that the soul is immortal?", options: ["Only visible things exist", "Invisibility alone says nothing about subsistence or corruptibility", "The soul is a bodily organ", "Every invisible thing is temporary"], answer: 1, explain: "The course conclusion requires a chain from intellectual operation to immateriality, subsistence and incorruptibility—not a jump from invisibility." },
+    "intellect-truth": { q: "An intellectual habit is…", options: ["One memorised fact", "A stable perfection of knowing formed by repeated acts", "Any strong feeling", "A sensory reflex"], answer: 1, explain: "Repeated acts can strengthen an enduring capacity to understand and judge well." },
+    "will-human-acts": { q: "In the detailed deliberate-act sequence, consilium means…", options: ["Enjoyment after attaining the end", "Counsel or deliberation about possible means", "Bodily execution", "An involuntary reflex"], answer: 1, explain: "Counsel compares available means before practical judgement and election." },
+    "human-freedom": { q: "Which directly opposes voluntariness?", options: ["The necessity of having a human nature", "A means required by an end I freely chose", "External coercion against the will", "An action arising from an inner impulse"], answer: 2, explain: "Coercive necessity acts against the will; nature and required means must be analysed differently." },
+    "human-sexuality": { q: "Which is not one of the four marks in the course's conjugal-love account?", options: ["Total", "Faithful or exclusive", "Fruitful", "Temporary when inconvenient"], answer: 3, explain: "The supplied framework presents conjugal love as total, faithful/exclusive, fruitful and enduring." },
+    "work-relations": { q: "Which fourfold work lens is specifically attributed here to Lombo and Russo?", options: ["Objective, subjective, social, transcendent", "Subjective, objective, relational, ecological", "Paid, unpaid, skilled, unskilled", "Private, public, digital, manual"], answer: 1, explain: "The course chapter uses the first list; Lombo and Russo's source-labelled list is subjective, objective, relational and ecological." },
+    "human-destiny": { q: "Which temporality gathers events into a person's lived story?", options: ["Only clock time", "Biographical time", "Mechanical time", "No form of time"], answer: 1, explain: "Biographical time gives events personal continuity through memory, choices, relations and projects." }
+  };
+
+  lessons.forEach(lesson => {
+    const check = sourceAuditChecks[lesson.id];
+    if (check) lesson.quiz.push(check);
+  });
+
   const questions = [
     {
       id: "q-intro-1", topic: "Introduction", type: "Short answer", marks: 6,
@@ -911,12 +1183,13 @@
       ], source: "Original applied question based on the course method"
     },
     {
-      id: "q-life-1", topic: "Life", type: "Short answer", marks: 8,
-      prompt: "Explain the four signs of life remembered by URIS.",
-      plan: ["Expand URIS", "Define each sign", "Warn that the list is philosophical", "Give an example"],
+      id: "q-life-1", topic: "Life", type: "Short answer", marks: 10,
+      prompt: "Explain the older four signs of life remembered by URIS and reconcile them with the later five-sign Life deck.",
+      plan: ["Expand URIS", "Define each sign", "Add self-development", "Explain why the files differ", "Give an example and caution"],
       answer: [
         "Unity means the organism acts as an integrated whole. Rhythm means its activity unfolds in coordinated cycles. Immanence means a living operation remains in and perfects the agent, as knowing perfects the knower. Self-movement means activity arises from an inner principle, though the organism still depends on an environment.",
-        "URIS is a course framework, not a laboratory checklist accepted as the single modern definition of life. A plant displays it by assimilating nutrients, maintaining itself and growing from within."
+        "The later PA 2 Life deck adds self-development/self-realisation: a living being actualises capacities toward its characteristic fulfilment. So write URIS for the older Chapter 2 list and URIS + D when five characteristics are requested.",
+        "These are philosophical course frameworks, not a single laboratory checklist universally accepted as the definition of life. A plant displays them by assimilating nutrients, coordinating growth, adapting and developing from within."
       ], source: "Course files: Chapter 2; PA 2 Life"
     },
     {
@@ -1232,11 +1505,373 @@
     }
   ];
 
+  const coverageQuestions = [
+    {
+      id: "q-intro-4", topic: "Introduction", type: "Short answer", marks: 6,
+      prompt: "Distinguish a proximate explanation from an ultimate explanation using a student who chooses to revise.",
+      plan: ["Define both levels", "Apply each to the same event", "Show that they can cooperate", "Name the philosophical questions left open"],
+      answer: [
+        "A proximate explanation identifies a nearby mechanism or condition: the student's timetable, attention, motivation and neural activity while revising. An ultimate explanation asks what knowing and choosing are, what truth is, and what end makes the action worthwhile.",
+        "The explanations are complementary. Describing a mechanism does not by itself define responsibility or the good, while philosophical analysis should not deny the bodily and psychological conditions revealed by science."
+      ], source: "Course files: Chapter 1; PA 1 Introduction"
+    },
+    {
+      id: "q-intro-5", topic: "Introduction", type: "Essay", marks: 12,
+      prompt: "Trace the body–soul question through Plato, Aristotle and the modern turn to the subject. Which approach guides this course?",
+      plan: ["Identify the recurring question", "Explain Plato", "Explain Aristotle", "Describe the modern turn", "State and defend the course approach"],
+      answer: [
+        "Plato strongly distinguished the intelligible soul from the changing sensible body and sometimes described embodiment as a tension. Aristotle answered with hylomorphism: body and soul are matter and substantial form of one living being, not two complete human beings temporarily joined.",
+        "Modern philosophy increasingly centred consciousness and the knowing subject; Cartesian substance dualism sharpened the mind–body division, while later materialist accounts often reduced mind to bodily process. Contemporary discussion adds embodiment, evolution and neuroscience.",
+        "The supplied course is mainly metaphysical and Aristotelian–Thomistic. It defends one embodied person, distinguishes bodily and spiritual operations, and must still answer objections about interaction, brain dependence and empirical evidence."
+      ], source: "Course files: History of Anthropology; In Love With Sophie; Introduction"
+    },
+    {
+      id: "q-life-4", topic: "Life", type: "Short answer", marks: 7,
+      prompt: "Why are nutrition, growth and reproduction operations of life rather than definitions of life itself?",
+      plan: ["Distinguish first actuality from operations", "Explain the organising subject", "Separate powers from processes", "Give one warning example"],
+      answer: [
+        "The course calls soul the first intrinsic actuality or principle by which an organised body is alive. Nutrition, growth and reproduction are second acts: activities that reveal powers of an already living subject.",
+        "A process can resemble one feature of life without belonging to a living whole. A crystal increases in size by external accretion, whereas an organism assimilates material and develops through internally coordinated activity. Respiration and excretion serve organic life but are not extra primary vegetative powers in the classical NGR list."
+      ], source: "Course files: Chapter 2; Vegetative Soul; PA 2 Life"
+    },
+    {
+      id: "q-life-5", topic: "Life", type: "Case", marks: 12,
+      prompt: "A seed germinates, a crystal enlarges and an adaptive robot changes its route. Compare them using URIS and VSR.",
+      plan: ["Test unity and inner activity", "Explain the seed", "Explain the crystal", "Explain the robot", "State the limit of the framework"],
+      answer: [
+        "The seed develops as one organism: it assimilates nutrients, regulates parts and grows toward maturity from an intrinsic living principle. It therefore displays vegetative life.",
+        "The crystal enlarges by material being added according to physical conditions; outward enlargement is not nutrition or organic self-development. The robot changes route through sensors, software and designed goals. Flexible behaviour alone does not establish sensitive knowledge or rational choice.",
+        "URIS and VSR clarify the course's philosophical account, but modern definitions of life and artificial agency remain debated. The conclusion should therefore follow from an argued account of unity and powers, not from appearance alone."
+      ], source: "Course files: Life and Levels of Life; original comparative case"
+    },
+    {
+      id: "q-person-4", topic: "Human Person", type: "Short answer", marks: 8,
+      prompt: "Explain how the body both reveals and limits the person without reducing human dignity.",
+      plan: ["Show bodily expression", "Show bodily dependence", "Distinguish limitation from loss of personhood", "Give an example"],
+      answer: [
+        "Face, voice, gesture, posture and action make an interior personal life present to others; the body is not merely property carried by a hidden self. Embodiment also brings location, fatigue, vulnerability and dependence.",
+        "These conditions can restrict how a power is exercised without changing the person's basic nature or dignity. A stroke may block speech and movement, but inability to express a thought is not proof that no subject remains."
+      ], source: "Course files: Chapter 3; Human Body; Unity of Man"
+    },
+    {
+      id: "q-person-5", topic: "Human Person", type: "Case", marks: 12,
+      prompt: "A conscious locked-in patient cannot speak or move. A visitor says there is ‘no person left’. Evaluate.",
+      plan: ["Separate person, power and present act", "Apply body–soul unity", "Address performance-based dignity", "Draw a practical conclusion"],
+      answer: [
+        "The visitor confuses the visible exercise of powers with the being who possesses them. An organ or bodily condition may block a commanded act such as speech even when awareness and rational nature remain.",
+        "Hylomorphism does not deny bodily dependence: the patient is an embodied subject whose damaged condition matters deeply. It also rejects the inference that reduced expression equals reduced humanity.",
+        "Dignity is not measured by productivity or communication speed. The practical response is patient care and serious attempts at accessible communication, not abandonment."
+      ], source: "Course files: Human Life; Human Body; Unity of Man"
+    },
+    {
+      id: "q-senses-4", topic: "Senses", type: "Short answer", marks: 8,
+      prompt: "Distinguish the estimative power from the human cogitative power and give an example of each.",
+      plan: ["Define estimative", "Define cogitative", "Give paired examples", "Keep both distinct from universal intellect"],
+      answer: [
+        "The estimative power is the animal capacity to grasp concrete significance not given as a bare colour or sound—for example, a sheep perceiving this wolf as dangerous. The human counterpart is usually called cogitative power because rational life can shape how a particular situation is assessed—for example, judging this unfamiliar person as a trustworthy lecturer from context and experience.",
+        "Both deal with particular, practical meaning. Neither by itself forms a universal concept such as danger, trust or humanity; that belongs to intellect."
+      ], source: "Course files: Sensitive Knowledge; Human Appetency; student notes"
+    },
+    {
+      id: "q-senses-5", topic: "Senses", type: "Case", marks: 12,
+      prompt: "An eyewitness becomes more confident after a leading question but changes an important detail. Analyse the testimony.",
+      plan: ["Separate sensation and perception", "Explain attention and reconstruction", "Evaluate confidence", "Propose responsible checking", "Avoid scepticism"],
+      answer: [
+        "The original event was selectively attended to and organised into a meaningful perception. Memory then encoded only part of it; later questions and imagination can alter how the event is reconstructed at retrieval.",
+        "Confidence is psychologically important but is not an infallible measure of accuracy. The account should be compared with independent witnesses, recordings and contemporaneous evidence.",
+        "Fallible memory supports careful verification, not the conclusion that perception never reaches reality. Detecting and correcting error itself depends on access to evidence."
+      ], source: "Course files: Sensitive Knowledge and Memory; enriched by OpenStax memory research"
+    },
+    {
+      id: "q-affect-4", topic: "Affectivity", type: "Short answer", marks: 10,
+      prompt: "Use the five Ps of anger to judge whether a correction is appropriate.",
+      plan: ["Name all five Ps", "Explain their questions", "Relate anger to reason", "Give one example"],
+      answer: [
+        "Ask about the right Person, Proportion, Point or timing, Purpose and Presentation. Who should address the wrong? Does the response match its seriousness? Is this the fitting moment? Is the aim restoration rather than revenge? Is the truth communicated firmly but respectfully?",
+        "Anger can reveal a perceived injustice and supply energy, but it does not certify that the judgement is correct. Prudence and justice test the facts and direct the passion toward a proportionate good response."
+      ], source: "Course files: Human Affectivity; Human Appetency"
+    },
+    {
+      id: "q-affect-5", topic: "Affectivity", type: "Case", marks: 12,
+      prompt: "After an insulting group-chat post, Brian feels rage and is about to repost private screenshots. Analyse the moment using IED and virtue.",
+      plan: ["Identify the passion and perceived object", "Interpret", "Evaluate", "Direct", "Assess responsibility and propose action"],
+      answer: [
+        "Brian experiences an irascible response to a present perceived injury. IED first asks him to Interpret what he feels and what actually happened, then Evaluate the evidence, purpose and proportionality, and finally Direct the emotional energy toward a fitting response.",
+        "Prudence checks the facts, justice protects what each person is due, temperance restrains impulsive exposure, and fortitude supports a calm confrontation or report. Passion influences action but does not automatically compel it; knowledge and consent still matter.",
+        "A pause, preservation of evidence, private clarification and use of an appropriate reporting channel better serve truth and restoration than public retaliation."
+      ], source: "Course files: Human Affectivity; original digital-life application"
+    },
+    {
+      id: "q-soul-4", topic: "Soul", type: "Short answer", marks: 10,
+      prompt: "Rebuild the exact course chain from intellectual activity to immortality, and identify its limits.",
+      plan: ["Start from the intellectual act", "Infer the power's mode", "Explain subsistence", "Explain incorruptibility", "State the conditional limit"],
+      answer: [
+        "The course begins from acts that grasp universal and non-material objects. It argues that an operation not intrinsically performed by a bodily organ points to an immaterial intellectual power and principle. From this organ-independent operation it argues that the rational soul subsists—possesses being in itself rather than as an accident.",
+        "What lacks material parts is not corrupted by the separation of such parts; therefore bodily decomposition would not directly destroy a subsistent immaterial principle. Every arrow requires defence, especially the move from universal content to organ-independent operation.",
+        "The conclusion is conditional philosophical reasoning, not something visible on a scan. It does not by itself prove resurrection, detailed memories after death or every religious claim."
+      ], source: "Course files: Human Soul; Chapter 3; Lombo and Russo"
+    },
+    {
+      id: "q-soul-5", topic: "Soul", type: "Essay", marks: 12,
+      prompt: "If the soul survives, why does the course still call death a rupture rather than liberation from the body?",
+      plan: ["Define soul as substantial form", "Explain natural embodied unity", "Clarify subsistence", "Contrast a prison-body view", "Separate resurrection"],
+      answer: [
+        "The soul is the substantial form of this living body, so the human person is naturally an embodied unity. Subsistence means the rational soul is not an accident and, on the course argument, is not destroyed simply by bodily decomposition; it does not mean the separated soul is another complete human person with a normal embodied life.",
+        "Death breaks the body–soul unity through which a human naturally senses, acts and relates. It is therefore deprivation and rupture, not the release of a complete ghost-person from an irrelevant prison.",
+        "Theological resurrection answers the hope for restored embodied life. It must be distinguished from the narrower philosophical argument for survival of the rational soul."
+      ], source: "Course files: The Human Soul; Unity of Man; Human Destiny"
+    },
+    {
+      id: "q-intellect-4", topic: "Intellect", type: "Short answer", marks: 8,
+      prompt: "Distinguish sensitive, conceptual and reflexive knowledge through one connected example.",
+      plan: ["Sensitive knowledge", "Conceptual knowledge", "Reflexive knowledge", "Connect the same knower"],
+      answer: [
+        "Sensitive knowledge receives this visible triangle with a particular size, colour and angle. Conceptual knowledge grasps triangularity as a universal meaning applicable beyond this image. Reflexive knowledge occurs when the knower attends to and evaluates their own act: ‘I understand the definition, but I may have drawn the conclusion too quickly.’",
+        "These are not three people inside the mind. They are related acts of one embodied knower, with intellectual knowledge beginning from sensible experience."
+      ], source: "Course files: Human Intellect; Intellectual Knowledge"
+    },
+    {
+      id: "q-intellect-5", topic: "Intellect", type: "Case", marks: 12,
+      prompt: "A convincing deepfake is widely shared, so a student says it is true because society accepts it. Evaluate using AJR.",
+      plan: ["Locate apprehension, judgement and reasoning", "Define truth", "Test popularity as a premise", "Show intellectual humility", "Reach a verdict"],
+      answer: [
+        "The student apprehends the people and event represented, judges that the video records reality, then reasons from widespread acceptance to truth. The failure lies in the premise: popularity and sincerity do not make a judgement conform to reality.",
+        "Social context can shape what evidence people notice, but it does not remove the difference between a manipulated file and the event it claims to record. Check provenance, independent reporting, metadata and internal inconsistencies.",
+        "Intellectual humility means proportioning confidence to evidence and correcting a judgement when facts change; it is neither blind certainty nor the claim that nothing is knowable."
+      ], source: "Course files: Human Intellect; original media-literacy application"
+    },
+    {
+      id: "q-will-4", topic: "Will", type: "Short answer", marks: 10,
+      prompt: "Label the main stages in a deliberate decision to study tonight.",
+      plan: ["Present the end", "Deliberate about means", "Judge and choose", "Command and execute", "Finish with fruition or review"],
+      answer: [
+        "Intellect presents passing the course and understanding the material as possible goods; the will has an initial or simple volition toward the end. Counsel or consilium considers possible means. Practical judgement identifies a suitable plan, and consent/election chooses it.",
+        "Command directs the relevant powers; opening the notes, silencing the phone and writing are commanded executions. Fruition or rest follows achievement, while disappointment can prompt a fresh judgement. Real actions may compress several stages, especially through habit."
+      ], source: "Course files: Chapter 6; Human Will"
+    },
+    {
+      id: "q-will-5", topic: "Will", type: "Case", marks: 12,
+      prompt: "A student cheats to preserve a scholarship. Analyse the choice as a human act.",
+      plan: ["Identify the sought good", "Distinguish real and apparent good", "Apply intellect and will", "Name elicited and commanded acts", "Assess pressure and character"],
+      answer: [
+        "Security, education and family support are genuine goods, but cheating treats marks as a partial or apparent good when obtained against truth and justice. Intellect knows and evaluates the options; the will consents and chooses under the attractive aspect of avoiding loss.",
+        "The interior intention, consent and choice are elicited acts of will; copying or typing the answer is commanded through other powers. Scholarship pressure may reduce ease and can mitigate responsibility, but it does not automatically remove knowledge or consent.",
+        "The action affects more than the grade: repeated dishonest choices shape the chooser's character. A eudaimonic judgement asks how education, justice and long-term flourishing can be protected together."
+      ], source: "Course files: Human Will; original assessment-ethics case"
+    },
+    {
+      id: "q-freedom-4", topic: "Freedom", type: "Short answer", marks: 8,
+      prompt: "Explain the statement: human freedom is real but conditioned, not absolute.",
+      plan: ["State rational agency", "Name internal conditions", "Name external conditions", "Distinguish influence from compulsion", "Use degrees"],
+      answer: [
+        "A person can understand reasons, deliberate and own a choice, so freedom is real. Yet bodily condition, knowledge, emotion, habit, resources, coercion, relationships and law shape both the options noticed and the ease of acting.",
+        "Conditioning is not identical to total determination. A strong fear may narrow consent without erasing it; direct physical force may remove control of a particular bodily act. Responsibility therefore requires a concrete, degree-sensitive judgement rather than ‘completely free’ or ‘not free at all’."
+      ], source: "Course files: Human Freedom; Freedom and Conscience"
+    },
+    {
+      id: "q-freedom-5", topic: "Freedom", type: "Case", marks: 15,
+      prompt: "Njeri sincerely thinks copying a friend's assignment is fair because ‘everyone shares’. Must she follow conscience, and is she responsible?",
+      plan: ["Define conscience", "Explain why it binds", "Explain why it can err", "Test ignorance and responsibility", "State repair and formation"],
+      answer: [
+        "Conscience is practical reason judging what ought to be done here and now, not a feeling or private permission slip. A person should not knowingly choose what a certain conscience judges wrong, because that would be willing what they take to be evil.",
+        "Sincerity does not make an erroneous judgement true. Njeri must form conscience by checking authorship rules, fairness, the purpose of assessment and trustworthy advice. If the ignorance was reasonably avoidable, it is vincible and may itself carry responsibility.",
+        "Distinguish the objective wrong from the degree of personal guilt. The proper response is to stop, acknowledge and repair the act, then form a more truthful habit for future collaboration."
+      ], source: "Course files: Freedom and Conscience; Chapter 7"
+    },
+    {
+      id: "q-sex-4", topic: "Sexuality", type: "Short answer", marks: 10,
+      prompt: "Explain reciprocal self-gift and why consent is necessary but not sufficient in the course framework.",
+      plan: ["Define self-gift", "Explain reciprocity and acceptance", "State what consent secures", "Name further ethical tests", "Label the framework"],
+      answer: [
+        "Self-gift means freely and truthfully seeking and entrusting one's embodied personal good to another, while receiving the other as a person rather than a tool. Reciprocity requires acceptance, responsibility and concern for the other's genuine good.",
+        "Consent is necessary because coercion contradicts gift and agency. Consent alone does not settle deception, exploitation, power imbalance, fidelity, justice or serious harm.",
+        "This conclusion belongs to the supplied course's Catholic/personalist normative framework. It should be stated respectfully and distinguished from an empirical description of what every person happens to choose."
+      ], source: "Course files: Human Sexuality"
+    },
+    {
+      id: "q-sex-5", topic: "Sexuality", type: "Essay", marks: 12,
+      prompt: "Why does the course call family a natural and primary society? Relate its ends to subsidiarity.",
+      plan: ["Define natural/primary society", "Explain relational dependence", "State the family ends", "Apply subsidiarity", "Add a rights safeguard"],
+      answer: [
+        "The course calls family natural because it grows from durable relations of generation, care and belonging rather than being invented only for a temporary chosen task. It is primary because early identity, language, trust and education normally begin there.",
+        "Its stated ends are unitive, procreative and educative/nurturing. These should not reduce family members to functions; each remains a person with dignity.",
+        "Subsidiarity says larger institutions should support families in tasks they can responsibly perform without needlessly absorbing them. It does not excuse neglect or abuse: public authority must protect rights and assist where a smaller community cannot secure basic goods."
+      ], source: "Course files: Human Sexuality; Human Relations"
+    },
+    {
+      id: "q-work-4", topic: "Relations & Work", type: "Short answer", marks: 9,
+      prompt: "Distinguish commutative, distributive and legal/general justice with one example of each.",
+      plan: ["Define commutative", "Define distributive", "Define legal/general", "Show why friendship is more than justice"],
+      answer: [
+        "Commutative justice regulates fair exchange between persons: repay a loan or honour a contract. Distributive justice concerns how a community allocates shared benefits and burdens: scholarship criteria or a fair tax burden. Legal/general justice concerns what members owe the common good: obeying just laws and contributing to public safety.",
+        "Justice gives each person what is due. Friendship and solidarity can go further by making another's good partly one's own, but they cannot excuse injustice."
+      ], source: "Course files: Chapter 9; Human Relations"
+    },
+    {
+      id: "q-work-5", topic: "Relations & Work", type: "Case", marks: 15,
+      prompt: "A company's AI monitoring raises output but records every keystroke, penalises breaks and causes burnout. Evaluate.",
+      plan: ["Objective work", "Subjective work", "Social and transcendent dimensions", "Justice and technocracy", "Leisure", "Propose a better policy"],
+      answer: [
+        "Objectively, the system may raise measurable output. Subjectively, it may damage trust, judgement and the worker's health; socially, it changes power, privacy and cooperation; in the transcendent dimension, it may turn service and vocation into pure surveillance.",
+        "A technocratic error treats what is measurable and efficient as the complete human good. Justice asks about transparency, consent, due process, remuneration and unequal vulnerability. Genuine leisure and rest are human goods, not defects to eliminate.",
+        "A better policy would collect only necessary data, explain its use, include worker participation and appeal, protect breaks, measure quality as well as quantity, and review whether the system serves persons and the common good."
+      ], source: "Course files: Human Relations; Human Work; original technology case"
+    },
+    {
+      id: "q-destiny-4", topic: "Destiny", type: "Short answer", marks: 10,
+      prompt: "Analyse death as both a biological ending and a personal limit, then distinguish hope from proof of survival.",
+      plan: ["Describe biological death", "Explain personal meaning", "Define hope", "State what hope cannot prove", "Link to the soul argument"],
+      answer: [
+        "Biologically, death ends the integrated operations of the living body. Personally, awareness of finitude changes priorities, promises and the meaning of present action; in the course account it is also the rupture of natural body–soul unity.",
+        "Hope is movement toward a difficult future good considered possible, and it can organise courageous present action. Desire and hope alone are not proof that the hoped-for state exists.",
+        "A philosophical claim of survival needs the earlier argument from immaterial intellectual operation, subsistence and incorruptibility. Resurrection remains a further theological claim."
+      ], source: "Course files: Chapter 10; Human Destiny; Human Soul"
+    },
+    {
+      id: "q-destiny-5", topic: "Destiny", type: "Synthesis essay", marks: 20,
+      prompt: "Who am I? Give the connected answer of Philosophical Anthropology rather than a list of topics.",
+      plan: ["Give a one-sentence thesis", "Move from life to human powers", "Connect knowledge, will and freedom", "Connect dignity, relation and work", "Address time, death and destiny", "Answer one objection", "Separate reason and faith"],
+      answer: [
+        "I am an individual embodied person: one living body–soul unity whose rational nature grounds dignity. Vegetative powers sustain organic life; senses and appetites open me to particular goods and harms; intellect reaches meanings and truth; will seeks known good.",
+        "Because limited goods do not determine the will completely, I can deliberate and choose. My acts shape character, so freedom is not only choosing anything but growing able to love and act well. I become myself with others through language, family, friendship, society and work, while never becoming a replaceable part of a collective.",
+        "Memory, commitment and hope make life biographical. Death exposes bodily finitude; the course then argues—controversially—from intellectual immateriality toward survival and asks about an ultimate creator and end.",
+        "Reductive materialism objects that bodily explanation is sufficient; dualism risks dividing the person. Hylomorphism replies that bodily dependence and irreducible meaning belong to one subject. Philosophical conclusions must be argued from reason, while resurrection and revealed destiny are identified as theological claims."
+      ], source: "Whole-course synthesis from all supplied topic groups"
+    }
+  ];
+
+  questions.push(...coverageQuestions);
+
+  const sourceAuditQuestions = [
+    {
+      id: "q-intro-6", topic: "Introduction", type: "Case", marks: 10,
+      prompt: "‘People with low exam scores are less fully human.’ Use the eight critical-thinking checks and the substance–accident distinction to assess this claim.",
+      plan: ["Clarify the claim and its purpose", "Define the key concepts", "Expose assumptions", "Ask for evidence and test the inference", "Consider perspectives and implications", "Apply substance and accident"],
+      answer: [
+        "The claim moves from a measurable performance to degree of personhood. Define ‘exam score’, ‘human’ and ‘less fully’; ask whether the purpose is to predict one academic task or rank human worth.",
+        "Its hidden assumption is that current cognitive performance constitutes personal being. Evidence that scores predict some outcomes would not make that metaphysical inference valid. Illness, education, language and test design also offer relevant perspectives.",
+        "An exam result is a changeable quality or performance, not the substance of the person. On the course view, rational nature grounds dignity even where a power is immature, blocked or not currently exercised. Accepting the original claim would unjustly make dignity rise and fall with accidents."
+      ], source: "Course files: Chapter 1; Aristotelian Views of Being"
+    },
+    {
+      id: "q-life-6", topic: "Life", type: "Structured answer", marks: 9,
+      prompt: "Using one sleeping student, distinguish first act, power and operation. Then explain why a list of bodily processes is not a full definition of life.",
+      plan: ["Define first act", "Define power", "Define operation", "Apply all three", "Explain organismic unity"],
+      answer: [
+        "First act is the actuality by which an organised body is alive. A power is a stable capacity of that living subject; an operation is the power currently exercised.",
+        "A sleeping student remains alive, retains sight and intellect as powers, but is not presently seeing the room or solving a proof. Non-exercise does not mean loss of the power or life-principle.",
+        "Respiration, circulation and excretion are vital processes, but merely naming them misses the subject that coordinates them. The organism assimilates, regulates and acts as one from an intrinsic principle; the processes are signs and services of its life."
+      ], source: "Course files: Chapter 2; Vegetative Soul; PA 2 Life"
+    },
+    {
+      id: "q-person-6", topic: "Human Person", type: "Essay", marks: 12,
+      prompt: "Explain suppositum and use self-consciousness, somaticity and spirituality to defend the unity of the human person.",
+      plan: ["Define suppositum", "Show one subject across acts", "Explain somaticity", "Explain spirituality", "Avoid dualism and reductionism"],
+      answer: [
+        "A suppositum is the concrete individual that exists and acts. ‘Human nature’ is shared; the suppositum is this unrepeatable person who says ‘I’. Hunger, perception, understanding and choosing are attributed to the same subject.",
+        "Somaticity names bodily existence: place, vulnerability, expression and dependence are personal realities, not an outer container. Spirituality names operations that the course argues exceed material description, especially universal knowing and free orientation to good.",
+        "Self-conscious unity therefore resists both a ghost-body dualism and a reduction of meaning to mechanism. Body and soul are distinct principles of one acting person; bodily conditions enable and limit the exercise of higher powers without becoming a second subject."
+      ], source: "Course files: Unity of Man; Human Body; Notes on the levels of the human person"
+    },
+    {
+      id: "q-senses-6", topic: "Senses", type: "Case", marks: 10,
+      prompt: "A crow solves a puzzle, a robot reroutes around traffic and a student invents a new study plan. What may each case show, and what would be needed to infer intellectual knowledge?",
+      plan: ["Avoid an instinct-only caricature", "Analyse flexible learning", "Separate programmed adaptation", "Name the object of intellect", "State the evidence limit"],
+      answer: [
+        "The crow may show perception, memory, estimation and learned problem-solving; it should not be dismissed as a rigid reflex machine. The robot displays designed information-processing and adaptive output, but outward flexibility alone does not establish that it understands the meaning of its goal.",
+        "The student can grasp a universal end, compare means as means, explain reasons and revise the end or rule itself. In the course this points toward conceptual and reflexive knowledge.",
+        "Behaviour is evidence that requires interpretation. A careful conclusion compares the kinds of object known and the reasons available rather than assuming either that every flexible system thinks or that non-human animals never learn."
+      ], source: "Course files: Sensitive Life; Intellectual Knowledge; original comparative case. The LMS-listed Monkey Business file was not supplied locally."
+    },
+    {
+      id: "q-affect-6", topic: "Affectivity", type: "Case", marks: 10,
+      prompt: "Maya feels anxious before presenting, labels it ‘proof that I will fail’, and wants to leave. Use emotional intelligence and IED to guide the next action.",
+      plan: ["Identify feeling and object", "Separate feeling from judgement", "Evaluate intensity and evidence", "Direct expression/action", "Explain responsibility"],
+      answer: [
+        "Maya should identify anxiety and its object: possible embarrassment or failure. The emotion is real information about a perceived difficult harm, but ‘I will fail’ is an additional judgement that may be false.",
+        "She can reflect on the cause, monitor intensity and pattern, and evaluate evidence: preparation, past performance and the actual stakes. Directing the emotion might include breathing, checking the opening line, asking for support and presenting despite discomfort.",
+        "The first feeling is not itself a moral failure. Responsibility grows around the judgements, consent, habits and actions that follow. Courage integrates fear with reason; it does not require feeling no fear."
+      ], source: "Course files: Human Affectivity; Chapter 4; original student case"
+    },
+    {
+      id: "q-soul-6", topic: "Soul", type: "Essay", marks: 12,
+      prompt: "Distinguish the course claims that the rational soul is spiritual, subsistent, incorruptible and created. How strong is the moral argument for survival?",
+      plan: ["Define each term", "Show the inferential order", "Explain the created claim", "Present the moral argument", "State limits and objections"],
+      answer: [
+        "Spiritual means that intellectual operation is argued to be immaterial in mode. Subsistent means its principle of being is not exhausted by a bodily organ. Incorruptible means it is not destroyed by the separation of material parts; this conclusion follows only if the earlier premises succeed.",
+        "The course calls the soul created because an immaterial principle cannot, on its causal account, be produced wholly by matter and therefore requires a transcendent cause. This is an additional argument, not simply another word for spiritual.",
+        "The moral argument notes that justice and personal moral development are often unfinished at death and sees this as fitting survival and judgement. It can support a cumulative case or hope, but longing for justice does not by itself demonstrate that survival occurs. Brain dependence and rival accounts of mind remain serious objections to address."
+      ], source: "Course files: The Human Soul 1; Human Soul; Human Soul—immortality"
+    },
+    {
+      id: "q-intellect-6", topic: "Intellect", type: "Critical reading", marks: 12,
+      prompt: "A class votes that a false quotation is genuine. Analyse the case using intellectual habits, objectivity and the course's map of truth errors.",
+      plan: ["Separate agreement from truth", "Use AJR", "Explain intellectual habit", "Apply the source taxonomy carefully", "Describe correction"],
+      answer: [
+        "Social agreement can explain why a claim spreads, but it does not make the quotation correspond to reality. Apprehension identifies the quotation and source concepts; judgement affirms authenticity; reasoning should connect provenance evidence to that judgement.",
+        "A sound intellectual habit checks the primary text, date, context and independent sources. Repeated verification forms stable judgement rather than one lucky answer.",
+        "The lecturer's taxonomy would warn against individual subjectivism (‘true for me’) and an extreme social constructivism (‘our vote makes it true’). Those labels should not caricature every theory. Objectivity means the judgement remains answerable to the actual source and can be corrected by evidence."
+      ], source: "Course files: Chapter 5; Human Intellect; Topic 3 Knowledge and Truth materials"
+    },
+    {
+      id: "q-will-6", topic: "Will", type: "Essay", marks: 15,
+      prompt: "Distinguish voluntas ut natura from voluntas ut ratio, then map the complete deliberate act of applying for an internship.",
+      plan: ["Define both modes", "Name the end", "Move through counsel and judgement", "Explain election, command and execution", "End with fruition", "Separate human act from act of a human"],
+      answer: [
+        "Voluntas ut natura is the will's general and necessary orientation toward good and fulfilment. Voluntas ut ratio is elective willing among limited goods or means under an intellectual judgement.",
+        "The student first apprehends the internship as a good and has simple volition; intention directs action toward obtaining it. Counsel or consilium compares applying now, improving the CV or seeking advice. Practical judgement identifies the fitting option; consent accepts it and election chooses a means.",
+        "Command sets the chosen action in motion; typing, gathering documents and submitting execute it; fruition or repose follows if the sought good is attained. The deliberately submitted application is a human act. A blink while typing is merely an act of a human unless it too becomes deliberately controlled."
+      ], source: "Course files: Chapter 6; Human Will slides"
+    },
+    {
+      id: "q-freedom-6", topic: "Freedom", type: "Essay", marks: 15,
+      prompt: "Why are chance, physical indetermination and spontaneity not yet freedom? Relate your answer to necessity, self-determination and conscience.",
+      plan: ["Define the three non-freedoms", "Give the positive account", "Distinguish three necessities", "Explain two effects of choice", "State conscience's two duties"],
+      answer: [
+        "An unpredictable physical event lacks a settled outcome; chance is an unintended meeting of causes; spontaneity arises from an inner impulse. None by itself includes understanding a good, judging reasons and owning a choice. Rational freedom is rooted in intellect's presentation of alternatives and exercised in will.",
+        "Necessity of nature and a means required by a freely chosen end do not automatically destroy agency. External coercion directly opposes voluntariness. Each choice has intentionality toward an object and self-determination in the character it forms.",
+        "Conscience must seek and verify moral truth, resolve doubt and become well formed—duties of conscience. A person must also respect and follow a certain judgement rather than knowingly choose what they regard as evil—duties toward conscience. Error can reduce responsibility, but avoidable error may itself be culpable."
+      ], source: "Course files: Human Freedom slides; Chapter 7; Freedom and Conscience"
+    },
+    {
+      id: "q-sex-6", topic: "Sexuality", type: "Essay", marks: 12,
+      prompt: "Explain the three levels of attraction and the four marks of conjugal love in the course's personalist framework. What role do virtues play?",
+      plan: ["Label the framework", "Define sensual, affective and rational/personal", "State four marks", "Explain self-gift", "Connect virtues", "Avoid stereotypes"],
+      answer: [
+        "In the course's Catholic-personalist framework, sensual attraction responds to bodily qualities, affective attraction seeks emotional closeness, and rational or personal love recognises and wills the whole person's real good. Mature love integrates rather than merely suppresses bodily and emotional attraction.",
+        "Conjugal love is presented as total, faithful or exclusive, fruitful and enduring. Total self-gift differs from temporary use or ‘lending’ because it joins freedom to truthful reciprocal responsibility over time.",
+        "Chastity/self-mastery, humility and charity educate desire toward the whole good; prudence, justice, fortitude and modesty support truthful action. These are normative philosophical/theological claims in the supplied material, not scientific generalisations about every man or woman."
+      ], source: "Course files: Chapter 8; Human Sexuality slides"
+    },
+    {
+      id: "q-work-6", topic: "Relations & Work", type: "Comparison", marks: 15,
+      prompt: "Compare family, intermediate associations and political community by origin, governing rule and end. Then state four implications of the course definition of society.",
+      plan: ["Define society", "Compare the three FIP levels", "State plurality", "State stable bond", "State authority/order", "State shared common end", "Add a qualification"],
+      answer: [
+        "A society is a stable union of persons cooperating through shared action and authority toward a common end. Family arises through natural kinship and care, is governed by moral duties, and serves unity, generation and formation. Intermediate groups are voluntarily constituted under agreements or statutes for limited chosen ends. Political community answers the natural need for complete common life, is ordered through constitutional, natural and positive law, and serves the common good.",
+        "The definition implies more than one person, a durable real bond, coordination or authority, and an end members can share without using one another as tools.",
+        "These are course classifications, not automatic moral approvals. A family, club or state can govern unjustly; natural sociality never makes every historical arrangement or positive law right."
+      ], source: "Course files: PA 8 Human Relations; Chapter 9"
+    },
+    {
+      id: "q-destiny-6", topic: "Destiny", type: "Essay", marks: 15,
+      prompt: "Explain biological, biographical and spiritual time, and show how memory makes mature hope possible without turning hope into proof.",
+      plan: ["Define all three temporalities", "Connect past, present and future", "Define hope", "Contrast desire, optimism and proof", "Connect freedom and history", "Apply an example"],
+      answer: [
+        "Biological or chronological time is measurable succession and bodily rhythm. Biographical time gathers events into the story of a person through choices and relationships. Spiritual time is the capacity to make a remembered past and anticipated future meaningful in present understanding, promise and action.",
+        "Memory preserves experienced goods and lessons; hope desires a difficult future good while holding it possible with some confidence. Hope is more structured than a wish and deeper than a cheerful mood, but it does not guarantee or demonstrate the outcome.",
+        "Because free persons can promise, repair and begin projects, history contains responsible novelty rather than only cycles. A student who remembers earlier recovery from failure can reasonably hope and revise today; the memory supports action without proving the next result."
+      ], source: "Course files: Human Destiny; Lombo & Russo, chapter on temporality"
+    }
+  ];
+
+  questions.push(...sourceAuditQuestions);
+
   const memoryDeck = [
     { topic: "Introduction", front: "OMP", back: "Object, Method, Principles — the three things to state when defining a discipline." },
     { topic: "Introduction", front: "TSAMEC", back: "Transcendentals; Substance/accident; Act/potency; Matter/form; Esse/essence; four Causes." },
     { topic: "Introduction", front: "Valid versus sound", back: "Valid: the conclusion follows from the premises. Sound: valid form plus true premises." },
-    { topic: "Life", front: "URIS", back: "Unity, Rhythm, Immanence and Self-movement: the course's four signs of life." },
+    { topic: "Life", front: "URIS + D", back: "Older chapter: Unity, Rhythm, Immanence and Self-movement. The later Life deck adds self-development/self-realisation as a fifth sign." },
     { topic: "Life", front: "VSR", back: "Vegetative, Sensitive, Rational — nested levels of living operations." },
     { topic: "Life", front: "Vegetative powers", back: "Nutrition, growth and reproduction. Do not replace growth with respiration." },
     { topic: "Human Person", front: "Boethius", back: "An individual substance of a rational nature." },
@@ -1270,6 +1905,37 @@
     { topic: "Destiny", front: "Faith / reason", back: "Reason argues from intelligible premises; faith assents to revelation. Distinguish without forcing conflict." },
     { topic: "Destiny", front: "Who am I?", back: "An embodied living person who senses, understands, wills, chooses, relates, works, loves and seeks fulfilment." }
   ];
+
+  memoryDeck.push(
+    { topic: "Introduction", front: "A real contradiction", back: "The same claim is affirmed and denied at the same time and in the same respect. Changing time or respect removes the formal contradiction." },
+    { topic: "Life", front: "First act / second acts", back: "Soul is the first actuality by which a body is alive; nutrition, sensing and thinking are operations that flow from living powers." },
+    { topic: "Human Person", front: "Organ / power / act", back: "Eye / sight / seeing. The material instrument, stable capacity and exercised operation must not be confused." },
+    { topic: "Senses", front: "Proper / common sensible", back: "A proper sensible belongs especially to one sense, such as colour to sight; a common sensible, such as shape or motion, is available through more than one sense." },
+    { topic: "Affectivity", front: "Five Ps of anger", back: "Person, Proportion, Point or timing, Purpose and Presentation: reason's test for a fitting response." },
+    { topic: "Soul", front: "Subsistence is not completeness", back: "Subsistence means possessing being in itself; a surviving rational soul is still naturally ordered to the body and is not the complete embodied condition." },
+    { topic: "Intellect", front: "Sensitive / conceptual / reflexive", back: "Know this sensible thing; grasp its universal meaning; then know or examine your own knowing." },
+    { topic: "Will", front: "Voluntas ut natura / ut ratio", back: "Natural willing reaches good and happiness in general; elective willing chooses a particular limited good or means after judgement." },
+    { topic: "Freedom", front: "Intentionality / self-determination", back: "A free act reaches an object in the world and simultaneously forms the person who chooses it." },
+    { topic: "Sexuality", front: "Self-gift test", back: "Is the relation free, truthful, reciprocal, responsible and directed to the person's real good rather than use?" },
+    { topic: "Relations & Work", front: "Three forms of justice", back: "Commutative: fair exchange; distributive: shared benefits and burdens; legal/general: duties toward the common good." },
+    { topic: "Destiny", front: "Death / immortality / resurrection", back: "Biological rupture of body–soul unity / philosophical survival claim / theological restoration of embodied life." }
+  );
+
+  memoryDeck.push(
+    { topic: "Introduction", front: "PA's two method directions", back: "Analytical–inductive: experience → principles. Synthetical–deductive: principles → explanation of human phenomena." },
+    { topic: "Life", front: "Structure / dynamics / fundamental directions", back: "Unity + organicity / self-movement + adaptation / immanence + transcendence." },
+    { topic: "Human Person", front: "SRSTE", back: "Spirituality, Rationality, Somaticity, Transcendence, Emergence—the five characteristics listed in the Human Life file." },
+    { topic: "Senses", front: "Proper / common / per-accidens", back: "One sense's special quality / sensed through several senses / a meaningful concrete thing recognised through experience beyond the immediate quality." },
+    { topic: "Affectivity", front: "Affective event sequence", back: "Object or stimulus → mental appraisal/agitation → organic alteration → behaviour/expression; intellect and will can reassess and direct the response." },
+    { topic: "Soul", front: "Spiritual / subsistent / incorruptible / created", back: "Immaterial mode of operation / has being not exhausted by an organ / not destroyed through material-part separation / requires a cause adequate to an immaterial principle, on the course argument." },
+    { topic: "Intellect", front: "Intellectual habit", back: "A stable perfection of knowing formed by repeated truthful acts—not merely one remembered fact." },
+    { topic: "Will", front: "Full deliberate-act chain", back: "Simple volition → intention → counsel → practical judgement → consent/election → command → execution → fruition." },
+    { topic: "Freedom", front: "Three non-freedoms / three necessities", back: "Indetermination, chance, spontaneity are not yet rational choice. Nature, required means and external coercion are distinct necessities; coercion directly opposes willing." },
+    { topic: "Sexuality", front: "3 levels + 4 marks", back: "Sensual, affective, rational/personal attraction; course conjugal ideal: total, faithful/exclusive, fruitful, enduring." },
+    { topic: "Relations & Work", front: "Two fourfold work lenses", back: "Course chapter: objective, subjective, social, transcendent. Lombo–Russo: subjective, objective, relational, ecological. Label the source." },
+    { topic: "Destiny", front: "Three temporalities", back: "Biological/chronological, biographical and spiritual: measurable succession, lived story, and meaningful presence of past/future in present action." }
+  );
+
   const sourceLedger = [
     {
       topic: "Introduction & history",
@@ -1280,7 +1946,7 @@
         "History of Anthropology - J.F. Selles.pdf",
         "ANNOSCIA C. - In Love With Sophie.pdf"
       ],
-      usedFor: "The object and method of PA, first principles, the six views of being and the history map.",
+      usedFor: "The object and methods of PA, eight critical-thinking checks, four approaches, first principles, six views of being and the historical anthropology map.",
       editorial: "The classical word scientia is explained rather than confused with modern experimental science; Descartes' cogito is not treated as his entire philosophy."
     },
     {
@@ -1300,8 +1966,8 @@
         "Vegetative Soul.pdf",
         "Vegetative Soul 2.pdf"
       ],
-      usedFor: "Soul as principle of life, URIS, vegetative/sensitive/rational operations and virtual inclusion.",
-      editorial: "Vegetative powers are corrected to nutrition, growth and reproduction. The philosophical hierarchy is not presented as an evolutionary ranking or a complete modern biological definition."
+      usedFor: "Soul as principle of life, the four-versus-five signs, structural/dynamic features, immanence, adaptation, vegetative/sensitive/rational operations and virtual inclusion.",
+      editorial: "The older four-sign chapter is explicitly reconciled with the later five-sign deck. Vegetative powers are corrected to nutrition, growth and reproduction; the hierarchy is not presented as an evolutionary ranking or a complete modern biological definition."
     },
     {
       topic: "Human person, body & unity",
@@ -1314,7 +1980,7 @@
         "The Unity of Man (2).pdf",
         "Notes on the levels of the human person.pdf"
       ],
-      usedFor: "Person, dignity, embodiment, hylomorphism, duality, dualism and personal identity.",
+      usedFor: "Person, dignity, embodiment, hylomorphism, substantial unity, suppositum, SRSTE, natural/essential/personal levels, duality, dualism and personal identity.",
       editorial: "Course metaphysics is labelled as a reasoned position. Claims about neurons, fixed sex-chemical effects or eyesight and memory were not repeated without support."
     },
     {
@@ -1328,7 +1994,7 @@
         "Character and Personality B..pdf",
         "Temperament types.pdf"
       ],
-      usedFor: "External and internal senses, memory, appetite, emotions/passions, temperament, character and personality.",
+      usedFor: "Proper/common/per-accidens sensibles, external and internal senses, imagination and memory functions, appetite, the affective sequence, emotions/passions, temperament, character and personality.",
       editorial: "Four-humour temperament and MBTI material is identified as historical or contested, not presented as settled neuroscience or a diagnosis."
     },
     {
@@ -1343,7 +2009,7 @@
         "PA 6. Human Will.ppt",
         "The Human Soul 1.pdf"
       ],
-      usedFor: "Abstraction, AJR, truth, rational appetite, human acts, soul-body dependence and immortality arguments.",
+      usedFor: "Abstraction, AJR, intellectual habits, truth/error maps, modes of willing, the full human-act sequence, soul-body dependence and immortality arguments.",
       editorial: "Validity is separated from truth and soundness. Neuroscience is not claimed to prove an immaterial soul; immortality is presented as a philosophical argument with objections."
     },
     {
@@ -1355,7 +2021,7 @@
         "Philosophical Anthropology I (3,3) - Human Freedom (1).pdf",
         "Cormac Burkes Freedom and Conscience.pdf"
       ],
-      usedFor: "External, elective and moral freedom; habits; voluntariness; conscience and responsibility.",
+      usedFor: "Non-freedoms and necessities; external, elective and moral freedom; intentionality, self-determination, habits, voluntariness, conscience formation and responsibility.",
       editorial: "The two PA 7 PowerPoints are exact duplicates, so they were counted once for ideas. Rival free-will positions are included rather than hidden."
     },
     {
@@ -1364,7 +2030,7 @@
         "Chapter 8 - HUMAN SEXUALITY.doc",
         "Philosophical Anthropology - Human Sexuality.pdf"
       ],
-      usedFor: "Embodied sexuality, personalist self-gift, consent, responsibility and the course's normative framework.",
+      usedFor: "Embodied sexuality, three attraction levels, personalist self-gift, consent, responsibility, virtues, conjugal-love marks and the course's normative framework.",
       editorial: "Catholic/personalist conclusions are labelled as the course position. Absolute claims about men and women are treated as stereotypes unless independently evidenced."
     },
     {
@@ -1375,7 +2041,7 @@
         "On Person and Society. Athropology for rebels. JF Selles.doc",
         "PA. Human work.pdf"
       ],
-      usedFor: "Relational personhood, I–You encounter, common good, solidarity, subsidiarity and meanings of work.",
+      usedFor: "Relational personhood, society's definition and FIP comparison, culture/communication, I–You encounter, justice, common good, solidarity, subsidiarity, work/labour, two work lenses, technology and rest.",
       editorial: "Claims about social roles are applied critically and unpaid care is included as work, not made invisible by an employment-only definition."
     },
     {
@@ -1384,7 +2050,7 @@
         "Chapter 10 - HUMAN DESTINY.doc",
         "PA 10. Human Destiny.pdf"
       ],
-      usedFor: "Lived time, hope, meaning, death, creator arguments, faith and reason, and the whole-course synthesis.",
+      usedFor: "Three temporalities, history, hope, meaning, death, religion, six creator arguments, faith and reason, and the whole-course synthesis.",
       editorial: "The Chapter 10 creator list is not called Aquinas's canonical Five Ways. Immortality and resurrection are separated, and philosophical argument is separated from revealed belief."
     },
     {
@@ -1420,19 +2086,23 @@
 
   const examChecklist = [
     "I can define PA with its material object, formal object, method and goal.",
-    "I can expand TSAMEC, URIS, VSR, CIMC, AJR, IED, K-J-C-D, 3F and FIP without mixing their topics.",
+    "I can expand TSAMEC, URIS + D, VSR, SRSTE, CIMC, AJR, IED, K-J-C-D, 3F and FIP without mixing their topics.",
+    "I can reconcile the older four signs of life with the later five-sign deck and explain self-development.",
     "I can distinguish validity, truth and soundness and test a short argument.",
     "I can explain hylomorphism without describing the soul as a ghost inside a machine.",
     "I can compare vegetative, sensitive and rational powers with an example of each.",
     "I can trace one experience from sensation through internal senses to intellect and will.",
+    "I can classify proper, common and per-accidens sensibles and group the inner senses as formal or evaluative.",
     "I can map the passions and explain why an emotion influences but does not always determine action.",
     "I can present the immateriality/immortality argument and a serious brain-dependence objection.",
     "I can analyse voluntariness using knowledge, consent, fear, habit and coercion.",
+    "I can contrast voluntas ut natura and ut ratio and name the full stages of a deliberate act.",
     "I can explain freedom from, freedom of choice and freedom for excellence.",
     "I can state the course's sexuality position respectfully and separate norms from empirical claims.",
     "I can contrast individualism, collectivism and relational personalism.",
     "I can apply solidarity and subsidiarity to a fresh case.",
     "I can explain objective, subjective, social and transcendent dimensions of work.",
+    "I can label the course work lens separately from Lombo and Russo's subjective, objective, relational and ecological lens.",
     "I can distinguish philosophical immortality from theological resurrection.",
     "For a 10+ mark essay, I write a thesis, define terms, give reasons, use an example, answer an objection and conclude.",
     "I have attempted at least one model question closed-book and corrected it in a different colour.",
