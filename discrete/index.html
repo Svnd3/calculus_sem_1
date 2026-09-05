@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hezron's deep, interactive Discrete Mathematics study room." />
+    <meta name="theme-color" content="#173c35" />
+    <title>Discrete Mathematics · Peter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>∴</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../study-tools.css" />
+    <script>
+      if (sessionStorage.getItem("tion-auth") !== "yes") window.location.replace("../");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to lesson</a>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Course navigation">
+        <div class="brand-row">
+          <button class="brand" data-route="home" aria-label="Go to discrete dashboard">
+            <span class="brand-mark" aria-hidden="true">∴</span>
+            <span><strong>Discrete, decoded.</strong><small>Peter’s proof room</small></span>
+          </button>
+          <button class="icon-button sidebar-close" id="sidebar-close" aria-label="Close menu">×</button>
+        </div>
+        <a class="hub-return" href="../">← All courses</a>
+        <div class="progress-card" aria-label="Course progress">
+          <div class="progress-copy"><span>Course progress</span><strong id="sidebar-progress-label">0%</strong></div>
+          <div class="progress-track"><span id="sidebar-progress-bar"></span></div>
+          <small id="sidebar-progress-detail">0 tutorials complete</small>
+        </div>
+        <nav class="main-nav">
+          <button class="nav-item" data-route="home"><span class="nav-icon">⌂</span><span>Study desk</span></button>
+          <div class="nav-section-label">Your tutorials</div>
+          <div id="lesson-nav"></div>
+          <div class="nav-section-label">Practice &amp; tools</div>
+          <button class="nav-item" data-route="practice"><span class="nav-icon">◎</span><span>Exam practice</span><span class="nav-pill">69</span></button>
+          <button class="nav-item" data-route="lab"><span class="nav-icon">⌁</span><span>Practice lab</span></button>
+          <button class="nav-item" data-route="memory"><span class="nav-icon">◇</span><span>Memory deck</span></button>
+          <button class="nav-item" data-route="resources"><span class="nav-icon">↗</span><span>Sources &amp; next steps</span></button>
+        </nav>
+        <div class="sidebar-note"><span class="tape" aria-hidden="true"></span><strong>Peter’s rule</strong><span>Definition → tiny example → proof.</span><small>Never memorise a proof you cannot explain.</small></div>
+      </aside>
+
+      <div class="page-shell">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="menu-button" aria-label="Open menu">☰</button>
+          <div class="topbar-context"><span class="eyebrow" id="topbar-eyebrow">ICS 1104 · First year</span><strong id="topbar-title">Study desk</strong></div>
+          <div class="topbar-actions">
+            <button class="search-button" id="search-button" aria-label="Search notes"><span aria-hidden="true">⌕</span><span>Search notes</span><kbd>/</kbd></button>
+            <button class="tired-button" id="tired-button" aria-pressed="false" title="Show only the safest route"><span>☾</span><b>Full notes</b></button>
+            <button class="icon-button" id="focus-button" aria-label="Toggle distraction-free view" title="Distraction-free view">◐</button>
+            <a class="auth-logout" href="../" aria-label="Return to all courses" title="All courses"><span aria-hidden="true">←</span><span>Courses</span></a>
+          </div>
+        </header>
+        <main id="main-content" tabindex="-1"></main>
+      </div>
+    </div>
+
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <dialog class="search-dialog" id="search-dialog">
+      <form method="dialog" class="search-panel">
+        <div class="search-head"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Try ‘constant term’ or ‘contrapositive’" autocomplete="off" /><button class="key-close" aria-label="Close search">Esc</button></div>
+        <div id="search-results" class="search-results"></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="../study-tools.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>window.StudyTools?.setCourse("peter", { message: "Yo Hezron — welcome to Discrete. Definitions first, then we prove things properly." });</script>
+  </body>
+</html>

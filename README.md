@@ -1,8 +1,12 @@
-# Tion's Calculus Room
+# Hezron's Study Room
 
-A responsive study website built from the photographed notes in `notes/`, the uploaded CAT 1 paper, and the PaperNotes fonts in `papernotes/`.
+A responsive, password-gated coursework dashboard with three complete study rooms:
 
-It includes plain-language lessons with step-by-step examples, tired mode, 34 worked practice questions, checkpoints, a complete formula sheet, an interactive derivative reflex deck, fx-82EX checks, a complete CAT 1 solution, a possible CAT 2, and a 60-mark main-exam mock. The derivative deck covers ordinary trig, inverse trig, exponential/logarithmic, hyperbolic, and clearly labelled inverse-hyperbolic extension rules. The mock papers are original revision predictions—not official or leaked papers—and carry source trails to the public references that informed their exercise styles.
+- **Calculus with Tion:** deep lessons, worked examples, tired mode, 34 practice questions, checkpoints, formula and derivative reflex sheets, Casio fx-82EX checking methods, a solved CAT 1, CAT 2 practice and a main-exam mock.
+- **Philosophical Anthropology with Bianca:** 12 connected topics synthesised from all 46 supplied files, 75 explanation blocks, 24 applied cases, 60 lesson checks, 36 model exam answers, 36 memory cards, study coaching and a source/correction ledger.
+- **Discrete Mathematics with Peter:** 16 tutorials, interactive logic/set labs, 69 exam questions and 47 memory cards, including functions and inverses, counting strategy, relations/equivalence and recurrences.
+
+All rooms use the supplied PaperNotes font. The three animated guides react when tapped, make occasional appearances on headings, check for zoning out and share a persistent focus timer. Timer completion cycles through three colours and chooses from 100 break messages. Progress and tired mode are saved locally in the browser.
 
 ## Run it
 
@@ -17,7 +21,7 @@ Then open `http://localhost:4173`.
 - Study ID: `SVND3` (shown as fixed text)
 - Password: the private study-room password supplied by the owner
 
-No package installation or build step is needed. Progress, tired mode, checkpoints, and the exam checklist are saved in the current browser.
+No package installation or build step is needed.
 
 ## Check the JavaScript
 
@@ -25,4 +29,4 @@ No package installation or build step is needed. Progress, tired mode, checkpoin
 npm test
 ```
 
-The password is not stored as plain text, but this remains a client-side study-room gate rather than secure server authentication. Add a backend/auth provider before publishing private material to the public internet.
+The password is not stored as plain text, but this remains a client-side convenience gate rather than secure server authentication. Add a backend/auth provider before using it for genuinely private material.

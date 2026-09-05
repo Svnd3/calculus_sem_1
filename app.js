@@ -8,6 +8,7 @@
   const STORAGE_KEY = "tion-calculus-progress-v1";
   const MODE_KEY = "tion-calculus-mode";
   const GREETING_KEY = "tion-greeting-index";
+  const LAST_COURSE_KEY = "svnd3-last-course";
   const ACCESS_HASH = "85276b4e765304147cc4d0e6cef7350a607904d38b40e1a0f7865ecd7d632d3b";
 
   const navItems = [
@@ -76,6 +77,7 @@
 
   const state = {
     authenticated: sessionStorage.getItem("tion-auth") === "yes",
+    dashboard: new URLSearchParams(window.location.search).get("course") !== "calculus",
     page: "home",
     selectedLesson: lessons[0].id,
     practiceFilter: "All",
@@ -151,22 +153,24 @@
 
   function renderLogin() {
     document.body.classList.remove("tired-mode");
+    document.body.classList.remove("course-dashboard-open");
+    window.StudyTools?.deactivate();
     app.innerHTML = `
       <main class="login-screen">
         <div class="login-grid">
           <section class="login-story" aria-labelledby="login-title">
-            <div class="brand-lockup"><span class="brand-mark">∫</span><span>Tion’s calculus room</span></div>
-            <span class="eyebrow">A study space made from your notes</span>
-            <h1 id="login-title">Calculus that feels <span class="accent-scribble">human.</span></h1>
-            <p>Clear explanations when you have energy. Only the points that matter when you do not. Then proper exam-room working until it sticks.</p>
+            <div class="brand-lockup"><span class="brand-mark">H</span><span>Hezron’s study room</span></div>
+            <span class="eyebrow">Three courses · one calm study space</span>
+            <h1 id="login-title">Learning that feels <span class="accent-scribble">human.</span></h1>
+            <p>Deep explanations when you have energy, the essential points when you do not, and practice that makes you retrieve instead of only rereading.</p>
             <div class="login-mini-cards" aria-label="Site features">
-              <span>☾ Tired mode</span><span>✓ Checkpoints</span><span>▦ fx-82EX checks</span><span>✎ 34 questions + 3 papers</span>
+              <span>☾ Tired mode</span><span>◷ Focus timer</span><span>✓ Checkpoints</span><span>✎ 3 course rooms</span>
             </div>
           </section>
           <section class="login-card" aria-label="Sign in">
-            <div class="login-tion">${avatar("happy", 78)}<div><strong>Hey, I’m Tion!</strong><p>I’ll stay with you all the way through.</p></div></div>
+            <div class="login-tion">${avatar("happy", 78)}<div><strong>Hey, Hezron!</strong><p>Tion, Bianca and Peter are ready.</p></div></div>
             <form id="login-form">
-              <input type="hidden" name="username" value="SVND3" autocomplete="username" />
+              <input class="sr-only" name="username" type="text" value="SVND3" autocomplete="username" readonly tabindex="-1" aria-hidden="true" />
               <span class="identity-label">Your study ID</span>
               <div class="username-display"><span>SVND3</span><span class="locked-pill">fixed</span></div>
               <label class="field-label" for="password">Password</label>
@@ -181,6 +185,80 @@
           </section>
         </div>
       </main>`;
+  }
+
+  function readStoredProgress(key, completedField, total) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "{}");
+      const completed = Array.isArray(value[completedField]) ? value[completedField].length : 0;
+      return Math.min(100, Math.round((completed / total) * 100));
+    } catch {
+      return 0;
+    }
+  }
+
+  function courseCard({ id, eyebrow, title, guide, symbol, copy, progress, href, topics }) {
+    return `<article class="course-card course-${id}">
+      <div class="course-card-top">
+        <span class="course-symbol" aria-hidden="true">${symbol}</span>
+        <div class="course-character ${id}" aria-label="${guide}, course guide"><i></i><i></i><b></b></div>
+      </div>
+      <span class="course-eyebrow">${eyebrow}</span>
+      <h2>${title}</h2>
+      <p>${copy}</p>
+      <div class="course-topic-row">${topics.map(topic => `<span>${topic}</span>`).join("")}</div>
+      <div class="course-progress-row"><span><strong>${progress}%</strong> explored</span><span>${guide} is waiting</span></div>
+      <div class="course-progress-track"><i style="width:${progress}%"></i></div>
+      ${href
+        ? `<a class="course-enter" href="${href}" data-course-link="${id}">Enter with ${guide} <span>→</span></a>`
+        : `<button class="course-enter" data-action="open-course" data-course="${id}">Enter with ${guide} <span>→</span></button>`}
+    </article>`;
+  }
+
+  function renderCourseDashboard() {
+    state.dashboard = true;
+    document.body.classList.remove("tired-mode");
+    document.body.classList.add("course-dashboard-open");
+    document.title = "Your Courses · Hezron's Study Room";
+    history.replaceState(null, "", window.location.pathname);
+    const paProgress = readStoredProgress("bianca-pa-progress-v1", "completedLessons", 12);
+    const discreteProgress = readStoredProgress("discrete-decoded-state-v1", "completed", 16);
+    const last = localStorage.getItem(LAST_COURSE_KEY) || "calculus";
+    const lastNames = { calculus: "Calculus", anthropology: "Philosophical Anthropology", discrete: "Discrete Mathematics" };
+    app.innerHTML = `<main class="course-dashboard">
+      <header class="dashboard-bar">
+        <a class="dashboard-brand" href="./" aria-label="Study room home"><span>H</span><strong>Hezron’s study room</strong></a>
+        <div class="dashboard-actions"><span class="dashboard-id">SVND3</span><button data-action="logout">Lock room ↪</button></div>
+      </header>
+      <section class="dashboard-hero">
+        <div>
+          <span class="eyebrow">Your semester, organised</span>
+          <h1>What are we <span class="accent-scribble">catching</span> today?</h1>
+          <p>Choose one room. Your guide, progress, focus clock and tired mode travel with you.</p>
+          <button class="continue-course" data-action="continue-course" data-course="${last}">Continue ${lastNames[last] || "Calculus"} <span>→</span></button>
+        </div>
+        <aside class="dashboard-method-note">
+          <span>Today’s smart route</span>
+          <strong>Recall → check → correct</strong>
+          <p>Close the notes, say what you remember, then reopen them. That struggle is your memory getting stronger.</p>
+        </aside>
+      </section>
+      <section class="course-section" aria-labelledby="course-heading">
+        <div class="dashboard-section-head"><div><span class="eyebrow">Coursework</span><h2 id="course-heading">Pick your room</h2></div><p>Each guide behaves differently. Yes, you can tickle them.</p></div>
+        <div class="course-grid">
+          ${courseCard({ id: "calculus", eyebrow: "ICS 1103 · Differential Calculus", title: "Calculus", guide: "Tion", symbol: "∫", copy: "Limits, continuity and derivatives explained line by line, with exam-room solutions and fx-82EX checks.", progress: overallProgress(), topics: ["Worked examples", "Formula reflex", "3 mock papers"] })}
+          ${courseCard({ id: "anthropology", eyebrow: "HED 1201 · Caroline S. Maingi", title: "Philosophical Anthropology", guide: "Bianca", symbol: "φ", copy: "A serious but simple journey through being, life, the person, freedom, relationships and human destiny.", progress: paProgress, href: "anthropology/", topics: ["Deep notes", "Mnemonics", "Essay practice"] })}
+          ${courseCard({ id: "discrete", eyebrow: "Discrete structures", title: "Discrete Mathematics", guide: "Peter", symbol: "∴", copy: "Sets, logic, counting, induction and functions made visual, testable and proof-ready.", progress: discreteProgress, href: "discrete/", topics: ["Truth labs", "Past questions", "Memory deck"] })}
+        </div>
+      </section>
+      <section class="dashboard-lower">
+        <article><span class="dashboard-doodle">◷</span><div><strong>Focus without guessing</strong><p>Use the floating timer. When it ends, the room changes colour and your current guide calls the break.</p></div></article>
+        <article><span class="dashboard-doodle">☾</span><div><strong>Low battery is allowed</strong><p>Tired mode keeps only definitions, key links, mnemonics and likely exam points.</p></div></article>
+        <article><span class="dashboard-doodle">↻</span><div><strong>Retrieval beats rereading</strong><p>Use blurting, checkpoints and spaced reviews. Familiar-looking words are not yet recall.</p></div></article>
+      </section>
+      <footer class="dashboard-footer">Made for Hezron · Notes stay in this browser · One honest study block at a time.</footer>
+    </main>`;
+    window.StudyTools?.setCourse("tion", { message: "Welcome to the dashboard, Hezron. Pick a room — I’ll call the others if you need them." });
   }
 
   function navMarkup(mobile = false) {
@@ -212,7 +290,10 @@
   }
 
   function renderShell() {
+    state.dashboard = false;
+    document.body.classList.remove("course-dashboard-open");
     document.body.classList.toggle("tired-mode", state.tired);
+    document.title = "Tion's Calculus Room";
     const progress = overallProgress();
     const pageLabel = navItems.find(item => item.id === state.page)?.label || "Home";
 
@@ -220,6 +301,7 @@
       <div class="app-shell">
         <aside class="sidebar">
           <div class="brand-lockup"><span class="brand-mark">∫</span><span>Tion’s room</span></div>
+          <button class="back-to-courses" data-action="dashboard"><span>←</span> All courses</button>
           <nav class="side-nav" aria-label="Main navigation">${navMarkup()}</nav>
           <div class="side-progress">
             <div class="side-progress-head"><span>Your progress</span><strong>${progress}%</strong></div>
@@ -229,7 +311,7 @@
         </aside>
         <div class="main-column">
           <header class="topbar">
-            <div class="page-crumb"><span>Study room /</span><strong>${pageLabel}</strong></div>
+            <div class="page-crumb"><span>Calculus /</span><strong>${pageLabel}</strong></div>
             <div class="top-actions">
               <button class="mode-switch ${state.tired ? "active" : ""}" data-action="toggle-mode" aria-pressed="${state.tired}">
                 <span class="switch-track"><span class="switch-knob"></span></span>
@@ -242,16 +324,8 @@
         </div>
         <nav class="mobile-nav" aria-label="Mobile navigation">${navMarkup(true)}</nav>
         ${state.mobileMore ? renderMobileMore() : ""}
-        <div class="tion-dock">
-          <div class="tion-bubble ${state.tionOpen ? "show" : ""}">
-            <p><strong>Tion:</strong> ${currentTionMessage()}</p>
-            <button class="text-button" data-action="tion-next">Another tip</button>
-          </div>
-          <button class="tion-dock-button" data-action="tion-toggle" aria-label="Ask Tion" aria-expanded="${state.tionOpen}">
-            ${avatar(currentExpression(), 68)}<span class="tion-status"></span>
-          </button>
-        </div>
       </div>`;
+    window.StudyTools?.setCourse("tion", { greet: true, message: currentTionMessage(), mood: currentExpression() });
   }
 
   function renderMobileMore() {
@@ -262,6 +336,7 @@
         ${navItems.filter(item => ["papers", "checkpoints", "exam", "calculator"].includes(item.id)).map(item => `
           <button class="nav-button ${state.page === item.id ? "active" : ""}" data-action="nav" data-page="${item.id}"><span class="nav-icon">${item.icon}</span><span>${item.label}</span></button>
         `).join("")}
+        <button class="nav-button" data-action="dashboard"><span class="nav-icon">←</span><span>All courses</span></button>
         <button class="logout-button mobile-logout" data-action="logout">↪ Lock room</button>
       </div>
     </div>`;
@@ -723,9 +798,10 @@
     if (submittedHash === ACCESS_HASH) {
       sessionStorage.setItem("tion-auth", "yes");
       state.authenticated = true;
-      renderShell();
+      state.dashboard = true;
+      renderCourseDashboard();
       window.scrollTo(0, 0);
-      toast("Room unlocked. Welcome, Hezron!");
+      toast("Study rooms unlocked. Welcome, Hezron!");
     } else {
       const error = document.querySelector("#login-error");
       error.textContent = "That password did not match. Check it and try again.";
@@ -779,9 +855,32 @@
       return;
     }
 
+    if (action === "dashboard") {
+      renderCourseDashboard();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (action === "open-course" || action === "continue-course") {
+      const course = trigger.dataset.course || "calculus";
+      localStorage.setItem(LAST_COURSE_KEY, course);
+      if (course === "anthropology") {
+        window.location.href = "anthropology/";
+      } else if (course === "discrete") {
+        window.location.href = "discrete/";
+      } else {
+        history.replaceState(null, "", `${window.location.pathname}?course=calculus`);
+        state.dashboard = false;
+        renderShell();
+        window.scrollTo(0, 0);
+      }
+      return;
+    }
+
     if (action === "logout") {
       sessionStorage.removeItem("tion-auth");
       state.authenticated = false;
+      history.replaceState(null, "", window.location.pathname);
       renderLogin();
       return;
     }
@@ -978,6 +1077,14 @@
     if (action === "mobile-sheet") return;
   });
 
-  if (state.authenticated) renderShell();
+  document.addEventListener("click", event => {
+    const courseLink = event.target.closest("[data-course-link]");
+    if (courseLink) localStorage.setItem(LAST_COURSE_KEY, courseLink.dataset.courseLink);
+  });
+
+  if (state.authenticated) {
+    if (state.dashboard) renderCourseDashboard();
+    else renderShell();
+  }
   else renderLogin();
 })();

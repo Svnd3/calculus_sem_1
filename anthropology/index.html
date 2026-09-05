@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5eee2">
+  <meta name="description" content="Hezron's clear, exam-ready Philosophical Anthropology study room.">
+  <title>Philosophical Anthropology · Hezron's Study Room</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23382d58'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='43' fill='%23f3cf63'%3E%CF%86%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../study-tools.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to the notes</a>
+
+  <div id="pa-app" class="app-shell">
+    <aside class="sidebar" id="course-sidebar" aria-label="Philosophical Anthropology navigation">
+      <div class="side-top">
+        <a class="hub-link" href="../" aria-label="Back to all courses">
+          <span aria-hidden="true">←</span>
+          <span><small>Hezron's study room</small><strong>All courses</strong></span>
+        </a>
+
+        <div class="course-mark" aria-label="Philosophical Anthropology">
+          <span class="mark-sketch" aria-hidden="true">φ</span>
+          <span><small>HED 1201</small><strong>Philosophical<br>Anthropology</strong></span>
+        </div>
+      </div>
+
+      <nav class="primary-nav" id="primary-nav">
+        <a href="#dashboard" data-route="dashboard"><span aria-hidden="true">⌂</span> Overview</a>
+        <a href="#practice" data-route="practice"><span aria-hidden="true">✎</span> Question bank</a>
+        <a href="#memory" data-route="memory"><span aria-hidden="true">◇</span> Memory cards</a>
+        <a href="#how-to-learn" data-route="how-to-learn"><span aria-hidden="true">↻</span> How to learn PA</a>
+        <a href="#before-exam" data-route="before-exam"><span aria-hidden="true">★</span> Before the exam</a>
+        <a href="#sources" data-route="sources"><span aria-hidden="true">⌕</span> Sources &amp; corrections</a>
+      </nav>
+
+      <div class="lesson-nav-wrap">
+        <div class="side-label"><span>Course path</span><span id="lesson-count">0 topics</span></div>
+        <nav class="lesson-nav" id="lesson-nav" aria-label="Course lessons"></nav>
+      </div>
+
+      <div class="side-progress" aria-label="Course progress">
+        <div><span>Course progress</span><strong id="side-progress-value">0%</strong></div>
+        <span class="progress-track"><span id="side-progress-bar"></span></span>
+        <small id="side-progress-note">Start with one topic. That counts.</small>
+      </div>
+    </aside>
+
+    <div class="site-column">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="course-sidebar" aria-expanded="false" aria-label="Open course menu">☰</button>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <span class="sr-only">Search these notes</span>
+          <input id="global-search" type="search" placeholder="Search soul, freedom, memory…" autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+        <div class="top-actions">
+          <button class="tired-toggle" id="tired-toggle" type="button" aria-pressed="false">
+            <span aria-hidden="true">☾</span><span class="tired-label">Tired mode</span>
+          </button>
+          <button class="icon-button" id="print-button" type="button" aria-label="Print this page" title="Print this page">↧</button>
+        </div>
+      </header>
+
+      <div class="tired-banner" id="tired-banner" hidden>
+        <span aria-hidden="true">☾</span>
+        <p><strong>Tired mode is on.</strong> Bianca kept the must-read ideas, memory hooks and key examples. Useful and deep-dive sections are tucked away.</p>
+        <button type="button" data-action="tired-off">Show everything</button>
+      </div>
+
+      <main id="main-content" tabindex="-1"></main>
+
+      <footer class="site-footer">
+        <p>Made as a study guide, not a substitute for your lecturer's instructions.</p>
+        <a href="../">Back to all courses</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="drawer-scrim" id="drawer-scrim" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="pa-data.js"></script>
+  <script src="../study-tools.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
