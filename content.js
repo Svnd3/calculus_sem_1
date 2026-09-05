@@ -10,7 +10,7 @@ window.STUDY_DATA = (() => {
       lead: "A limit asks where f(x) is heading as x gets close to a value. It does not first ask what happens exactly at that value.",
       catches: [
         "Read x → a as ‘x approaches a’ — nearby values matter.",
-        "Try direct substitution first. If it gives a real number, you are usually done.",
+        "Try direct substitution first only when the expression is continuous at that input.",
         "Limit laws let you split sums, products and quotients; the quotient denominator must not approach 0."
       ],
       sections: [
@@ -20,22 +20,29 @@ window.STUDY_DATA = (() => {
           <div class="formula-display">lim<sub>x→a</sub> f(x) = L<small>Input approaches a; output approaches L.</small></div>`
         },
         {
+          title: "When direct substitution is allowed",
+          html: `<p>Substitution works because familiar functions are continuous on their domains: polynomials everywhere; rational functions where the denominator is not zero; roots where the real root exists; and trig functions where they are defined. You are not using a trick — you are using continuity.</p>
+          <div class="micro-example"><strong>Say the reason, then calculate</strong><p>lim<sub>x→2</sub>(x²+3x−1). A polynomial is continuous at 2, so substitute.</p><div class="answer-line">=2²+3(2)−1=9.</div></div>
+          <div class="micro-example"><strong>A hole does not control the limit</strong><p>Let f(x)=(x²−1)/(x−1) for x≠1, but f(1)=20. Nearby, f(x)=x+1, so the outputs approach 2.</p><div class="answer-line">lim<sub>x→1</sub>f(x)=2 even though f(1)=20.</div></div>`
+        },
+        {
           title: "The limit laws",
-          html: `<ul>
+          html: `<p>If lim f(x)=L and lim g(x)=M, the following rules let you build a larger limit from smaller ones:</p><ul>
             <li><strong>Sum:</strong> lim[f(x)+g(x)] = L + M</li>
             <li><strong>Difference:</strong> lim[f(x)−g(x)] = L − M</li>
             <li><strong>Constant:</strong> lim[c f(x)] = cL</li>
             <li><strong>Product:</strong> lim[f(x)g(x)] = LM</li>
             <li><strong>Quotient:</strong> lim[f(x)/g(x)] = L/M, provided M ≠ 0</li>
             <li><strong>Power/root:</strong> pass the limit inside when the resulting real root is defined.</li>
-          </ul>
-          <div class="micro-example"><strong>Quick example</strong><p>lim<sub>x→2</sub>(x² + 3x − 1) = 2² + 3(2) − 1</p><div class="answer-line">= 9</div></div>`
+          </ul>`
         },
         {
           title: "When substitution gives 0/0",
-          html: `<p><strong>0/0 is not the answer.</strong> It is an alarm telling you to simplify first. Factor, cancel a common factor, rationalise a surd, or use a standard trigonometric limit.</p>
-          <div class="micro-example"><strong>Factor first</strong><p>lim<sub>x→3</sub> (x²−9)/(x−3) = lim (x−3)(x+3)/(x−3)</p><div class="answer-line">= lim<sub>x→3</sub>(x+3) = 6</div></div>`,
-          optional: true
+          html: `<p><strong>0/0 is not the answer.</strong> It means both numerator and denominator vanished before the real behaviour was visible. Look at the shape of the expression:</p>
+          <ol><li><strong>Polynomials?</strong> Factor.</li><li><strong>A square root minus something?</strong> Multiply by the conjugate.</li><li><strong>Several fractions?</strong> Use a common denominator.</li><li><strong>sin or tan near 0?</strong> Build a standard trig limit.</li></ol>
+          <div class="micro-example"><strong>Route 1 — factor</strong><p>lim<sub>x→3</sub>(x²−9)/(x−3)=lim [(x−3)(x+3)]/(x−3).</p><p>For nearby x, x−3 is non-zero, so it cancels.</p><div class="answer-line">lim<sub>x→3</sub>(x+3)=6.</div></div>
+          <div class="micro-example"><strong>Route 2 — use the conjugate</strong><p>lim<sub>x→0</sub>[√(x+4)−2]/x. Multiply top and bottom by √(x+4)+2.</p><p>The numerator becomes (x+4)−4=x, which cancels with the denominator.</p><div class="answer-line">lim 1/[√(x+4)+2]=1/4.</div></div>
+          <div class="micro-example"><strong>Route 3 — common denominator</strong><p>lim<sub>x→1</sub>[1/x−1]/(x−1) = lim [(1−x)/x]/(x−1).</p><div class="answer-line">=lim −(x−1)/[x(x−1)]=lim −1/x=−1.</div></div>`
         }
       ],
       sticky: "Never cancel terms across + or −. You may cancel factors only. For example, (x²−9)/(x−3) must be factored before cancellation.",
@@ -51,7 +58,7 @@ window.STUDY_DATA = (() => {
       lead: "Most trig limits are substitution questions. The special cases near zero use two standard limits and angles must be measured in radians.",
       catches: [
         "sin, cos, tan, sec, cosec and cot are continuous wherever they are defined.",
-        "Memorise limₓ→₀(sin x)/x = 1 and limₓ→₀(1−cos x)/x = 0.",
+        "Memorise limₓ→₀(sin x)/x=1 and limₓ→₀(1−cos x)/x²=1/2.",
         "If the angle is kx, create the matching kx in the denominator."
       ],
       sections: [
@@ -63,13 +70,16 @@ window.STUDY_DATA = (() => {
         },
         {
           title: "The standard-limit pattern",
-          html: `<div class="formula-display">lim<sub>u→0</sub> sin u/u = 1 &nbsp;&nbsp; and &nbsp;&nbsp; lim<sub>u→0</sub> tan u/u = 1<small>These are valid in radians.</small></div>
-          <div class="micro-example"><strong>Pattern match</strong><p>lim<sub>x→0</sub> sin(5x)/x = 5 · lim<sub>x→0</sub> sin(5x)/(5x)</p><div class="answer-line">= 5</div></div>`
+          html: `<p>The useful small-angle facts are below. They work only in radians because a radian measures angle by arc length, which is what makes the ratio tend to 1.</p>
+          <div class="formula-display">lim<sub>u→0</sub> sin u/u=1 &nbsp; | &nbsp; lim<sub>u→0</sub> tan u/u=1 &nbsp; | &nbsp; lim<sub>u→0</sub>(1−cos u)/u²=1/2<small>Consequently, lim (1−cos u)/u=0.</small></div>
+          <div class="micro-example"><strong>Match the angle exactly</strong><p>lim<sub>x→0</sub>sin(5x)/x = 5·lim sin(5x)/(5x).</p><div class="answer-line">=5·1=5.</div></div>
+          <div class="micro-example"><strong>Two sine rates</strong><p>lim<sub>x→0</sub>sin(3x)/sin(5x)=[sin(3x)/(3x)]·[5x/sin(5x)]·3/5.</p><div class="answer-line">=1·1·3/5=3/5.</div></div>
+          <div class="micro-example"><strong>Cosine pattern</strong><p>lim<sub>x→0</sub>[1−cos(4x)]/x² = 16·lim [1−cos(4x)]/(4x)².</p><div class="answer-line">=16·(1/2)=8.</div></div>`
         },
         {
           title: "Identity route",
-          html: `<p>When substitution still produces 0/0, rewrite using identities such as tan x = sin x/cos x or 1−cos²x = sin²x.</p>
-          <div class="micro-example"><strong>Two rates together</strong><p>lim<sub>x→0</sub> tan(3x)/sin(5x) = [tan(3x)/(3x)] · [5x/sin(5x)] · 3/5</p><div class="answer-line">= 1 · 1 · 3/5 = 3/5</div></div>`,
+          html: `<p>When substitution still produces 0/0, rewrite using identities such as tan x=sin x/cos x or 1−cos²x=sin²x. Your goal is always to expose sin u/u, tan u/u or (1−cos u)/u².</p>
+          <div class="micro-example"><strong>Know when not to force a pattern</strong><p>lim<sub>x→π/4</sub>tan x can be found by substitution because cos(π/4)≠0.</p><div class="answer-line">tan(π/4)=1.</div></div>`,
           optional: true
         },
         {
@@ -98,16 +108,19 @@ window.STUDY_DATA = (() => {
         {
           title: "The existence test",
           html: `<div class="formula-display">lim<sub>x→a</sub> f(x) exists ⇔ lim<sub>x→a⁻</sub>f(x) = lim<sub>x→a⁺</sub>f(x)</div>
-          <p>A filled or empty dot at x=a tells you f(a), but the nearby curve tells you the limit.</p>`
+          <p>Imagine walking toward a doorway from each side. If both walks arrive at the same height, the two-sided limit exists. A <strong>filled dot</strong> gives the actual value f(a); an <strong>open dot</strong> shows a value the branch approaches but does not include. Neither dot can replace the left/right comparison.</p>`
         },
         {
           title: "Piecewise exam method",
-          html: `<p><strong>1.</strong> Write L₋ and use the x&lt;a branch. <strong>2.</strong> Write L₊ and use the x&gt;a branch. <strong>3.</strong> Compare them in one sentence.</p>
+          html: `<p><strong>1.</strong> Write L₋ and use the branch valid just below a. <strong>2.</strong> Write L₊ and use the branch valid just above a. <strong>3.</strong> Compare them in one sentence. The symbols &lt; and ≤ decide which formula owns f(a), but they do not change which formula nearby points use.</p>
           <div class="micro-example"><strong>Worked check</strong><p>f(x)={x+1 for x&lt;2; 2x−3 for x≥2}</p><p>L₋=2+1=3, while L₊=2(2)−3=1.</p><div class="answer-line">Since 3 ≠ 1, lim<sub>x→2</sub>f(x) does not exist.</div></div>`
         },
         {
-          title: "A useful exception",
-          html: `<p>The limit may exist even when the function value is different. If both sides approach 4 but f(a)=9, then the limit is 4. This is a removable discontinuity.</p>`,
+          title: "Three pictures to recognise",
+          html: `<div class="micro-example"><strong>Continuous join</strong><p>f(x)=x+1 for x&lt;2 and 3x−3 for x≥2. Both sides give 3 and f(2)=3.</p><div class="answer-line">The limit is 3 and f is continuous at 2.</div></div>
+          <div class="micro-example"><strong>Jump</strong><p>If the left branch approaches 3 but the right branch approaches 1, the graph jumps.</p><div class="answer-line">Finite but unequal sides ⇒ the two-sided limit does not exist.</div></div>
+          <div class="micro-example"><strong>Infinite sides</strong><p>For 1/(x−2), L₋=−∞ and L₊=+∞.</p><div class="answer-line">The signs disagree, so the two-sided limit does not exist; x=2 is a vertical asymptote.</div></div>
+          <p>The limit may also exist while f(a) is different. If both sides approach 4 but f(a)=9, the limit is 4; that is a removable discontinuity.</p>`,
           optional: true
         }
       ],
@@ -130,13 +143,19 @@ window.STUDY_DATA = (() => {
       sections: [
         {
           title: "Vertical asymptotes",
-          html: `<p>If the denominator approaches zero while the numerator stays non-zero, inspect the sign. For 1/(x−2): values just left of 2 give a tiny negative denominator; values just right give a tiny positive denominator.</p>
-          <div class="formula-display">lim<sub>x→2⁻</sub> 1/(x−2) = −∞ &nbsp; | &nbsp; lim<sub>x→2⁺</sub> 1/(x−2) = +∞</div>`
+          html: `<p>If an <strong>uncancelled</strong> denominator factor approaches zero while the numerator stays non-zero, inspect the sign on each side. Make a tiny sign table: numerator sign × denominator sign = fraction sign.</p>
+          <div class="formula-display">lim<sub>x→2⁻</sub>1/(x−2)=−∞ &nbsp; | &nbsp; lim<sub>x→2⁺</sub>1/(x−2)=+∞</div>
+          <p>Left of 2, x−2 is a tiny negative number, so its reciprocal is a huge negative number. Right of 2 it is tiny positive, so the reciprocal is huge positive. The ∞ symbol describes unbounded behaviour; it is not a value you substitute.</p>`
         },
         {
           title: "Rational functions at infinity",
-          html: `<ul><li>Top degree &lt; bottom degree → limit 0.</li><li>Degrees equal → ratio of leading coefficients.</li><li>Top degree &gt; bottom degree → no finite horizontal limit; divide if more detail is needed.</li></ul>
-          <div class="micro-example"><strong>Leading terms decide</strong><p>lim<sub>x→∞</sub>(3x²−x+4)/(2x²+5) = 3/2.</p><div class="answer-line">Divide every term by x² to show it.</div></div>`
+          html: `<p>For P(x)/Q(x), the largest powers control the end behaviour because lower powers become tiny after division by the largest power.</p><ul><li><strong>deg P&lt;deg Q:</strong> limit 0; horizontal asymptote y=0.</li><li><strong>deg P=deg Q:</strong> ratio of leading coefficients.</li><li><strong>deg P&gt;deg Q:</strong> no horizontal asymptote. If the top is exactly one degree higher, polynomial division gives a slant asymptote.</li></ul>
+          <div class="micro-example"><strong>Equal degree, show the line</strong><p>lim<sub>x→∞</sub>(3x²−x+4)/(2x²+5). Divide every term by x²:</p><p>[3−1/x+4/x²]/[2+5/x²].</p><div class="answer-line">The reciprocal terms vanish, so the limit is 3/2.</div></div>`
+        },
+        {
+          title: "One rational function can have a hole and an asymptote",
+          html: `<div class="micro-example"><strong>Work it in this order</strong><p>f(x)=(x²−1)/(x²−6x+5)=[(x−1)(x+1)]/[(x−1)(x−5)].</p><p>Cancel x−1 only after recording x≠1. The simplified rule is (x+1)/(x−5).</p><ul><li>x=1 was cancelled → a <strong>hole</strong>; its missing y-value is (1+1)/(1−5)=−1/2.</li><li>x=5 remains in the denominator → <strong>vertical asymptote</strong>.</li><li>Original degrees are equal → <strong>horizontal asymptote y=1</strong>.</li></ul></div>`,
+          optional: true
         },
         {
           title: "Why dividing works",
@@ -169,11 +188,17 @@ window.STUDY_DATA = (() => {
         {
           title: "The three checks",
           html: `<div class="formula-display">1. f(a) exists &nbsp; 2. lim<sub>x→a</sub>f(x) exists &nbsp; 3. lim<sub>x→a</sub>f(x)=f(a)</div>
-          <p>Failing any one condition means the function is discontinuous at a.</p>`
+          <p>These checks answer different questions. Check 1 asks whether there is a filled value at a. Check 2 asks whether both nearby sides meet. Check 3 asks whether that meeting height is the actual filled value. Failing any one means discontinuity.</p>
+          <div class="micro-example"><strong>Exam sentences you can copy</strong><p><strong>Hole:</strong> “The limit exists, but f(a) is undefined, so condition 1 fails.”</p><p><strong>Wrong filled value:</strong> “The limit exists but is not equal to f(a), so condition 3 fails.”</p><p><strong>Jump:</strong> “The one-sided limits are unequal, so condition 2 fails.”</p></div>`
         },
         {
           title: "Find an unknown constant",
           html: `<div class="micro-example"><strong>Typical exam question</strong><p>f(x)={kx+1 if x&lt;2; x²−1 if x≥2}. Find k for continuity.</p><p>Left limit = 2k+1. Right limit and f(2) = 2²−1=3.</p><div class="answer-line">Set 2k+1=3, so k=1.</div></div>`
+        },
+        {
+          title: "Your CAT 1 continuity pattern",
+          html: `<div class="micro-example"><strong>At x=0</strong><p>f(x)=2x³+1 for x≥0, and f(x)=A sin(3x)+B cos(3x) for x&lt;0.</p><p>Right limit and f(0): 2(0)³+1=1.</p><p>Left limit: A sin0+B cos0=0+B=B.</p><p>Continuity needs B=1. The A-term always becomes zero at the join, so continuity cannot determine A.</p><div class="answer-line">B=1; A may be any real number.</div></div>
+          <p><strong>Important idea:</strong> an unknown is not automatically forced to one value. If its entire term vanishes at the joining point, it remains free.</p>`
         },
         {
           title: "Types of break",
@@ -202,7 +227,8 @@ window.STUDY_DATA = (() => {
         {
           title: "The definition",
           html: `<div class="formula-display">f′(x) = lim<sub>h→0</sub> [f(x+h)−f(x)]/h</div>
-          <p>At a particular point a, you may also use f′(a)=lim<sub>x→a</sub>[f(x)−f(a)]/(x−a).</p>`
+          <p>Here h is a small horizontal step. The numerator f(x+h)−f(x) is the matching vertical change, so their quotient is the slope of a secant line through two points. As h approaches 0, the second point slides toward the first and the secant slope approaches the tangent slope.</p>
+          <p>At a particular point a, you may also use f′(a)=lim<sub>x→a</sub>[f(x)−f(a)]/(x−a). Both definitions express “vertical change divided by horizontal change, with the gap shrinking to zero.”</p>`
         },
         {
           title: "Full first-principles example",
@@ -212,12 +238,19 @@ window.STUDY_DATA = (() => {
           title: "Must read: why (sin 3x)′=3 cos 3x",
           html: `<p>Your notebook marks this derivation <strong>READ!!!!!</strong> Start with the definition and expand sin(3x+3h):</p>
           <div class="formula-display">lim<sub>h→0</sub> [sin(3x+3h)−sin(3x)]/h</div>
-          <p>Using sin(A+B)=sin A cos B+cos A sin B, this becomes sin(3x)[(cos3h−1)/h]+cos(3x)[sin3h/h]. The first limit is 0; the second is 3.</p>
+          <p>Using sin(A+B)=sin A cos B+cos A sin B, subtracting sin(3x), and grouping gives</p>
+          <div class="formula-display">sin(3x)[cos(3h)−1]/h + cos(3x)sin(3h)/h</div>
+          <p>For the second fraction, multiply and divide by 3: sin(3h)/h=3[sin(3h)/(3h)]→3. For the first, [cos(3h)−1]/h→0. Therefore only 3cos(3x) remains.</p>
           <div class="formula-display">d[sin(3x)]/dx = 3cos(3x)</div>`
         },
         {
-          title: "Tangent equation",
-          html: `<p>At x=a, the point is (a,f(a)) and gradient m=f′(a). Use point-gradient form:</p><div class="formula-display">y − f(a) = f′(a)(x − a)</div>`,
+          title: "Tangent and normal equations",
+          html: `<p>At x=a, first find the point (a,f(a)), then the tangent gradient m=f′(a). Use point-gradient form. A normal is perpendicular, so its slope is the negative reciprocal when m is non-zero.</p><div class="formula-display">tangent: y−f(a)=f′(a)(x−a) &nbsp; | &nbsp; m<sub>normal</sub>=−1/f′(a)</div>
+          <div class="micro-example"><strong>For y=x² at x=2</strong><p>Point=(2,4); f′(x)=2x, so tangent slope=4.</p><div class="answer-line">Tangent: y−4=4(x−2). Normal: y−4=−¼(x−2).</div></div>`
+        },
+        {
+          title: "A second first-principles example",
+          html: `<div class="micro-example"><strong>Find d(1/x)/dx from the definition</strong><p>[1/(x+h)−1/x]/h = [x−(x+h)]/[hx(x+h)] = −h/[hx(x+h)].</p><p>Cancel h before taking the limit.</p><div class="answer-line">f′(x)=lim<sub>h→0</sub>−1/[x(x+h)]=−1/x², x≠0.</div></div>`,
           optional: true
         }
       ],
@@ -239,19 +272,41 @@ window.STUDY_DATA = (() => {
       ],
       sections: [
         {
-          title: "Basic and power rules",
-          html: `<div class="formula-display">d(c)/dx=0 &nbsp; | &nbsp; d(ax+b)/dx=a &nbsp; | &nbsp; d(xⁿ)/dx=nxⁿ⁻¹</div>
-          <div class="micro-example"><strong>Example</strong><p>d/dx(4x⁵−3x²+7)=20x⁴−6x.</p><div class="answer-line">Differentiate every term.</div></div>`
+          title: "First recognise the structure",
+          html: `<p>Before touching the algebra, ask what holds the expression together. This decides the rule:</p>
+          <div class="rule-choice-grid">
+            <div><strong>Terms joined by + or −</strong><span>Differentiate term by term.</span></div>
+            <div><strong>Two changing factors multiplied</strong><span>Use product rule.</span></div>
+            <div><strong>One function divided by another</strong><span>Use quotient rule.</span></div>
+            <div><strong>A function inside another</strong><span>Use chain rule.</span></div>
+          </div>
+          <p>Rules can be nested. In x²sin(3x), multiplication calls for product rule, while sin(3x) needs chain rule inside one product term.</p>`
         },
         {
-          title: "Product and quotient",
-          html: `<div class="formula-display">(uv)′=u′v+uv′ &nbsp; | &nbsp; (u/v)′=(vu′−uv′)/v²</div>
-          <p>For the quotient rule, keep the denominator squared and preserve the subtraction order.</p>`
+          title: "Power rule, including roots and reciprocals",
+          html: `<div class="formula-display">d(c)/dx=0 &nbsp; | &nbsp; d(xⁿ)/dx=nxⁿ⁻¹</div>
+          <p>The power n moves to the front as a multiplier, then the exponent falls by one. Rewrite roots and reciprocals as powers first: √x=x¹⁄² and 1/x=x⁻¹.</p>
+          <div class="micro-example"><strong>Term by term</strong><p>d/dx(4x⁵−3x²+7)=20x⁴−6x+0.</p><div class="answer-line">=20x⁴−6x.</div></div>
+          <div class="micro-example"><strong>Fractional and negative powers</strong><p>d(√x)/dx=d(x¹⁄²)/dx=½x⁻¹⁄²=1/(2√x).</p><p>d(1/x)/dx=d(x⁻¹)/dx=−x⁻².</p><div class="answer-line">Roots and reciprocals are still power-rule questions.</div></div>`
         },
         {
-          title: "Chain rule",
+          title: "Product rule: each factor gets a turn",
+          html: `<div class="formula-display">(uv)′=u′v+uv′<small>First changes while second stays + first stays while second changes.</small></div>
+          <p>It is <strong>not</strong> u′v′. A product changes for two reasons, so the answer has two terms.</p>
+          <div class="micro-example"><strong>y=(x²+1)sin x</strong><p>Let u=x²+1, so u′=2x. Let v=sin x, so v′=cos x.</p><p>y′=u′v+uv′.</p><div class="answer-line">y′=2x sin x+(x²+1)cos x.</div></div>`
+        },
+        {
+          title: "Quotient rule: preserve the order",
+          html: `<div class="formula-display">(u/v)′=(vu′−uv′)/v²<small>“bottom d-top minus top d-bottom, over bottom squared.”</small></div>
+          <div class="micro-example"><strong>y=(x²+1)/(x−1)</strong><p>u=x²+1, u′=2x; v=x−1, v′=1.</p><p>y′=[(x−1)(2x)−(x²+1)(1)]/(x−1)².</p><div class="answer-line">y′=(x²−2x−1)/(x−1)².</div></div>
+          <p>Do not expand before the rule unless it truly makes the expression simpler. The bracket after the minus prevents sign losses.</p>`
+        },
+        {
+          title: "Chain rule: outside, same inside, times inside",
           html: `<div class="formula-display">If y=f(u), u=g(x), then dy/dx=(dy/du)(du/dx)</div>
-          <div class="micro-example"><strong>Example</strong><p>d/dx(3x²+1)⁵ = 5(3x²+1)⁴ · 6x</p><div class="answer-line">= 30x(3x²+1)⁴</div></div>`
+          <p>A nested function changes twice: the outside responds to a change in u, while u responds to a change in x. Differentiate the <strong>outside</strong>, keep the <strong>inside unchanged</strong>, then multiply by the <strong>inside derivative</strong>.</p>
+          <div class="micro-example"><strong>y=(3x²+1)⁵</strong><p>Outside: u⁵ becomes 5u⁴. Same inside: 5(3x²+1)⁴. Inside derivative: 6x.</p><div class="answer-line">y′=30x(3x²+1)⁴.</div></div>
+          <div class="micro-example"><strong>How to spot more than one layer</strong><p>For [cos(2x)]⁴, the layers are power → cosine → 2x.</p><p>4cos³(2x)·[−sin(2x)]·2</p><div class="answer-line">=−8cos³(2x)sin(2x).</div></div>`
         }
       ],
       sticky: "Write u and v in the margin before a product or quotient rule. That tiny setup prevents most sign errors.",
@@ -272,12 +327,36 @@ window.STUDY_DATA = (() => {
       ],
       sections: [
         {
-          title: "The six trig derivatives",
-          html: `<div class="formula-display">sin→cos &nbsp; | &nbsp; cos→−sin &nbsp; | &nbsp; tan→sec²<br>sec→sec tan &nbsp; | &nbsp; cosec→−cosec cot &nbsp; | &nbsp; cot→−cosec²</div>`
+          title: "Must memorise: see it → write it",
+          html: `<p>Let u mean any inside expression such as 4x, x² or ln x. If the input is only x, then u′=1.</p>
+          <div class="formula-display">(sin u)′=cos u·u′ &nbsp; | &nbsp; (cos u)′=−sin u·u′<br>(tan u)′=sec²u·u′ &nbsp; | &nbsp; (cot u)′=−cosec²u·u′<br>(sec u)′=sec u tan u·u′ &nbsp; | &nbsp; (cosec u)′=−cosec u cot u·u′</div>
+          <p><strong>Memory pattern:</strong> ordinary trig derivatives beginning with <strong>C</strong> — cosine, cotangent and cosecant — carry a minus. Tan and cot produce the matching reciprocal squared. Sec and cosec copy themselves and attach tan or cot.</p>
+          <p><strong>Vocabulary:</strong> cosec=csc, sec u=1/cos u, cosec u=1/sin u, and cot u=cos u/sin u.</p>
+          <div class="micro-example"><strong>Fast chain example</strong><p>sin(3x²) becomes cos(3x²), then multiply by (3x²)′.</p><div class="answer-line">d/dx[sin(3x²)]=6x cos(3x²).</div></div>`
         },
         {
-          title: "Chain them",
-          html: `<div class="micro-example"><strong>Example</strong><p>y=sin(3x²). Outside derivative gives cos(3x²); inside derivative gives 6x.</p><div class="answer-line">dy/dx = 6x cos(3x²)</div></div>`
+          title: "One worked example for every rule",
+          html: `<div class="worked-example-grid">
+            <div class="micro-example"><strong>sin(4x)</strong><p>sin→cos; (4x)′=4.</p><div class="answer-line">4cos(4x)</div></div>
+            <div class="micro-example"><strong>cos(x²)</strong><p>cos→−sin; (x²)′=2x.</p><div class="answer-line">−2x sin(x²)</div></div>
+            <div class="micro-example"><strong>tan(5x−1)</strong><p>tan→sec²; inside derivative=5.</p><div class="answer-line">5sec²(5x−1)</div></div>
+            <div class="micro-example"><strong>cot(x³)</strong><p>cot→−cosec²; inside derivative=3x².</p><div class="answer-line">−3x²cosec²(x³)</div></div>
+            <div class="micro-example"><strong>sec(3x)</strong><p>sec→sec tan; inside derivative=3.</p><div class="answer-line">3sec(3x)tan(3x)</div></div>
+            <div class="micro-example"><strong>cosec(2x)</strong><p>cosec→−cosec cot; inside derivative=2.</p><div class="answer-line">−2cosec(2x)cot(2x)</div></div>
+          </div>`,
+          optional: true
+        },
+        {
+          title: "When a trig function is inside another rule",
+          html: `<div class="micro-example"><strong>y=sin²(3x) means [sin(3x)]²</strong><p>Power layer: 2sin(3x). Trig layer: cos(3x). Inner linear layer: 3.</p><div class="answer-line">y′=6sin(3x)cos(3x).</div></div>
+          <div class="micro-example"><strong>y=sec x tan x</strong><p>Two functions are multiplied, so start with product rule.</p><p>y′=(sec x tan x)(tan x)+sec x(sec²x).</p><div class="answer-line">y′=sec x tan²x+sec³x.</div></div>`,
+          optional: true
+        },
+        {
+          title: "Why sec and cosec copy themselves",
+          html: `<p>This is useful when a formula refuses to stick. Since sec x=1/cos x=(cos x)⁻¹, chain rule gives</p><div class="formula-display">(sec x)′=−(cos x)⁻²(−sin x)=sin x/cos²x=sec x tan x.</div>
+          <p>Similarly, cosec x=(sin x)⁻¹ gives −cos x/sin²x=−cosec x cot x.</p>`,
+          optional: true
         }
       ],
       sticky: "All standard trigonometric derivative formulas assume the angle is in radians.",
@@ -298,8 +377,10 @@ window.STUDY_DATA = (() => {
       ],
       sections: [
         {
-          title: "The main four",
-          html: `<div class="formula-display">(sin⁻¹x)′=1/√(1−x²) &nbsp; | &nbsp; (cos⁻¹x)′=−1/√(1−x²)<br>(tan⁻¹x)′=1/(1+x²) &nbsp; | &nbsp; (cot⁻¹x)′=−1/(1+x²)</div>`
+          title: "Must memorise: all six with an inside u",
+          html: `<p>Use the names <strong>arcsin, arccos, arctan</strong> when possible. They make it clear that these are inverse functions, not reciprocals. Every numerator contains u′ because chain rule still applies.</p>
+          <div class="formula-display">(arcsin u)′=u′/√(1−u²) &nbsp; | &nbsp; (arccos u)′=−u′/√(1−u²)<br>(arctan u)′=u′/(1+u²) &nbsp; | &nbsp; (arccot u)′=−u′/(1+u²)<br>(arcsec u)′=u′/[|u|√(u²−1)] &nbsp; | &nbsp; (arccosec u)′=−u′/[|u|√(u²−1)]</div>
+          <p><strong>Pair memory:</strong> arcsin/arccos share √(1−u²); arctan/arccot share 1+u²; arcsec/arccosec share |u|√(u²−1). Within each pair, the cos/cot/cosec partner is negative.</p>`
         },
         {
           title: "Why arcsine has that root",
@@ -307,12 +388,21 @@ window.STUDY_DATA = (() => {
         },
         {
           title: "The other two — and a notebook trap",
-          html: `<div class="formula-display">(sec⁻¹x)′=1/[|x|√(x²−1)] &nbsp; | &nbsp; (cosec⁻¹x)′=−1/[|x|√(x²−1)]</div>
-          <p>The absolute value makes the rule work on both parts of the domain, |x|&gt;1. Also, <strong>cosec⁻¹(sin 4x)</strong> is not an ordinary differentiable real function: sin 4x stays between −1 and 1, so it enters the inverse-cosecant domain only at isolated points. Do not force the chain-rule formula onto it.</p>`
+          html: `<div class="formula-display">(arcsec u)′=u′/[|u|√(u²−1)] &nbsp; | &nbsp; (arccosec u)′=−u′/[|u|√(u²−1)]</div>
+          <p>The absolute value makes each rule work on both branches. The function is real for |u|≥1, while the displayed derivative is finite for |u|&gt;1. Also, <strong>arccosec(sin 4x)</strong> is not an ordinary differentiable real composition: sin 4x stays between −1 and 1, so it reaches the inverse-cosecant domain only at isolated points. Do not force the chain rule onto an expression with no open real domain.</p>`
         },
         {
-          title: "Chain-rule example",
-          html: `<div class="micro-example"><strong>From your notes</strong><p>y=sin⁻¹(2x). Let u=2x, so u′=2.</p><div class="answer-line">dy/dx = 2/√(1−4x²).</div></div>`,
+          title: "Chain-rule examples",
+          html: `<div class="worked-example-grid">
+            <div class="micro-example"><strong>y=arcsin(2x)</strong><p>u=2x and u′=2. Put u′ on top and replace u² by (2x)².</p><div class="answer-line">y′=2/√(1−4x²), |x|&lt;½.</div></div>
+            <div class="micro-example"><strong>y=arccos(3x)</strong><p>Use the negative partner and u′=3.</p><div class="answer-line">y′=−3/√(1−9x²).</div></div>
+            <div class="micro-example"><strong>y=arctan(x²)</strong><p>u′=2x and 1+u²=1+x⁴.</p><div class="answer-line">y′=2x/(1+x⁴).</div></div>
+            <div class="micro-example"><strong>y=arcsec(2x)</strong><p>u′=2; keep the absolute value around 2x.</p><div class="answer-line">y′=2/[|2x|√(4x²−1)].</div></div>
+          </div>`
+        },
+        {
+          title: "A convention you should know",
+          html: `<p>This course uses the common principal range 0&lt;arccot x&lt;π, which gives (arccot x)′=−1/(1+x²). Some books choose a different convention, so follow the convention stated by your lecturer or paper.</p>`,
           optional: true
         }
       ],
@@ -326,7 +416,7 @@ window.STUDY_DATA = (() => {
       priority: "must",
       level: "Core",
       minutes: 17,
-      lead: "Exponentials keep their shape when differentiated. Logarithms turn multiplication inside into division in the derivative.",
+      lead: "Exponentials keep their own shape when differentiated. A logarithm follows the rule u′/u: the change of the inside goes over the unchanged inside.",
       catches: [
         "(eᵘ)′=eᵘu′ — copy the exponential and multiply by the inner derivative.",
         "(aᵘ)′=aᵘln(a)u′ — a base other than e adds ln(a).",
@@ -336,16 +426,26 @@ window.STUDY_DATA = (() => {
         {
           title: "Exponential rules",
           html: `<div class="formula-display">d(eᵘ)/dx=eᵘu′ &nbsp; | &nbsp; d(aᵘ)/dx=aᵘln(a)u′</div>
-          <div class="micro-example"><strong>Notebook-style product</strong><p>For y=e³ˣsin(2x), use product and chain rules.</p><div class="answer-line">y′=3e³ˣsin(2x)+2e³ˣcos(2x).</div></div>`
+          <p><strong>Why the rules differ:</strong> e is the special base whose exponential copies itself. Any other positive base a contributes the constant factor ln(a). In both cases, an inside function contributes u′.</p>
+          <div class="worked-example-grid">
+            <div class="micro-example"><strong>y=e^(2x−3)</strong><p>Copy e^(2x−3), then multiply by (2x−3)′.</p><div class="answer-line">y′=2e^(2x−3).</div></div>
+            <div class="micro-example"><strong>y=2^(cos x)</strong><p>Copy the exponential, add ln2, then multiply by −sin x.</p><div class="answer-line">y′=−2^(cos x)ln2 sin x.</div></div>
+          </div>
+          <div class="micro-example"><strong>Product + two chain rules</strong><p>For y=e³ˣsin(2x), product rule gives (3e³ˣ)sin(2x)+e³ˣ[2cos(2x)].</p><div class="answer-line">y′=3e³ˣsin(2x)+2e³ˣcos(2x).</div></div>`
         },
         {
           title: "Logarithmic rules",
           html: `<div class="formula-display">d(ln u)/dx=u′/u &nbsp; | &nbsp; d(logₐu)/dx=u′/[u ln(a)]</div>
-          <div class="micro-example"><strong>Example</strong><p>d/dx log₂(x²+1)</p><div class="answer-line">= 2x/[(x²+1)ln 2]</div></div>`
+          <p>The base-change identity logₐu=ln u/ln a explains the extra ln(a). For real logarithms, the input u must be positive. The related rule d[ln|u|]/dx=u′/u works wherever u≠0.</p>
+          <div class="worked-example-grid">
+            <div class="micro-example"><strong>y=ln(x²+1)</strong><p>Inside u=x²+1 and u′=2x.</p><div class="answer-line">y′=2x/(x²+1).</div></div>
+            <div class="micro-example"><strong>y=log₂(3x−1)</strong><p>u′=3; denominator is u ln2.</p><div class="answer-line">y′=3/[(3x−1)ln2], x&gt;1/3.</div></div>
+          </div>`
         },
         {
-          title: "A sign check worth doing",
-          html: `<p>For y=2<sup>cos x</sup>, the inside derivative is −sin x. Therefore y′=−2<sup>cos x</sup>ln(2)sin x. The negative sign is essential.</p>`,
+          title: "Do not mix up these four shapes",
+          html: `<div class="rule-choice-grid"><div><strong>xⁿ</strong><span>Power moves down: nxⁿ⁻¹.</span></div><div><strong>eˣ</strong><span>Copies itself.</span></div><div><strong>aˣ</strong><span>Copies itself × ln a.</span></div><div><strong>ln x</strong><span>Becomes 1/x.</span></div></div>
+          <div class="micro-example"><strong>Stretch: y=xˣ</strong><p>Both base and exponent change, so ordinary power and exponential rules do not fit. Take logs: ln y=x ln x.</p><p>Differentiate implicitly: y′/y=ln x+1.</p><div class="answer-line">y′=xˣ(ln x+1), x&gt;0.</div></div>`,
           optional: true
         }
       ],
@@ -355,10 +455,10 @@ window.STUDY_DATA = (() => {
     {
       id: "hyperbolic",
       title: "Hyperbolic functions",
-      short: "Differentiate sinh, cosh, tanh, sech and csch.",
-      priority: "optional",
-      level: "Extension",
-      minutes: 17,
+      short: "Differentiate all six hyperbolic functions.",
+      priority: "must",
+      level: "Core",
+      minutes: 22,
       lead: "Hyperbolic functions look like trig functions but are built from exponentials. Their derivative signs follow different patterns.",
       catches: [
         "sinh x=(eˣ−e⁻ˣ)/2 and cosh x=(eˣ+e⁻ˣ)/2.",
@@ -367,17 +467,39 @@ window.STUDY_DATA = (() => {
       ],
       sections: [
         {
-          title: "Definitions and identity",
-          html: `<div class="formula-display">sinh x=(eˣ−e⁻ˣ)/2 &nbsp; | &nbsp; cosh x=(eˣ+e⁻ˣ)/2</div>
-          <p>The central identity is cosh²x−sinh²x=1. Two useful forms are <strong>sech²x+tanh²x=1</strong> and <strong>coth²x−csch²x=1</strong>.</p>`
+          title: "What the names mean",
+          html: `<p>Hyperbolic functions are built from exponentials; they are not ordinary trig functions with an h attached. Start with sinh and cosh, then form the other four as quotients or reciprocals.</p>
+          <div class="formula-display">sinh x=(eˣ−e⁻ˣ)/2 &nbsp; | &nbsp; cosh x=(eˣ+e⁻ˣ)/2<br>tanh x=sinh x/cosh x &nbsp; | &nbsp; coth x=cosh x/sinh x<br>sech x=1/cosh x &nbsp; | &nbsp; csch x=1/sinh x</div>
+          <p>The central identity is cosh²x−sinh²x=1. Dividing it by cosh²x gives sech²x+tanh²x=1; dividing by sinh²x gives coth²x−csch²x=1.</p>`
         },
         {
-          title: "Derivative family",
-          html: `<div class="formula-display">sinh→cosh &nbsp; | &nbsp; cosh→sinh &nbsp; | &nbsp; tanh→sech²<br>coth→−csch² &nbsp; | &nbsp; sech→−sech tanh &nbsp; | &nbsp; csch→−csch coth</div>`
+          title: "Must memorise: all six with an inside u",
+          html: `<div class="formula-display">(sinh u)′=cosh u·u′ &nbsp; | &nbsp; (cosh u)′=sinh u·u′<br>(tanh u)′=sech²u·u′ &nbsp; | &nbsp; (coth u)′=−csch²u·u′<br>(sech u)′=−sech u tanh u·u′ &nbsp; | &nbsp; (csch u)′=−csch u coth u·u′</div>
+          <p><strong>Memory pattern:</strong> sinh and cosh swap with no minus; tanh acts like tan; the reciprocal-side functions coth, sech and csch carry negative signs. In particular, cosh′=+sinh — do not import the minus from ordinary cosine.</p>
+          <div class="micro-example"><strong>Fast chain example</strong><p>cosh(x²) becomes sinh(x²), then multiply by 2x.</p><div class="answer-line">d/dx[cosh(x²)]=2x sinh(x²).</div></div>`
         },
         {
-          title: "A chain-rule example",
-          html: `<div class="micro-example"><strong>From the end of your notes</strong><p>y=cosh(ln(3x)). Let u=ln(3x), so u′=1/x.</p><div class="answer-line">dy/dx = sinh(ln(3x))/x = (9x²−1)/(6x²).</div></div>`,
+          title: "One worked example for every rule",
+          html: `<div class="worked-example-grid">
+            <div class="micro-example"><strong>sinh(3x)</strong><p>sinh→cosh; inside gives 3.</p><div class="answer-line">3cosh(3x)</div></div>
+            <div class="micro-example"><strong>cosh(x²)</strong><p>cosh→sinh; no minus; inside gives 2x.</p><div class="answer-line">2x sinh(x²)</div></div>
+            <div class="micro-example"><strong>tanh(4x)</strong><p>tanh→sech²; inside gives 4.</p><div class="answer-line">4sech²(4x)</div></div>
+            <div class="micro-example"><strong>coth(2x)</strong><p>coth→−csch²; inside gives 2.</p><div class="answer-line">−2csch²(2x)</div></div>
+            <div class="micro-example"><strong>sech(ln x)</strong><p>sech→−sech tanh; (ln x)′=1/x.</p><div class="answer-line">−sech(ln x)tanh(ln x)/x, x&gt;0</div></div>
+            <div class="micro-example"><strong>csch(eˣ)</strong><p>csch→−csch coth; (eˣ)′=eˣ.</p><div class="answer-line">−eˣcsch(eˣ)coth(eˣ)</div></div>
+          </div>`,
+          optional: true
+        },
+        {
+          title: "Why sinh and cosh swap",
+          html: `<p>Differentiate their exponential definitions. In sinh x=(eˣ−e⁻ˣ)/2, differentiating −e⁻ˣ produces +e⁻ˣ, so the result becomes cosh x. In cosh x, differentiating +e⁻ˣ produces −e⁻ˣ, so the result becomes sinh x.</p>
+          <div class="micro-example"><strong>From the end of your notes</strong><p>y=cosh(ln(3x)); u′=1/x.</p><div class="answer-line">y′=sinh(ln(3x))/x=(9x²−1)/(6x²), x&gt;0.</div></div>`,
+          optional: true
+        },
+        {
+          title: "Inverse hyperbolic derivatives — extension only",
+          html: `<p>Your photographed notes introduce inverse hyperbolic functions but do not develop these derivatives. Read this section only if your lecturer includes them. Write <strong>arsinh</strong> rather than sinh⁻¹ when you need to avoid confusing an inverse with 1/sinh=csch.</p>
+          <div class="formula-display">(arsinh u)′=u′/√(1+u²) &nbsp; | &nbsp; (arcosh u)′=u′/√(u²−1)<br>(artanh u)′=u′/(1−u²) &nbsp; | &nbsp; (arcoth u)′=u′/(1−u²)<br>(arsech u)′=−u′/[u√(1−u²)] &nbsp; | &nbsp; (arcsch u)′=−u′/[|u|√(1+u²)]</div>`,
           optional: true
         }
       ],
@@ -634,34 +756,32 @@ window.STUDY_DATA = (() => {
     },
     {
       title: "Trigonometric derivatives", icon: "θ", color: "var(--orange-soft)", items: [
-        ["(sin x)′=cos x", "Sine"],
-        ["(cos x)′=−sin x", "Cosine — note the minus"],
-        ["(tan x)′=sec²x", "Tangent"],
-        ["(cot x)′=−cosec²x", "Cotangent"],
-        ["(sec x)′=sec x tan x", "Secant"],
-        ["(cosec x)′=−cosec x cot x", "Cosecant"]
+        ["(sin u)′=cos u·u′", "Sine + chain rule"],
+        ["(cos u)′=−sin u·u′", "Cosine — note the minus"],
+        ["(tan u)′=sec²u·u′", "Tangent + chain rule"],
+        ["(cot u)′=−cosec²u·u′", "Cotangent — note the minus"],
+        ["(sec u)′=sec u tan u·u′", "Secant + chain rule"],
+        ["(cosec u)′=−cosec u cot u·u′", "Cosecant (csc) — note the minus"]
       ]
     },
     {
       title: "Inverse trigonometric derivatives", icon: "⁻¹", color: "var(--blue-soft)", items: [
-        ["(sin⁻¹x)′=1/√(1−x²)", "Inverse sine; |x|<1"],
-        ["(cos⁻¹x)′=−1/√(1−x²)", "Inverse cosine; note the minus"],
-        ["(tan⁻¹x)′=1/(1+x²)", "Inverse tangent"],
-        ["(cot⁻¹x)′=−1/(1+x²)", "Inverse cotangent convention in your notes"],
-        ["(sec⁻¹x)′=1/(|x|√(x²−1))", "Inverse secant; |x|>1"],
-        ["(cosec⁻¹x)′=−1/(|x|√(x²−1))", "Inverse cosecant; |x|>1"],
-        ["(sin⁻¹u)′=u′/√(1−u²)", "Chain-rule form"],
-        ["(tan⁻¹u)′=u′/(1+u²)", "Chain-rule form"]
+        ["(arcsin u)′=u′/√(1−u²)", "Inverse sine; |u|<1 for a finite derivative"],
+        ["(arccos u)′=−u′/√(1−u²)", "Inverse cosine; note the minus"],
+        ["(arctan u)′=u′/(1+u²)", "Inverse tangent"],
+        ["(arccot u)′=−u′/(1+u²)", "Using the convention in your notes"],
+        ["(arcsec u)′=u′/(|u|√(u²−1))", "Inverse secant; |u|>1"],
+        ["(arccosec u)′=−u′/(|u|√(u²−1))", "Inverse cosecant; |u|>1"]
       ]
     },
     {
       title: "Exponential & logarithmic", icon: "e", color: "var(--lime-soft)", items: [
         ["(eˣ)′=eˣ", "Natural exponential"],
         ["(eᵘ)′=eᵘu′", "With chain rule"],
-        ["(aˣ)′=aˣ ln a", "Base a>0"],
+        ["(aᵘ)′=aᵘ ln(a)·u′", "Base a>0, a≠1"],
         ["(ln x)′=1/x", "For x>0"],
         ["(ln u)′=u′/u", "With chain rule"],
-        ["(logₐx)′=1/(x ln a)", "Base a>0, a≠1"]
+        ["(logₐu)′=u′/[u ln(a)]", "Base a>0, a≠1"]
       ]
     },
     {
@@ -671,14 +791,59 @@ window.STUDY_DATA = (() => {
         ["cosh²x−sinh²x=1", "Main identity"],
         ["sech²x+tanh²x=1", "Divide the main identity by cosh²x"],
         ["coth²x−csch²x=1", "Rearranged hyperbolic identity"],
-        ["(sinh x)′=cosh x", "Hyperbolic sine"],
-        ["(cosh x)′=sinh x", "Hyperbolic cosine"],
-        ["(tanh x)′=sech²x", "Hyperbolic tangent"],
-        ["(coth x)′=−csch²x", "Hyperbolic cotangent"],
-        ["(sech x)′=−sech x tanh x", "Hyperbolic secant"],
-        ["(csch x)′=−csch x coth x", "Hyperbolic cosecant"]
+        ["(sinh u)′=cosh u·u′", "Hyperbolic sine + chain rule"],
+        ["(cosh u)′=sinh u·u′", "Hyperbolic cosine; no minus"],
+        ["(tanh u)′=sech²u·u′", "Hyperbolic tangent + chain rule"],
+        ["(coth u)′=−csch²u·u′", "Hyperbolic cotangent"],
+        ["(sech u)′=−sech u tanh u·u′", "Hyperbolic secant"],
+        ["(csch u)′=−csch u coth u·u′", "Hyperbolic cosecant"]
+      ]
+    },
+    {
+      title: "Inverse hyperbolic — extension", icon: "h⁻¹", color: "var(--orange-soft)", items: [
+        ["(arsinh u)′=u′/√(1+u²)", "Also written as asinh; all real u"],
+        ["(arcosh u)′=u′/√(u²−1)", "Also written as acosh; finite for u>1"],
+        ["(artanh u)′=u′/(1−u²)", "Also written as atanh; |u|<1"],
+        ["(arcoth u)′=u′/(1−u²)", "Also written as acoth; |u|>1"],
+        ["(arsech u)′=−u′/[u√(1−u²)]", "Also written as asech; 0<u<1"],
+        ["(arcsch u)′=−u′/[|u|√(1+u²)]", "Also written as acsch; u≠0"]
       ]
     }
+  ];
+
+  const derivativeDeck = [
+    { id: "d-sin", family: "Core trig", prompt: "(sin u)′", answer: "cos u · u′", cue: "Sine becomes cosine.", example: "sin(7x) → 7cos(7x)", must: true },
+    { id: "d-cos", family: "Core trig", prompt: "(cos u)′", answer: "−sin u · u′", cue: "Cosine carries a minus.", example: "cos(x²) → −2x sin(x²)", must: true },
+    { id: "d-tan", family: "Core trig", prompt: "(tan u)′", answer: "sec²u · u′", cue: "Tangent produces secant squared.", example: "tan(3x−1) → 3sec²(3x−1)", must: true },
+    { id: "d-cot", family: "Core trig", prompt: "(cot u)′", answer: "−cosec²u · u′", cue: "Cotangent is the negative partner.", example: "cot(4x) → −4cosec²(4x)", must: true },
+    { id: "d-sec", family: "Core trig", prompt: "(sec u)′", answer: "sec u tan u · u′", cue: "Secant copies itself, then attaches tan.", example: "sec(3x) → 3sec(3x)tan(3x)", must: true },
+    { id: "d-cosec", family: "Core trig", prompt: "(cosec u)′", answer: "−cosec u cot u · u′", cue: "Cosec (csc) copies itself and brings a minus.", example: "cosec(2x) → −2cosec(2x)cot(2x)", must: true },
+
+    { id: "d-arcsin", family: "Inverse trig", prompt: "(arcsin u)′", answer: "u′/√(1−u²)", cue: "The sine pair uses the 1−u² root.", example: "arcsin(2x) → 2/√(1−4x²)", must: true },
+    { id: "d-arccos", family: "Inverse trig", prompt: "(arccos u)′", answer: "−u′/√(1−u²)", cue: "Same root as arcsin, but negative.", example: "arccos(3x) → −3/√(1−9x²)", must: true },
+    { id: "d-arctan", family: "Inverse trig", prompt: "(arctan u)′", answer: "u′/(1+u²)", cue: "Tangent pair uses 1+u².", example: "arctan(x³) → 3x²/(1+x⁶)", must: true },
+    { id: "d-arccot", family: "Inverse trig", prompt: "(arccot u)′", answer: "−u′/(1+u²)", cue: "Same denominator as arctan, but negative.", example: "arccot(2x²) → −4x/(1+4x⁴)", must: true },
+    { id: "d-arcsec", family: "Inverse trig", prompt: "(arcsec u)′", answer: "u′/[|u|√(u²−1)]", cue: "Keep the absolute value around u.", example: "arcsec(2x) → 2/[|2x|√(4x²−1)]", must: true },
+    { id: "d-arccosec", family: "Inverse trig", prompt: "(arccosec u)′", answer: "−u′/[|u|√(u²−1)]", cue: "Arcsec's negative partner; cosec is also csc.", example: "arccosec(3x) → −3/[|3x|√(9x²−1)]", must: true },
+
+    { id: "d-exp", family: "Exp & log", prompt: "(eᵘ)′", answer: "eᵘ · u′", cue: "e copies itself, then chain rule.", example: "e^(sin x) → e^(sin x)cos x", must: true },
+    { id: "d-base-exp", family: "Exp & log", prompt: "(aᵘ)′", answer: "aᵘ ln(a) · u′", cue: "A base other than e adds ln(a).", example: "2^(x²) → 2x·2^(x²)ln2", must: true },
+    { id: "d-ln", family: "Exp & log", prompt: "(ln u)′", answer: "u′/u", cue: "Inside derivative over unchanged inside.", example: "ln(x²+1) → 2x/(x²+1)", must: true },
+    { id: "d-log", family: "Exp & log", prompt: "(logₐu)′", answer: "u′/[u ln(a)]", cue: "Natural-log rule plus the base factor ln(a).", example: "log₂(3x−1) → 3/[(3x−1)ln2]", must: true },
+
+    { id: "d-sinh", family: "Hyperbolic", prompt: "(sinh u)′", answer: "cosh u · u′", cue: "Sinh and cosh swap.", example: "sinh(3x) → 3cosh(3x)", must: true },
+    { id: "d-cosh", family: "Hyperbolic", prompt: "(cosh u)′", answer: "sinh u · u′", cue: "No minus: hyperbolic cosine stays positive.", example: "cosh(5x²) → 10x sinh(5x²)", must: true },
+    { id: "d-tanh", family: "Hyperbolic", prompt: "(tanh u)′", answer: "sech²u · u′", cue: "Same shape as tan → sec².", example: "tanh(4x) → 4sech²(4x)", must: true },
+    { id: "d-coth", family: "Hyperbolic", prompt: "(coth u)′", answer: "−csch²u · u′", cue: "Coth is a negative reciprocal-side rule.", example: "coth(2x) → −2csch²(2x)", must: true },
+    { id: "d-sech", family: "Hyperbolic", prompt: "(sech u)′", answer: "−sech u tanh u · u′", cue: "Copy sech, attach tanh, then a minus.", example: "sech(ln x) → −sech(ln x)tanh(ln x)/x", must: true },
+    { id: "d-csch", family: "Hyperbolic", prompt: "(csch u)′", answer: "−csch u coth u · u′", cue: "Copy csch, attach coth, then a minus.", example: "csch(eˣ) → −eˣcsch(eˣ)coth(eˣ)", must: true },
+
+    { id: "d-arsinh", family: "Inverse hyperbolic", prompt: "(arsinh u)′", answer: "u′/√(1+u²)", cue: "Extension: inverse hyperbolic sine.", example: "arsinh(3x) → 3/√(1+9x²)", must: false },
+    { id: "d-arcosh", family: "Inverse hyperbolic", prompt: "(arcosh u)′", answer: "u′/√(u²−1)", cue: "Extension: finite for u>1.", example: "arcosh(2x) → 2/√(4x²−1)", must: false },
+    { id: "d-artanh", family: "Inverse hyperbolic", prompt: "(artanh u)′", answer: "u′/(1−u²)", cue: "Extension: the denominator has 1−u².", example: "artanh(2x) → 2/(1−4x²)", must: false },
+    { id: "d-arcoth", family: "Inverse hyperbolic", prompt: "(arcoth u)′", answer: "u′/(1−u²)", cue: "Extension: same algebraic rule as artanh, different domain.", example: "arcoth(3x) → 3/(1−9x²)", must: false },
+    { id: "d-arsech", family: "Inverse hyperbolic", prompt: "(arsech u)′", answer: "−u′/[u√(1−u²)]", cue: "Extension: real for 0<u≤1.", example: "arsech(x) → −1/[x√(1−x²)]", must: false },
+    { id: "d-arcsch", family: "Inverse hyperbolic", prompt: "(arcsch u)′", answer: "−u′/[|u|√(1+u²)]", cue: "Extension: keep |u| and the minus.", example: "arcsch(2x) → −2/[|2x|√(1+4x²)]", must: false }
   ];
 
   const checkpoints = [
@@ -719,8 +884,8 @@ window.STUDY_DATA = (() => {
     { label: "OpenStax Calculus Volume 1 — Limits", detail: "Concept checks and exercise patterns, §§2.1–2.5", href: "https://openstax.org/books/calculus-volume-1/pages/2-introduction" },
     { label: "OpenStax Calculus Volume 1 — Derivatives", detail: "Definitions and rule practice, §§3.1–3.9", href: "https://openstax.org/books/calculus-volume-1/pages/3-introduction" },
     { label: "OpenStax Calculus Volume 1 — Hyperbolic Functions", detail: "Definitions, identities and derivatives, §6.9", href: "https://openstax.org/books/calculus-volume-1/pages/6-9-calculus-of-the-hyperbolic-functions" },
-    { label: "CASIO calculator manual finder", detail: "Official manuals; search fx-82EX (guide RJA532417-001V01)", href: "https://www.casio.com/intl/support/calculators/manual/" }
+    { label: "CASIO fx-82EX / fx-85EX / fx-350EX User’s Guide", detail: "Official key sequences and model limitations, guide RJA532417-001V01", href: "https://www.casio.com/content/dam/casio/global/support/manuals/calculators/pdf/004-en/f/fx-82_85_350EX_EN.pdf" }
   ];
 
-  return { lessons, practice, formulaGroups, checkpoints, sources };
+  return { lessons, practice, formulaGroups, derivativeDeck, checkpoints, sources };
 })();

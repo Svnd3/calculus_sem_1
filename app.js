@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const { lessons, practice, formulaGroups, checkpoints, sources } = window.STUDY_DATA;
+  const { lessons, practice, formulaGroups, derivativeDeck, checkpoints, sources } = window.STUDY_DATA;
   const examPapers = window.EXAM_PAPERS || [];
   const app = document.querySelector("#app");
   const toastRegion = document.querySelector("#toast-region");
@@ -86,7 +86,8 @@
     tionMessageIndex: 0,
     homeGreetingIndex: nextGreetingIndex(),
     mobileMore: false,
-    selectedPaper: examPapers[0]?.id || ""
+    selectedPaper: examPapers[0]?.id || "",
+    derivativeFilter: "Core trig"
   };
 
   function nextGreetingIndex() {
@@ -539,14 +540,49 @@
   }
 
   function renderFormulas() {
+    const derivativeFamilies = ["Core trig", "Inverse trig", "Exp & log", "Hyperbolic", "Inverse hyperbolic", "All"];
+    const visibleDerivativeCards = derivativeDeck.filter(item => state.derivativeFilter === "All" || item.family === state.derivativeFilter);
     return `
       <div class="page-heading">
-        <div><span class="eyebrow">At-a-glance sheet</span><h1>Every formula. No hunting.</h1><p>Search, scan or print this page. In tired mode the same complete sheet stays visible.</p></div>
+        <div><span class="eyebrow">At-a-glance sheet + memory practice</span><h1>See it. Say it. Write it.</h1><p>Train the derivative until your response feels automatic, then use the complete formula sheet below.</p></div>
         <div class="formula-toolbar"><label class="search-field">⌕<span class="sr-only">Search formulas</span><input id="formula-search" placeholder="Search e.g. quotient" /></label><button class="ghost-button" data-action="print">Print sheet</button></div>
       </div>
+      <section class="derivative-deck paper-card" aria-labelledby="derivative-deck-title">
+        <div class="derivative-deck-intro">
+          <div class="derivative-tion">${avatar("thinking", 74)}</div>
+          <div><span class="eyebrow">Tion's derivative reflex deck</span><h2 id="derivative-deck-title">Can you answer before the ink appears?</h2><p>Let <strong>u=u(x)</strong>. Differentiate the outside, keep u unchanged, then multiply by <strong>u′</strong>. If the input is only x, u′=1.</p></div>
+        </div>
+        <div class="reflex-routine" aria-label="Five-second derivative routine">
+          <span><b>1</b> Circle the inside u</span><span><b>2</b> Differentiate the outside</span><span><b>3</b> Keep the same u</span><span><b>4</b> Multiply by u′</span><span><b>5</b> Check the sign</span>
+        </div>
+        <aside class="derivative-warning"><strong>Must remember:</strong> trig derivative rules assume radians. sin²x means [sin x]², while sin⁻¹x means arcsin x — neither means cosec x.</aside>
+        <div class="derivative-controls">
+          <div class="filter-row" aria-label="Choose a derivative family">
+            ${derivativeFamilies.map(family => `<button class="filter-chip ${state.derivativeFilter === family ? "active" : ""} ${family === "Inverse hyperbolic" ? "optional-content" : ""}" data-action="derivative-filter" data-family="${family}">${family}${family === "Inverse hyperbolic" ? " · extension" : ""}</button>`).join("")}
+          </div>
+          <div class="derivative-bulk-actions"><button class="ghost-button" data-action="show-derivatives">Reveal this set</button><button class="text-button" data-action="hide-derivatives">Hide answers</button></div>
+        </div>
+        <p class="reflex-instruction"><strong>Test yourself:</strong> say the answer aloud before pressing reveal. Every card already includes the chain-rule factor.</p>
+        <div class="derivative-card-grid" id="derivative-card-grid">
+          ${visibleDerivativeCards.map(item => `<article class="derivative-card ${item.must ? "" : "optional-reflex"}" data-derivative-card>
+            <div class="derivative-card-top"><span class="priority-badge ${item.must ? "must" : "optional"}">${item.must ? "Must know" : "Not a must"}</span><span>${item.family}</span></div>
+            <p class="derivative-prompt">${item.prompt}</p>
+            <button class="secondary-button derivative-reveal" data-action="reveal-derivative" aria-expanded="false">Reveal answer</button>
+            <div class="derivative-answer" hidden><div class="answer-formula">${item.answer}</div><p>${item.cue}</p><small><strong>Example:</strong> ${item.example}</small></div>
+          </article>`).join("")}
+        </div>
+        ${state.derivativeFilter === "Inverse hyperbolic" ? `<p class="derivative-extension-note"><strong>Extension only:</strong> these inverse-hyperbolic rules were not developed in your photographed notes. Read them only if your lecturer includes them. Write <em>arsinh</em> rather than sinh⁻¹ when you need to avoid confusing an inverse with a reciprocal.</p>` : ""}
+        <div class="memory-patterns">
+          <article><strong>Ordinary trig</strong><p><b>C-C-C are negative:</b> cosine, cotangent and cosecant. Tan/cot give a reciprocal square; sec/cosec copy themselves.</p></article>
+          <article><strong>Hyperbolic</strong><p>sinh and cosh simply swap. Cosh has <b>no minus</b>. The reciprocal-side coth, sech and csch rules are negative.</p></article>
+          <article><strong>Inverse trig</strong><p>Learn three denominator pairs: √(1−u²), 1+u², and |u|√(u²−1). The cos/cot/cosec partner is negative.</p></article>
+        </div>
+        <div class="derivative-lesson-link"><span><strong>Need the reason, not just the answer?</strong><small>Open the worked notes for explanations and examples.</small></span><button class="primary-button" data-action="select-lesson" data-lesson="trig-derivatives">Open derivative lesson →</button></div>
+      </section>
+      <div class="formula-sheet-heading"><div><span class="eyebrow">Complete reference</span><h2>Full formula sheet</h2></div><p>Use search to jump to one rule. Print this section for a paper copy.</p></div>
       <div id="formula-groups">
         ${formulaGroups.map((group, groupIndex) => `
-          <section class="formula-category" data-formula-category>
+          <section class="formula-category ${group.title.includes("extension") ? "optional-content" : ""}" data-formula-category>
             <div class="formula-category-head"><span style="--category-color:${group.color}">${group.icon}</span><h2>${group.title}</h2></div>
             <div class="formula-grid">${group.items.map(item => `<article class="formula-card paper-card" data-formula-search="${(group.title + " " + item.join(" ")).toLowerCase()}"><div class="formula">${item[0]}</div><p>${item[1]}</p></article>`).join("")}</div>
           </section>`).join("")}
@@ -646,16 +682,16 @@
       <aside class="calculator-warning paper-card"><span style="font-size:1.5rem">⚠</span><p><strong>Before every trig check:</strong> set the angle unit to radians. A correct method can look wrong if the calculator is in degrees.</p></aside>
       <section class="calculator-grid">
         <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Must do first</span></div><h3>Set radians</h3><div class="key-sequence"><span class="calc-key">SHIFT</span><span class="key-arrow">→</span><span class="calc-key">MENU / SETUP</span><span class="key-arrow">→</span><span class="calc-key">2 Angle Unit</span><span class="key-arrow">→</span><span class="calc-key">2 Radian</span></div><p class="muted">Look for the small R indicator. Switch back only when a non-calculus question explicitly uses degrees.</p></article>
-        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Best limit check</span></div><h3>Approach from both sides with TABLE</h3><div class="key-sequence"><span class="calc-key">MENU</span><span class="key-arrow">→</span><span class="calc-key">3: Table</span><span class="key-arrow">→</span><span class="calc-key">f(x)</span></div><ol><li>Enter the function using the X key, then press EXE.</li><li>Enter Start, End and Step, pressing EXE after each.</li><li>Compare values just below and above a.</li></ol><p class="muted">Example near 2: Start 1.8, End 2.2, Step 0.1. An error exactly at 2 may be a hole; nearby values matter.</p></article>
+        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Best limit check</span></div><h3>Approach from both sides with TABLE</h3><div class="key-sequence"><span class="calc-key">MENU</span><span class="key-arrow">→</span><span class="calc-key">Highlight Table icon</span><span class="key-arrow">→</span><span class="calc-key">EXE</span></div><ol><li>Enter the function using the X key, then press EXE.</li><li>Enter Start, End and Step, pressing EXE after each.</li><li>Compare values just below and above a.</li></ol><p class="muted">Example near 2: Start 1.8, End 2.2, Step 0.1. An error exactly at 2 may be a hole; nearby values matter.</p></article>
         <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Derivative check</span></div><h3>Use a symmetric difference</h3><div class="formula-display" style="font-size:1.15rem">f′(a) ≈ [f(a+h)−f(a−h)]/(2h)</div><ol><li>Use h=0.001.</li><li>Type the whole expression with brackets.</li><li>Compare the decimal with your exact derivative at a.</li></ol><p class="muted">Try h=0.0001 too. Stable nearby answers are reassuring; they are not a proof.</p></article>
         <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge optional">Quick sanity check</span></div><h3>Check a tangent slope</h3><p>For f(x)=x² at a=3, type:</p><div class="key-sequence"><span class="calc-key">((3.001)²−(2.999)²)</span><span class="key-arrow">÷</span><span class="calc-key">0.002</span><span class="key-arrow">=</span></div><p>The display should be about 6, matching f′(x)=2x and f′(3)=6.</p></article>
-        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge optional">Two-column check</span></div><h3>Compare two formulas in TABLE</h3><div class="key-sequence"><span class="calc-key">SHIFT</span><span class="key-arrow">→</span><span class="calc-key">MENU / SETUP</span><span class="key-arrow">→</span><span class="calc-key">↓, 3: Table</span><span class="key-arrow">→</span><span class="calc-key">2: f(x),g(x)</span></div><p class="muted">Then open Table and enter both formulas. This is useful for checking that a cancelled expression and its simpler form agree everywhere except at the hole. Two-function mode holds up to 30 rows.</p></article>
-        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge optional">Hyperbolic checks</span></div><h3>Find sinh, cosh and tanh</h3><div class="key-sequence"><span class="calc-key">Calculate mode</span><span class="key-arrow">→</span><span class="calc-key">OPTN</span><span class="key-arrow">→</span><span class="calc-key">1: Hyperbolic Func</span></div><p class="muted">If it is not on the first option screen, press ↓ and choose 1. Use this to check numerical values, not to replace the derivative rule.</p></article>
+        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge optional">Two-column check</span></div><h3>Compare two formulas in TABLE</h3><div class="key-sequence"><span class="calc-key">SHIFT</span><span class="key-arrow">→</span><span class="calc-key">MENU / SETUP</span><span class="key-arrow">→</span><span class="calc-key">↓, 2: Table</span><span class="key-arrow">→</span><span class="calc-key">2: f(x),g(x)</span></div><p class="muted">Then open Table from MENU, highlight its icon and press EXE. Enter both formulas. This is useful for checking that a cancelled expression and its simpler form agree everywhere except at the hole. Two-function mode holds up to 30 rows.</p></article>
+        <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge optional">Hyperbolic checks</span></div><h3>Find sinh, cosh and tanh</h3><div class="key-sequence"><span class="calc-key">Calculate mode</span><span class="key-arrow">→</span><span class="calc-key">OPTN</span><span class="key-arrow">→</span><span class="calc-key">1: Hyperbolic Func</span></div><p class="muted">If it is not on the first option screen, press ↑ and choose 1. Use this to check numerical values, not to replace the derivative rule.</p></article>
         <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Fractions</span></div><h3>Compare exact and decimal forms</h3><div class="key-sequence"><span class="calc-key">S⇔D</span><span class="key-arrow">or</span><span class="calc-key">SHIFT + EXE</span></div><p>Use S⇔D to switch an existing result; SHIFT + EXE asks for a decimal result directly. In your written answer, keep exact forms such as 3/5, √3 or π unless decimals are requested.</p></article>
         <article class="calculator-step paper-card"><div class="lesson-kicker"><span class="priority-badge must">Know the boundary</span></div><h3>What this calculator cannot confirm</h3><table class="truth-table"><thead><tr><th>Can help check</th><th>Cannot prove</th></tr></thead><tbody><tr><td>Nearby function values</td><td>A limit exists</td></tr><tr><td>Approximate gradient</td><td>Your symbolic derivative</td></tr><tr><td>A final decimal</td><td>Your algebraic working</td></tr><tr><td>Signs near an asymptote</td><td>A complete exam explanation</td></tr></tbody></table></article>
       </section>
       <aside class="sticky-note" style="margin-top:24px"><strong>Tion’s calculator rule</strong><p>Paper answer first, calculator check second. If they disagree, check brackets, RAD mode, signs and the value you substituted before changing your mathematics.</p></aside>
-      <p class="muted optional-content" style="font-size:.78rem">Key sequences cross-checked against CASIO User’s Guide RJA532417-001V01. The retired model link has been replaced with CASIO’s active <a href="https://www.casio.com/intl/support/calculators/manual/" target="_blank" rel="noreferrer">official manual finder</a>; search for fx-82EX. Use the on-screen Table and Angle Unit labels if a regional menu differs.</p>`;
+      <p class="muted optional-content" style="font-size:.78rem">Key sequences cross-checked against CASIO User’s Guide RJA532417-001V01. Open the <a href="https://www.casio.com/content/dam/casio/global/support/manuals/calculators/pdf/004-en/f/fx-82_85_350EX_EN.pdf" target="_blank" rel="noreferrer">official fx-82EX guide</a>. Use the on-screen Table and Angle Unit labels if a regional menu differs.</p>`;
   }
 
   function navigate(page) {
@@ -700,6 +736,8 @@
   app.addEventListener("input", event => {
     if (event.target.id !== "formula-search") return;
     const query = event.target.value.trim().toLowerCase();
+    const derivativeSection = document.querySelector(".derivative-deck");
+    if (derivativeSection) derivativeSection.hidden = Boolean(query);
     document.querySelectorAll("[data-formula-search]").forEach(card => {
       card.hidden = !card.dataset.formulaSearch.includes(query);
     });
@@ -748,6 +786,7 @@
 
     if (action === "toggle-mode") {
       state.tired = !state.tired;
+      if (state.tired && state.derivativeFilter === "Inverse hyperbolic") state.derivativeFilter = "Core trig";
       localStorage.setItem(MODE_KEY, state.tired ? "tired" : "full");
       renderShell();
       toast(state.tired ? "Tired mode on — only the safest route is showing." : "Full notes are back.");
@@ -777,6 +816,36 @@
     if (action === "practice-filter") {
       state.practiceFilter = trigger.dataset.filter;
       renderShell();
+      return;
+    }
+
+    if (action === "derivative-filter") {
+      state.derivativeFilter = trigger.dataset.family;
+      renderShell();
+      document.querySelector(".derivative-deck")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (action === "reveal-derivative") {
+      const answer = trigger.nextElementSibling;
+      if (!answer) return;
+      const willShow = answer.hidden;
+      answer.hidden = !willShow;
+      trigger.textContent = willShow ? "Hide answer" : "Reveal answer";
+      trigger.setAttribute("aria-expanded", String(willShow));
+      return;
+    }
+
+    if (action === "show-derivatives" || action === "hide-derivatives") {
+      const show = action === "show-derivatives";
+      document.querySelectorAll("[data-derivative-card]").forEach(card => {
+        const answer = card.querySelector(".derivative-answer");
+        const button = card.querySelector(".derivative-reveal");
+        if (!answer || !button) return;
+        answer.hidden = !show;
+        button.textContent = show ? "Hide answer" : "Reveal answer";
+        button.setAttribute("aria-expanded", String(show));
+      });
       return;
     }
 

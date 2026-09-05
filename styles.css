@@ -1251,6 +1251,34 @@ input:focus-visible,
   font-weight: 700;
 }
 
+.rule-choice-grid,
+.worked-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 16px;
+}
+
+.rule-choice-grid > div {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(244, 248, 239, 0.72);
+}
+
+.rule-choice-grid span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.worked-example-grid .micro-example {
+  margin-top: 0;
+}
+
 .sticky-note {
   position: relative;
   margin: 22px 7px 17px;
@@ -1303,6 +1331,7 @@ body.tired-mode .tired-banner {
 
 body.tired-mode .deep-dive,
 body.tired-mode .optional-content,
+body.tired-mode .optional-reflex,
 body.tired-mode .priority-badge.optional,
 body.tired-mode .home-lower-grid {
   display: none !important;
@@ -2039,6 +2068,245 @@ body.tired-mode .page-wrap {
   text-align: center;
 }
 
+.derivative-deck {
+  position: relative;
+  margin-bottom: 38px;
+  padding: clamp(20px, 3vw, 32px);
+  overflow: hidden;
+  border-top: 5px solid var(--blue);
+}
+
+.derivative-deck::after {
+  position: absolute;
+  z-index: 0;
+  top: -65px;
+  right: -55px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  content: "";
+  opacity: 0.65;
+}
+
+.derivative-deck > * {
+  position: relative;
+  z-index: 1;
+}
+
+.derivative-deck-intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+
+.derivative-deck-intro h2,
+.formula-sheet-heading h2 {
+  margin: 2px 0 7px;
+}
+
+.derivative-deck-intro p,
+.formula-sheet-heading p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.derivative-tion {
+  display: grid;
+  width: 92px;
+  height: 92px;
+  place-items: center;
+  border-radius: 25px;
+  background: var(--lime-soft);
+  transform: rotate(-2deg);
+}
+
+.reflex-routine {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 22px 0 14px;
+}
+
+.reflex-routine span {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px dashed #9baaa1;
+  border-radius: 12px;
+  background: #fbfcf8;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+.reflex-routine b {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--forest);
+}
+
+.derivative-warning,
+.derivative-extension-note {
+  margin: 14px 0 20px;
+  padding: 13px 16px;
+  border-left: 4px solid #e4b83f;
+  border-radius: 4px 12px 12px 4px;
+  background: var(--yellow-soft);
+  font-size: 0.86rem;
+}
+
+.derivative-controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.derivative-controls .filter-row {
+  margin: 0;
+}
+
+.derivative-bulk-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.reflex-instruction {
+  margin: 15px 0 12px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.derivative-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.derivative-card {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 17px 14px 19px 15px;
+  background: linear-gradient(#fff, #fcfbf4);
+  box-shadow: 3px 4px 0 rgba(31, 53, 42, 0.08);
+}
+
+.derivative-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.derivative-prompt {
+  margin: 25px 0 18px;
+  color: var(--blue);
+  font-family: "PaperNotes", sans-serif;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.derivative-reveal {
+  width: 100%;
+  margin-top: auto;
+}
+
+.derivative-answer {
+  margin-top: 13px;
+  padding-top: 13px;
+  border-top: 1px dashed var(--line);
+}
+
+.derivative-answer[hidden] {
+  display: none;
+}
+
+.answer-formula {
+  color: var(--forest);
+  font-family: "PaperNotes", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.derivative-answer p {
+  margin: 7px 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.derivative-answer small {
+  display: block;
+  padding: 8px 9px;
+  border-radius: 8px;
+  background: var(--lime-soft);
+  font-size: 0.72rem;
+}
+
+.memory-patterns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.memory-patterns article {
+  padding: 14px;
+  border-radius: 13px;
+  background: var(--blue-soft);
+}
+
+.memory-patterns p {
+  margin: 5px 0 0;
+  color: #40547b;
+  font-size: 0.78rem;
+}
+
+.derivative-lesson-link,
+.formula-sheet-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.derivative-lesson-link {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+}
+
+.derivative-lesson-link span,
+.derivative-lesson-link small {
+  display: block;
+}
+
+.derivative-lesson-link small {
+  margin-top: 3px;
+  color: var(--muted);
+}
+
+.formula-sheet-heading {
+  margin: 0 0 20px;
+}
+
 /* Exam summary */
 .exam-callout {
   display: grid;
@@ -2596,6 +2864,8 @@ body.tired-mode .page-wrap {
   :root { --sidebar: 216px; }
   .topic-grid,
   .formula-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .derivative-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reflex-routine { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero-grid { grid-template-columns: 1fr; }
   .today-card { min-height: auto; }
   .today-card .route-list { grid-template-columns: repeat(3, 1fr); }
@@ -2676,6 +2946,19 @@ body.tired-mode .page-wrap {
   .calculator-grid { grid-template-columns: 1fr; }
   .formula-toolbar { width: 100%; flex-wrap: wrap; }
   .search-field { min-width: 0; flex: 1 1 210px; }
+  .rule-choice-grid,
+  .worked-example-grid,
+  .derivative-card-grid,
+  .memory-patterns { grid-template-columns: 1fr; }
+  .derivative-deck-intro { grid-template-columns: 1fr; }
+  .derivative-tion { width: 72px; height: 72px; }
+  .reflex-routine { grid-template-columns: 1fr 1fr; }
+  .derivative-controls,
+  .derivative-lesson-link,
+  .formula-sheet-heading { align-items: stretch; flex-direction: column; }
+  .derivative-bulk-actions { width: 100%; }
+  .derivative-bulk-actions button,
+  .derivative-lesson-link button { min-height: 48px; flex: 1; }
   .exam-callout,
   .calculator-hero { grid-template-columns: 1fr; }
   .calc-mini { display: none; }
@@ -2708,6 +2991,7 @@ body.tired-mode .page-wrap {
   .mobile-nav,
   .tion-dock,
   .page-heading .formula-toolbar,
+  .derivative-deck,
   .toast-region,
   .paper-tabs,
   .paper-toolbar,
