@@ -53,31 +53,84 @@
 
 .buddy-svg {
   display: block;
-  width: 88px;
-  height: 95px;
-  margin: -16px 0 0 -7px;
+  width: 92px;
+  height: 106px;
+  margin: -24px 0 0 -9px;
   overflow: visible;
-  filter: drop-shadow(0 4px 3px rgba(23, 37, 31, 0.12));
+  transform-style: preserve-3d;
 }
 
-.buddy-laugh-eyes,
+.buddy-eye-squint,
+.buddy-eye-horror,
 .mouth-wow,
-.mouth-think {
+.mouth-think,
+.mouth-sad,
+.buddy-tear {
   display: none;
 }
 
-.mood-laugh .buddy-eyes,
-.mood-laugh .mouth-happy,
-.mood-wow .mouth-happy,
-.mood-thinking .mouth-happy {
+.mood-squint .buddy-eye-open,
+.mood-celebrate .buddy-eye-open,
+.mood-horrified .buddy-eye-open,
+.mood-sad .buddy-eye-open,
+.mood-squint .mouth-happy,
+.mood-celebrate .mouth-happy,
+.mood-horrified .mouth-happy,
+.mood-thinking .mouth-happy,
+.mood-sad .mouth-happy {
   display: none;
 }
 
-.mood-laugh .buddy-laugh-eyes,
-.mood-laugh .mouth-wow,
-.mood-wow .mouth-wow,
-.mood-thinking .mouth-think {
+.mood-squint .buddy-eye-squint,
+.mood-celebrate .buddy-eye-squint,
+.mood-celebrate .mouth-wow,
+.mood-horrified .buddy-eye-horror,
+.mood-horrified .mouth-wow,
+.mood-thinking .mouth-think,
+.mood-sad .mouth-sad,
+.mood-sad .buddy-tear {
   display: block;
+}
+
+.buddy-creature,
+.buddy-arm,
+.buddy-leg,
+.buddy-tail {
+  transform-box: fill-box;
+}
+
+.buddy-creature {
+  transform-origin: center bottom;
+}
+
+.buddy-tail {
+  transform-origin: left center;
+  animation: buddy-tail-wag 1.35s ease-in-out infinite alternate;
+}
+
+.buddy-animal .buddy-eye-open {
+  transform-origin: center;
+  animation: buddy-natural-blink 5.2s infinite;
+}
+
+.mood-horrified .buddy-creature {
+  animation: buddy-horror 180ms ease-in-out 5 alternate;
+}
+
+.mood-celebrate .buddy-creature {
+  animation: buddy-celebrate 520ms ease-in-out infinite alternate;
+}
+
+.mood-celebrate .arm-left {
+  transform: translate(11px, -14px) rotate(-44deg);
+}
+
+.mood-celebrate .arm-right {
+  transform: translate(-11px, -14px) rotate(44deg);
+}
+
+.mood-sad .buddy-creature {
+  transform: translateY(5px) scaleY(.97);
 }
 
 .buddy-button:hover {
@@ -329,6 +382,10 @@
 .buddy-cameo .buddy-svg { width: 54px; height: 60px; margin: 0; }
 .buddy-cameo.walking { right: 0; animation: buddy-walk-line 7.5s linear both; }
 .buddy-cameo.walking .buddy-svg { animation: buddy-step 360ms ease-in-out infinite alternate; }
+.buddy-cameo.walking .leg-left { animation: buddy-leg-left 300ms ease-in-out infinite alternate; }
+.buddy-cameo.walking .leg-right { animation: buddy-leg-right 300ms ease-in-out infinite alternate; }
+.buddy-cameo.walking .buddy-arm.arm-left { animation: buddy-leg-right 300ms ease-in-out infinite alternate; }
+.buddy-cameo.walking .buddy-arm.arm-right { animation: buddy-leg-left 300ms ease-in-out infinite alternate; }
 .buddy-cameo.leaning { right: -4px; transform: rotate(-13deg); animation: buddy-lean 7.5s ease both; }
 
 @keyframes buddy-tickle {
@@ -346,6 +403,17 @@
 }
 
 @keyframes finish-bounce { to { transform: translateY(-10px) rotate(2deg); } }
+
+@keyframes buddy-natural-blink {
+  0%, 44%, 48%, 100% { transform: scaleY(1); }
+  46% { transform: scaleY(.08); }
+}
+
+@keyframes buddy-tail-wag { to { transform: rotate(10deg); } }
+@keyframes buddy-horror { to { transform: translateX(3px) rotate(2deg); } }
+@keyframes buddy-celebrate { to { transform: translateY(-8px) rotate(3deg); } }
+@keyframes buddy-leg-left { to { transform: translate(4px, -2px) rotate(13deg); } }
+@keyframes buddy-leg-right { to { transform: translate(-4px, -2px) rotate(-13deg); } }
 
 @keyframes buddy-fly {
   0%, 100% { right: 22px; bottom: 22px; transform: rotate(0); }

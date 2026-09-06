@@ -11,7 +11,7 @@
       colour: "#f47c4b",
       accent: "#c8f25d",
       dark: "#24483b",
-      shape: "round",
+      animal: "fox",
       greetings: [
         "Hi Hezron — what do you wanna learn?",
         "One clean line at a time. I’m right here.",
@@ -26,7 +26,7 @@
       colour: "#8f65d9",
       accent: "#ffcf70",
       dark: "#352b58",
-      shape: "round",
+      animal: "owl",
       greetings: [
         "Hey Hezron — let’s turn a big idea into plain language.",
         "Ask ‘who am I?’ while you read. That is the heart of this course.",
@@ -41,13 +41,28 @@
       colour: "#3f7bd9",
       accent: "#ffd45f",
       dark: "#17345f",
-      shape: "square",
+      animal: "raccoon",
       greetings: [
         "Yo Hezron — definitions first, proof second.",
         "Test one tiny example before you trust the pattern.",
         "A truth table never argues back. Let’s build one.",
         "Name the rule you used; future-you will thank you.",
         "We can make this discrete, not mysterious."
+      ]
+    },
+    woof: {
+      name: "Woof Woof",
+      label: "your computing lab buddy",
+      colour: "#e9a84b",
+      accent: "#75e1cf",
+      dark: "#253b4a",
+      animal: "dog",
+      greetings: [
+        "Yo Hezron — what are we taking apart today?",
+        "Input, process, output, storage. That little loop runs the room.",
+        "Name the symptom before you touch the fix. Technician rule.",
+        "Let’s make the hardware, bits and networks actually make sense.",
+        "One diagram, one recall question, one real scenario. That’s the combo."
       ]
     }
   };
@@ -152,7 +167,7 @@
     "That block was giving discipline. Now give balance.",
     "Done for this round. Return when your brain says yes.",
     "Focus goal met. No bonus marks for skipping the break.",
-    "Bell rang. Bianca, Peter and Tion all vote for rest."
+    "Bell rang. Bianca, Peter, Tion and Woof Woof all vote for rest."
   ];
 
   const state = {
@@ -183,27 +198,67 @@
     localStorage.setItem(TIMER_KEY, JSON.stringify(state.timer));
   }
 
+  function animalParts(profileName, p) {
+    if (profileName === "bianca") {
+      return `<g class="buddy-tail"><path d="M49 132q-30 4-24-32 15 11 30 8" fill="url(#fur-bianca)" stroke="${p.dark}" stroke-width="5"/></g>
+        <ellipse class="buddy-body" cx="80" cy="125" rx="43" ry="45" fill="url(#fur-bianca)" stroke="${p.dark}" stroke-width="5"/>
+        <path class="buddy-arm arm-left" d="M43 108q-25 15-17 39 20-6 31-28" fill="${p.colour}" stroke="${p.dark}" stroke-width="5"/>
+        <path class="buddy-arm arm-right" d="M117 108q25 15 17 39-20-6-31-28" fill="${p.colour}" stroke="${p.dark}" stroke-width="5"/>
+        <g class="buddy-leg leg-left"><path d="M61 157v15" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/><path d="M48 173h22" stroke="${p.dark}" stroke-width="6" stroke-linecap="round"/></g>
+        <g class="buddy-leg leg-right"><path d="M99 157v15" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/><path d="M90 173h22" stroke="${p.dark}" stroke-width="6" stroke-linecap="round"/></g>
+        <path d="M36 50 50 17 68 45M124 50 110 17 92 45" fill="${p.colour}" stroke="${p.dark}" stroke-width="5" stroke-linejoin="round"/>
+        <ellipse cx="80" cy="77" rx="54" ry="45" fill="url(#fur-bianca)" stroke="${p.dark}" stroke-width="5"/>
+        <path d="M34 66q21-31 46-3 25-28 46 3-10 48-46 48T34 66" fill="#f6e9cb" opacity=".9"/>
+        <circle cx="60" cy="76" r="19" fill="#fffdf7" stroke="${p.dark}" stroke-width="4"/><circle cx="100" cy="76" r="19" fill="#fffdf7" stroke="${p.dark}" stroke-width="4"/>
+        <path d="m73 91 7 10 7-10-7-5z" fill="${p.accent}" stroke="${p.dark}" stroke-width="3"/>`;
+    }
+    if (profileName === "peter") {
+      return `<g class="buddy-tail"><path d="M119 130q35-5 27 29-17 16-36 0" fill="none" stroke="${p.dark}" stroke-width="17" stroke-linecap="round"/><path d="M126 134l14 6M123 151l14 7" stroke="${p.accent}" stroke-width="7"/></g>
+        <ellipse class="buddy-body" cx="80" cy="128" rx="43" ry="43" fill="url(#fur-peter)" stroke="${p.dark}" stroke-width="5"/>
+        <path class="buddy-arm arm-left" d="M42 113q-24 12-20 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/><path class="buddy-arm arm-right" d="M118 113q24 12 20 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/>
+        <g class="buddy-leg leg-left"><path d="M61 158v14" stroke="${p.dark}" stroke-width="8"/><path d="M49 174h23" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/></g><g class="buddy-leg leg-right"><path d="M99 158v14" stroke="${p.dark}" stroke-width="8"/><path d="M89 174h23" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/></g>
+        <path d="M37 55 43 19 67 43M123 55 117 19 93 43" fill="${p.colour}" stroke="${p.dark}" stroke-width="5" stroke-linejoin="round"/><path d="m45 27 4 21 13-7m53-14-4 21-13-7" fill="${p.accent}"/>
+        <ellipse cx="80" cy="78" rx="52" ry="43" fill="url(#fur-peter)" stroke="${p.dark}" stroke-width="5"/>
+        <path d="M38 69q19-22 42-2 23-20 42 2-6 34-28 28l-14-8-14 8Q44 103 38 69" fill="${p.dark}" opacity=".88"/>
+        <ellipse cx="80" cy="96" rx="24" ry="17" fill="#dce4e6"/><ellipse cx="80" cy="89" rx="8" ry="6" fill="${p.dark}"/>`;
+    }
+    if (profileName === "woof") {
+      return `<g class="buddy-tail"><path d="M118 134q37 2 27-28" fill="none" stroke="url(#fur-woof)" stroke-width="16" stroke-linecap="round"/></g>
+        <ellipse class="buddy-body" cx="80" cy="129" rx="43" ry="43" fill="url(#fur-woof)" stroke="${p.dark}" stroke-width="5"/>
+        <path class="buddy-arm arm-left" d="M43 113q-23 12-20 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/><path class="buddy-arm arm-right" d="M117 113q23 12 20 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/>
+        <g class="buddy-leg leg-left"><path d="M61 158v14" stroke="${p.dark}" stroke-width="8"/><ellipse cx="57" cy="174" rx="14" ry="6" fill="${p.dark}"/></g><g class="buddy-leg leg-right"><path d="M99 158v14" stroke="${p.dark}" stroke-width="8"/><ellipse cx="103" cy="174" rx="14" ry="6" fill="${p.dark}"/></g>
+        <path d="M42 51Q19 22 28 82q8 8 19-1M118 51q23-29 14 31-8 8-19-1" fill="#996126" stroke="${p.dark}" stroke-width="5" stroke-linejoin="round"/>
+        <ellipse cx="80" cy="76" rx="49" ry="44" fill="url(#fur-woof)" stroke="${p.dark}" stroke-width="5"/>
+        <path d="M50 45q13-17 24-7-9 10-12 28" fill="#f8d48e"/>
+        <ellipse cx="80" cy="94" rx="27" ry="20" fill="#fff0ce"/><ellipse cx="80" cy="85" rx="9" ry="7" fill="${p.dark}"/>
+        <path d="M46 121q34 17 68 0" fill="none" stroke="${p.accent}" stroke-width="8"/><circle cx="80" cy="132" r="7" fill="${p.accent}" stroke="${p.dark}" stroke-width="3"/>`;
+    }
+    return `<g class="buddy-tail"><path d="M119 136q38 1 24-38-17 3-23 18" fill="url(#fur-tion)" stroke="${p.dark}" stroke-width="5"/><path d="M140 104q9 22-9 29" fill="#fff3dc"/></g>
+      <ellipse class="buddy-body" cx="80" cy="128" rx="42" ry="44" fill="url(#fur-tion)" stroke="${p.dark}" stroke-width="5"/>
+      <path class="buddy-arm arm-left" d="M43 112q-25 11-21 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/><path class="buddy-arm arm-right" d="M117 112q25 11 21 34" fill="none" stroke="${p.dark}" stroke-width="9" stroke-linecap="round"/>
+      <g class="buddy-leg leg-left"><path d="M61 158v14" stroke="${p.dark}" stroke-width="8"/><path d="M48 174h24" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/></g><g class="buddy-leg leg-right"><path d="M99 158v14" stroke="${p.dark}" stroke-width="8"/><path d="M89 174h24" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/></g>
+      <path d="M36 58 43 14 70 43M124 58 117 14 90 43" fill="${p.colour}" stroke="${p.dark}" stroke-width="5" stroke-linejoin="round"/><path d="m46 29 5 24 14-10m49-14-5 24-14-10" fill="#ffe5c9"/>
+      <ellipse cx="80" cy="78" rx="51" ry="44" fill="url(#fur-tion)" stroke="${p.dark}" stroke-width="5"/>
+      <path d="M33 79q16 7 30 2l17 32-31-9q-12-7-16-25m94 0q-16 7-30 2l-17 32 31-9q12-7 16-25" fill="#fff1de"/>
+      <ellipse cx="80" cy="97" rx="23" ry="17" fill="#fff8ed"/><ellipse cx="80" cy="88" rx="8" ry="6" fill="${p.dark}"/>`;
+  }
+
   function avatarSvg(profileName = state.profile, mood = "happy", label = "") {
     const p = profiles[profileName] || profiles.tion;
-    const square = p.shape === "square";
-    const accessory = profileName === "bianca"
-      ? `<path d="M45 53q35-23 70 0" fill="none" stroke="#ffcf70" stroke-width="10" stroke-linecap="round"/><circle cx="61" cy="83" r="16" fill="none" stroke="#352b58" stroke-width="4"/><circle cx="99" cy="83" r="16" fill="none" stroke="#352b58" stroke-width="4"/><path d="M77 83h6" stroke="#352b58" stroke-width="4"/>`
-      : profileName === "peter"
-        ? `<path d="M46 49h68" stroke="#ffd45f" stroke-width="11" stroke-linecap="round"/><path d="M80 28v-14" stroke="#17345f" stroke-width="6"/><circle cx="80" cy="10" r="6" fill="#ffd45f" stroke="#17345f" stroke-width="4"/>`
-        : `<path d="M80 27V14" stroke="#24483b" stroke-width="6"/><circle cx="80" cy="10" r="6" fill="#c8f25d" stroke="#24483b" stroke-width="4"/><path d="M43 53q37-22 74 2" fill="none" stroke="#c8f25d" stroke-width="12" stroke-linecap="round"/>`;
-    return `<svg class="buddy-svg mood-${mood}" viewBox="0 0 160 174" role="img" aria-label="${label || p.name}">
-      <path class="buddy-arm arm-left" d="M39 91Q16 91 18 116" fill="none" stroke="${p.dark}" stroke-width="8" stroke-linecap="round"/>
-      <path class="buddy-arm arm-right" d="M121 91q23 0 21 25" fill="none" stroke="${p.dark}" stroke-width="8" stroke-linecap="round"/>
-      <rect x="28" y="27" width="104" height="120" rx="${square ? 28 : 48}" fill="${p.colour}" stroke="${p.dark}" stroke-width="6"/>
-      ${accessory}
-      <rect x="43" y="62" width="74" height="63" rx="25" fill="#fffdf7" stroke="${p.dark}" stroke-width="4"/>
-      <g class="buddy-eyes"><ellipse cx="63" cy="84" rx="5" ry="8" fill="${p.dark}"/><ellipse cx="97" cy="84" rx="5" ry="8" fill="${p.dark}"/></g>
-      <g class="buddy-laugh-eyes" fill="none" stroke="${p.dark}" stroke-width="4" stroke-linecap="round"><path d="M55 87q8-9 16 0"/><path d="M89 87q8-9 16 0"/></g>
-      <path class="buddy-mouth mouth-happy" d="M62 101q18 18 36 0" fill="none" stroke="${p.dark}" stroke-width="5" stroke-linecap="round"/>
-      <ellipse class="buddy-mouth mouth-wow" cx="80" cy="105" rx="9" ry="11" fill="${p.accent}" stroke="${p.dark}" stroke-width="4"/>
-      <path class="buddy-mouth mouth-think" d="M68 108q13-9 25 1" fill="none" stroke="${p.dark}" stroke-width="4" stroke-linecap="round"/>
-      <path d="M54 146v15M106 146v15" stroke="${p.dark}" stroke-width="7" stroke-linecap="round"/>
-      <path d="M42 163h24M94 163h24" stroke="${p.dark}" stroke-width="8" stroke-linecap="round"/>
+    const resolvedMood = ({ laugh: "squint", wow: "horrified", proud: "celebrate", concerned: "sad" })[mood] || mood;
+    return `<svg class="buddy-svg buddy-animal animal-${p.animal} mood-${resolvedMood}" viewBox="0 0 160 184" role="img" aria-label="${label || p.name}">
+      <defs><linearGradient id="fur-${profileName}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset=".24" stop-color="${p.colour}"/><stop offset="1" stop-color="${p.dark}" stop-opacity=".86"/></linearGradient><filter id="soft-${profileName}" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="${p.dark}" flood-opacity=".28"/></filter></defs>
+      <ellipse class="buddy-ground" cx="80" cy="178" rx="48" ry="5" fill="${p.dark}" opacity=".16"/>
+      <g class="buddy-creature" filter="url(#soft-${profileName})">${animalParts(profileName, p)}
+        <g class="buddy-eye-open"><ellipse cx="63" cy="75" rx="6" ry="9" fill="${p.dark}"/><ellipse cx="97" cy="75" rx="6" ry="9" fill="${p.dark}"/><circle cx="61" cy="72" r="2" fill="#fff"/><circle cx="95" cy="72" r="2" fill="#fff"/></g>
+        <g class="buddy-eye-squint" fill="none" stroke="${p.dark}" stroke-width="5" stroke-linecap="round"><path d="M54 77q9-10 18 0"/><path d="M88 77q9-10 18 0"/></g>
+        <g class="buddy-eye-horror"><ellipse cx="63" cy="75" rx="11" ry="14" fill="#fff" stroke="${p.dark}" stroke-width="3"/><ellipse cx="97" cy="75" rx="11" ry="14" fill="#fff" stroke="${p.dark}" stroke-width="3"/><circle cx="63" cy="77" r="5" fill="${p.dark}"/><circle cx="97" cy="77" r="5" fill="${p.dark}"/></g>
+        <path class="buddy-mouth mouth-happy" d="M66 101q14 14 28 0" fill="none" stroke="${p.dark}" stroke-width="5" stroke-linecap="round"/>
+        <ellipse class="buddy-mouth mouth-wow" cx="80" cy="105" rx="10" ry="13" fill="#7c3043" stroke="${p.dark}" stroke-width="4"/>
+        <path class="buddy-mouth mouth-think" d="M68 107q12-8 25 1" fill="none" stroke="${p.dark}" stroke-width="4" stroke-linecap="round"/>
+        <path class="buddy-mouth mouth-sad" d="M67 109q13-13 26 0" fill="none" stroke="${p.dark}" stroke-width="5" stroke-linecap="round"/>
+        <path class="buddy-tear" d="M105 86q8 11 0 17-8-6 0-17" fill="#65cffa"/>
+      </g>
     </svg>`;
   }
 
@@ -286,10 +341,10 @@
       return;
     }
     if (event.target.closest(".buddy-button")) {
-      const moods = ["laugh", "wow", "thinking", "happy"];
+      const moods = ["squint", "horrified", "celebrate", "sad", "thinking", "happy"];
       state.moodIndex = (state.moodIndex + 1) % moods.length;
       renderBuddy(moods[state.moodIndex]);
-      const tickles = ["Okay okay 😭 that tickles!", "Plot twist: I have feelings now.", "Hezron! I was trying to look professional 😂", "Again? Fine — but then we study."];
+      const tickles = ["Okay okay 😭 that tickles!", "WHOA — personal space, scholar!", "Fine, tiny victory dance!", "Why would you tickle me during revision?", "I’m thinking of a comeback.", "Again? Fine — but then we study."];
       showMessage(tickles[state.moodIndex]);
       host.querySelector(".buddy-button").classList.remove("tickled");
       requestAnimationFrame(() => host.querySelector(".buddy-button")?.classList.add("tickled"));
@@ -384,7 +439,7 @@
     state.timer.remaining = state.timer.duration;
     saveTimer();
     const p = profiles[state.profile];
-    finishOverlay.querySelector(".finish-avatar").innerHTML = avatarSvg(state.profile, "laugh", p.name);
+    finishOverlay.querySelector(".finish-avatar").innerHTML = avatarSvg(state.profile, "celebrate", p.name);
     finishOverlay.querySelector(".finish-message").textContent = breakMessages[Math.floor(Math.random() * breakMessages.length)];
     finishOverlay.hidden = false;
     finishOverlay.classList.remove("celebrate");
@@ -420,7 +475,7 @@
     if (!heading) return;
     const cameo = document.createElement("span");
     cameo.className = Math.random() > 0.45 ? "buddy-cameo walking" : "buddy-cameo leaning";
-    cameo.innerHTML = avatarSvg(state.profile, Math.random() > 0.5 ? "happy" : "thinking", profiles[state.profile].name);
+    cameo.innerHTML = avatarSvg(state.profile, Math.random() > 0.5 ? "squint" : "thinking", profiles[state.profile].name);
     heading.classList.add("buddy-landing");
     heading.append(cameo);
     window.setTimeout(() => {
@@ -460,6 +515,12 @@
     showMessage,
     maybeCameo,
     completeNow: completeTimer,
+    avatarMarkup: avatarSvg,
+    react(mood, message) {
+      renderBuddy(mood || "happy");
+      if (message) showMessage(message);
+      window.setTimeout(() => renderBuddy("happy"), 2800);
+    },
     profiles,
     breakMessages
   };

@@ -127,28 +127,9 @@
   }
 
   function avatar(expression = "happy", size = 76) {
-    return `
-      <span class="tion-avatar ${expression}" style="--tion-size:${size}px" aria-hidden="true">
-        <svg viewBox="0 0 160 160" role="img">
-          <path d="M80 23V12" fill="none" stroke="#17251f" stroke-width="6" stroke-linecap="round"/>
-          <circle cx="80" cy="9" r="6" fill="#c8f25d" stroke="#17251f" stroke-width="4"/>
-          <path d="M31 68c-12 1-16 9-13 21 2 9 8 14 17 13M129 68c12 1 16 9 13 21-2 9-8 14-17 13" fill="#f47c4b" stroke="#17251f" stroke-width="5"/>
-          <rect x="30" y="26" width="100" height="113" rx="43" fill="#f47c4b" stroke="#17251f" stroke-width="6"/>
-          <path d="M42 60c10-21 68-31 78 2" fill="#ffd664" stroke="#17251f" stroke-width="5" stroke-linecap="round"/>
-          <path d="M44 63c8-18 64-27 74 0" fill="#c8f25d"/>
-          <rect x="43" y="63" width="74" height="55" rx="24" fill="#fffdf7" stroke="#17251f" stroke-width="4"/>
-          <g class="brow-left" style="transform-origin:64px 76px"><path d="M55 76q9-7 18 0" fill="none" stroke="#17251f" stroke-width="4" stroke-linecap="round"/></g>
-          <g class="brow-right" style="transform-origin:96px 76px"><path d="M87 76q9-7 18 0" fill="none" stroke="#17251f" stroke-width="4" stroke-linecap="round"/></g>
-          <g class="blink"><ellipse cx="65" cy="86" rx="5" ry="7" fill="#17251f"/><ellipse cx="96" cy="86" rx="5" ry="7" fill="#17251f"/></g>
-          <path class="mouth-happy" d="M64 99q16 18 32 0" fill="none" stroke="#17251f" stroke-width="5" stroke-linecap="round"/>
-          <ellipse class="mouth-thinking" cx="87" cy="104" rx="8" ry="5" fill="none" stroke="#17251f" stroke-width="4"/>
-          <path class="mouth-proud" d="M64 103q16 10 32 0" fill="#ffd664" stroke="#17251f" stroke-width="4" stroke-linecap="round"/>
-          <path class="mouth-concerned" d="M67 108q13-10 26 0" fill="none" stroke="#17251f" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="51" cy="98" r="5" fill="#ffc3ae"/><circle cx="110" cy="98" r="5" fill="#ffc3ae"/>
-          <path d="M57 138v10M103 138v10" stroke="#17251f" stroke-width="6" stroke-linecap="round"/>
-          <path d="M45 149h20M95 149h20" stroke="#17251f" stroke-width="7" stroke-linecap="round"/>
-        </svg>
-      </span>`;
+    const mood = ({ proud: "celebrate", concerned: "sad" })[expression] || expression;
+    const markup = window.StudyTools?.avatarMarkup("tion", mood, "Tion") || "";
+    return '<span class="animal-inline" style="--animal-size:' + size + 'px" aria-hidden="true">' + markup + '</span>';
   }
 
   function renderLogin() {
@@ -160,15 +141,15 @@
         <div class="login-grid">
           <section class="login-story" aria-labelledby="login-title">
             <div class="brand-lockup"><span class="brand-mark">H</span><span>Hezron’s study room</span></div>
-            <span class="eyebrow">Three courses · one calm study space</span>
+            <span class="eyebrow">Four courses · one calm study space</span>
             <h1 id="login-title">Learning that feels <span class="accent-scribble">human.</span></h1>
             <p>Deep explanations when you have energy, the essential points when you do not, and practice that makes you retrieve instead of only rereading.</p>
             <div class="login-mini-cards" aria-label="Site features">
-              <span>☾ Tired mode</span><span>◷ Focus timer</span><span>✓ Checkpoints</span><span>✎ 3 course rooms</span>
+              <span>☾ Tired mode</span><span>◷ Focus timer</span><span>✓ Checkpoints</span><span>✎ 4 course rooms</span>
             </div>
           </section>
           <section class="login-card" aria-label="Sign in">
-            <div class="login-tion">${avatar("happy", 78)}<div><strong>Hey, Hezron!</strong><p>Tion, Bianca and Peter are ready.</p></div></div>
+            <div class="login-tion">${avatar("happy", 78)}<div><strong>Hey, Hezron!</strong><p>Tion, Bianca, Peter and Woof Woof are ready.</p></div></div>
             <form id="login-form">
               <input class="sr-only" name="username" type="text" value="SVND3" autocomplete="username" readonly tabindex="-1" aria-hidden="true" />
               <span class="identity-label">Your study ID</span>
@@ -197,11 +178,11 @@
     }
   }
 
-  function courseCard({ id, eyebrow, title, guide, symbol, copy, progress, href, topics }) {
+  function courseCard({ id, eyebrow, title, guide, profile, symbol, copy, progress, href, topics }) {
     return `<article class="course-card course-${id}">
       <div class="course-card-top">
         <span class="course-symbol" aria-hidden="true">${symbol}</span>
-        <div class="course-character ${id}" aria-label="${guide}, course guide"><i></i><i></i><b></b></div>
+        <div class="course-character-animal ${id}" aria-label="${guide}, course guide">${window.StudyTools?.avatarMarkup(profile || "tion", "happy", guide) || symbol}</div>
       </div>
       <span class="course-eyebrow">${eyebrow}</span>
       <h2>${title}</h2>
@@ -223,8 +204,9 @@
     history.replaceState(null, "", window.location.pathname);
     const paProgress = readStoredProgress("bianca-pa-progress-v1", "completedLessons", 12);
     const discreteProgress = readStoredProgress("discrete-decoded-state-v1", "completed", 16);
+    const computingProgress = readStoredProgress("computing-fundamentals-state-v1", "completed", 16);
     const last = localStorage.getItem(LAST_COURSE_KEY) || "calculus";
-    const lastNames = { calculus: "Calculus", anthropology: "Philosophical Anthropology", discrete: "Discrete Mathematics" };
+    const lastNames = { calculus: "Calculus", anthropology: "Philosophical Anthropology", discrete: "Discrete Mathematics", computing: "Computing Fundamentals" };
     app.innerHTML = `<main class="course-dashboard">
       <header class="dashboard-bar">
         <a class="dashboard-brand" href="./" aria-label="Study room home"><span>H</span><strong>Hezron’s study room</strong></a>
@@ -246,9 +228,10 @@
       <section class="course-section" aria-labelledby="course-heading">
         <div class="dashboard-section-head"><div><span class="eyebrow">Coursework</span><h2 id="course-heading">Pick your room</h2></div><p>Each guide behaves differently. Yes, you can tickle them.</p></div>
         <div class="course-grid">
-          ${courseCard({ id: "calculus", eyebrow: "ICS 1103 · Differential Calculus", title: "Calculus", guide: "Tion", symbol: "∫", copy: "Limits, continuity and derivatives explained line by line, with exam-room solutions and fx-82EX checks.", progress: overallProgress(), topics: ["Worked examples", "Formula reflex", "3 mock papers"] })}
-          ${courseCard({ id: "anthropology", eyebrow: "HED 1201 · Caroline S. Maingi", title: "Philosophical Anthropology", guide: "Bianca", symbol: "φ", copy: "A serious but simple journey through being, life, the person, freedom, relationships and human destiny.", progress: paProgress, href: "anthropology/", topics: ["Deep notes", "Mnemonics", "Essay practice"] })}
-          ${courseCard({ id: "discrete", eyebrow: "Discrete structures", title: "Discrete Mathematics", guide: "Peter", symbol: "∴", copy: "Sets, logic, counting, induction and functions made visual, testable and proof-ready.", progress: discreteProgress, href: "discrete/", topics: ["Truth labs", "Past questions", "Memory deck"] })}
+          ${courseCard({ id: "calculus", eyebrow: "ICS 1103 · Differential Calculus", title: "Calculus", guide: "Tion", profile: "tion", symbol: "∫", copy: "Limits, continuity and derivatives explained line by line, with exam-room solutions and fx-82EX checks.", progress: overallProgress(), topics: ["Worked examples", "Formula reflex", "3 mock papers"] })}
+          ${courseCard({ id: "anthropology", eyebrow: "HED 1201 · Caroline S. Maingi", title: "Philosophical Anthropology", guide: "Bianca", profile: "bianca", symbol: "φ", copy: "A serious but simple journey through being, life, the person, freedom, relationships and human destiny.", progress: paProgress, href: "anthropology/", topics: ["Deep notes", "Mnemonics", "Essay practice"] })}
+          ${courseCard({ id: "discrete", eyebrow: "Discrete structures", title: "Discrete Mathematics", guide: "Peter", profile: "peter", symbol: "∴", copy: "Sets, logic, counting, induction and functions made visual, testable and proof-ready.", progress: discreteProgress, href: "discrete/", topics: ["Truth labs", "Past questions", "Memory deck"] })}
+          ${courseCard({ id: "computing", eyebrow: "CNS / ICS 1101 · Computing Fundamentals", title: "Computing Fundamentals", guide: "Woof Woof", profile: "woof", symbol: "01", copy: "Hardware, operating systems, networks, security, number systems and algorithms connected into one usable mental model.", progress: computingProgress, href: "computing/", topics: ["11 diagrams", "8 live labs", "77 questions"] })}
         </div>
       </section>
       <section class="dashboard-lower">
@@ -868,6 +851,8 @@
         window.location.href = "anthropology/";
       } else if (course === "discrete") {
         window.location.href = "discrete/";
+      } else if (course === "computing") {
+        window.location.href = "computing/";
       } else {
         history.replaceState(null, "", `${window.location.pathname}?course=calculus`);
         state.dashboard = false;

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#163748" />
+    <meta name="description" content="Hezron's complete Computing Fundamentals study room: deep notes, visual diagrams, practical labs, mnemonics and worked exam practice." />
+    <title>Computing Fundamentals · Woof Woof</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23163748'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='39'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../study-tools.css" />
+    <script>
+      if (sessionStorage.getItem("tion-auth") !== "yes") window.location.replace("../");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to study content</a>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Course navigation">
+        <div class="brand-row">
+          <button class="brand" data-route="home" aria-label="Go to Computing Fundamentals dashboard">
+            <span class="brand-chip" aria-hidden="true">01</span>
+            <span><strong>Inside the machine</strong><small>Woof Woof’s lab</small></span>
+          </button>
+          <button class="icon-button sidebar-close" id="sidebar-close" aria-label="Close menu">×</button>
+        </div>
+        <a class="hub-return" href="../">← All courses</a>
+        <section class="progress-card" aria-label="Course mastery">
+          <div><span>Course mastery</span><strong id="progress-label">0%</strong></div>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="Course mastery" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-bar"></span></div>
+          <small id="progress-detail">0 modules mastered</small>
+        </section>
+        <nav class="main-nav">
+          <button class="nav-item" data-route="home"><span>⌂</span><b>Mission control</b></button>
+          <div class="nav-label">Learn the system</div>
+          <div id="module-nav"></div>
+          <div class="nav-label">Master it</div>
+          <button class="nav-item" data-route="diagrams"><span>◇</span><b>Visual diagrams</b><em>11</em></button>
+          <button class="nav-item" data-route="practice"><span>◎</span><b>Application questions</b><em id="question-count">0</em></button>
+          <button class="nav-item" data-route="labs"><span>⌁</span><b>Practice lab</b><em>8</em></button>
+          <button class="nav-item" data-route="memory"><span>↻</span><b>Memory gym</b></button>
+          <button class="nav-item" data-route="exam"><span>★</span><b>Before the exam</b></button>
+          <button class="nav-item" data-route="sources"><span>↗</span><b>Source coverage</b></button>
+        </nav>
+        <aside class="sidebar-note"><strong>Woof Woof’s rule</strong><p>Identify → explain → apply → troubleshoot.</p><small>If you can only recognise it, you do not own it yet.</small></aside>
+      </aside>
+
+      <div class="page-shell">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="menu-button" aria-label="Open course menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+          <div class="page-context"><span id="page-kicker">CNS/ICS 1101</span><strong id="page-title">Mission control</strong></div>
+          <div class="top-actions">
+            <button class="search-button" id="search-button"><span>⌕</span><b>Search notes</b><kbd>/</kbd></button>
+            <button class="tired-button" id="tired-button" aria-pressed="false"><span>☾</span><b>Full notes</b></button>
+            <a class="courses-button" href="../"><span>←</span><b>Courses</b></a>
+          </div>
+        </header>
+        <main id="main-content" tabindex="-1"></main>
+      </div>
+    </div>
+
+    <div class="sidebar-scrim" id="sidebar-scrim" aria-hidden="true"></div>
+    <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-dialog-title">
+      <form method="dialog" class="search-panel">
+        <h2 class="sr-only" id="search-dialog-title">Search Computing Fundamentals</h2>
+        <label class="search-field"><span aria-hidden="true">⌕</span><span class="sr-only">Search notes</span><input id="search-input" type="search" placeholder="Try ‘POST’, ‘RAID’ or ‘phishing’" autocomplete="off" /><button aria-label="Close search">Esc</button></label>
+        <div id="search-results" class="search-results"></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="../study-tools.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+      const computingWelcome = "Yo Hezron — welcome to the lab. Pick a system and we’ll make it make sense.";
+      window.StudyTools?.setCourse("woof", { message: computingWelcome });
+      window.setTimeout(() => {
+        const speech = document.querySelector(".buddy-speech");
+        const message = speech?.querySelector(".buddy-message")?.textContent;
+        if (message === computingWelcome) speech.classList.remove("show");
+      }, 5000);
+    </script>
+  </body>
+</html>

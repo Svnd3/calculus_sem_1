@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "start": "python3 -m http.server 4173",
-    "test": "node --check content.js && node --check papers.js && node --check study-tools.js && node --check app.js && node --check anthropology/pa-data.js && node --check anthropology/app.js && node --check discrete/data.js && node --check discrete/app.js"
+    "test": "node --check content.js && node --check papers.js && node --check study-tools.js && node --check app.js && node --check anthropology/pa-data.js && node --check anthropology/app.js && node --check discrete/data.js && node --check discrete/app.js && node --check computing/data.js && node --check computing/app.js"
   }
 }
